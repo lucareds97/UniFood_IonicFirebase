@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Nuovo Prodotto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="ion-padding">
+    <ion-item>
+      <ion-label position="stacked">Nome Prodotto</ion-label>
+      <ion-input id = "nomeProdotto" [(ngModel)]="prodotto.nome"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descrizione</ion-label>
+      <ion-input id = "descrizioneProdotto" [(ngModel)]="prodotto.descrizione"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Prezzo</ion-label>
+      <ion-input id = "descrizioneProdotto" [(ngModel)]="prodotto.prezzo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Link Immagine</ion-label>
+      <ion-input id = "linkImmagine" [(ngModel)]="prodotto.linkImmagine"></ion-input>
+    </ion-item>
+
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-button color="danger" (click)="inserisciProdotto()" slot="end">INSERISCI</ion-button>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

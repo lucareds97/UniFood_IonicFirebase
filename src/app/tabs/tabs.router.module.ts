@@ -17,33 +17,37 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 'lista-prodotti',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: '../lista-prodotti/lista-prodotti.module#ListaProdottiPageModule'
+          },
+          {
+            path: 'nuovo-prodotto',
+            loadChildren: '../nuovo-prodotto/nuovo-prodotto.module#NuovoProdottoPageModule'
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'profilo',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: '../profilo/profilo.module#ProfiloPageModule'
           }
         ]
       },
       {
         path: '',
-        redirectTo: '/tabs/ordini',
+        redirectTo: '/tabs/lista-prodotti',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/ordini',
+    redirectTo: '/tabs/lista-prodotti',
     pathMatch: 'full'
   }
 ];

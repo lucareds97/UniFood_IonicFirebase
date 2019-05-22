@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentReference } from 'angularfire2/firestore';
-import { Product } from '../interfaces/product';
+import { Prodotto } from '../interfaces/prodotti';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -9,11 +9,11 @@ import { map } from 'rxjs/operators';
 })
 export class ProductsService {
 
-  productsCollection: AngularFirestoreCollection<Product>;
-  products: Observable<Product[]>;
+  productsCollection: AngularFirestoreCollection<Prodotto>;
+  products: Observable<Prodotto[]>;
 
   constructor(private db: AngularFirestore) {
-    this.productsCollection = db.collection<Product>('products');
+    this.productsCollection = db.collection<Prodotto>('prodotto');
  
     this.products = this.productsCollection.snapshotChanges().pipe(
       map(actions => {
@@ -26,19 +26,19 @@ export class ProductsService {
     );
   }
 
-  getProducts(): Observable<Product[]> {
+  getProducts(): Observable<Prodotto[]> {
     return this.products;
   }
 
-  getProduct(id: string): Observable<Product> {
-    return this.productsCollection.doc<Product>(id).valueChanges();
+  getProduct(id: string): Observable<Prodotto> {
+    return this.productsCollection.doc<Prodotto>(id).valueChanges();
   }
 
-  addProduct(product: Product): Promise<DocumentReference> {
+  addProduct(product: Prodotto): Promise<DocumentReference> {
     return this.productsCollection.add(product);
   }
 
-  updateProduct(product: Product, id: string): Promise<void> {
+  updateProduct(product: Prodotto, id: string): Promise<void> {
     return this.productsCollection.doc(id).update(product);
   }
 
