@@ -29,29 +29,16 @@ export class ListaProdottiPage implements OnInit{
 
   ngOnInit() {
     this.prodService.getProducts().subscribe(res => {
-      //console.log(res);
-
-      res.forEach(id => {
-
-        this.prodotto.nome = res[this.i]['nome'];
-        this.prodotto.descrizione = res[this.i]['descrizione'];
-        this.prodotto.prezzo = res[this.i]['prezzo'];
-        this.prodotto.linkImmagine = res[this.i]['linkImmagine'];
-        
-        this.listaProdotti.push(res[this.i]);
-
-        console.log("ITERATA" + this.i);
-        console.log(this.listaProdotti[this.i]);
-
-        this.i++;
-
-      });
-
+      this.listaProdotti = res;
     });
   }
 
   aggiungiNuovoProdotto(){
     this.router.navigateByUrl('/tabs/lista-prodotti/nuovo-prodotto');
+  }
+
+  rimuoviProdotto(id){
+    this.prodService.removeProduct(id);
   }
 
 }
