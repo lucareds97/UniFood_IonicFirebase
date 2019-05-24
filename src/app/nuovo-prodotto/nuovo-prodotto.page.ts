@@ -15,7 +15,7 @@ export class NuovoProdottoPage{
   prodotto: Prodotto = {
     nome: '',
     descrizione: '',
-    prezzo: '',
+    prezzo: 0,
     linkImmagine: '',
   };
 
@@ -24,11 +24,17 @@ export class NuovoProdottoPage{
 
 
   inserisciProdotto(){
-    if(this.prodotto.nome == '' || this.prodotto.descrizione == '' || this.prodotto.prezzo == '' || this.prodotto.nome == ''){
+    if(this.prodotto.nome == '' || this.prodotto.descrizione == '' || this.prodotto.prezzo == 0 || this.prodotto.nome == ''){
       console.log("INSERIRE TUTTI I CAMPI!");
     }else{
     this.prodService.addProduct(this.prodotto);
     this.router.navigateByUrl("/lista-prodotti");
+
+    this.prodotto.nome = "";
+    this.prodotto.descrizione = "";
+    this.prodotto.prezzo = 0;
+    this.prodotto.linkImmagine = "";
+    
   }
 }
 

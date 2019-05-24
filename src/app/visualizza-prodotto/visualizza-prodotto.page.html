@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button [text]="buttonText" [icon]="buttonIcon">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Scheda Prodotto
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card class="sc-ion-card-ios-h sc-ion-card-ios-s ios hydrated">
+    <ion-card-header class="ios hydrated">
+      <br>
+      <img src="{{prodotto.linkImmagine}}" class="image" style="border-radius: 10%">
+      <br>
+      <ion-card-title class="ios hydrated" style="text-align: center" role="heading" aria-level="1">{{prodotto.nome}}
+      </ion-card-title>
+      <ion-card-subtitle class="ios hydrated" style="text-align: center; font-size: large" role="heading">€
+        {{prodotto.prezzo}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="ios card-content-ios hydrated" style="text-align: center">
+      {{prodotto.descrizione}}
+    </ion-card-content>
+
+    <ion-col>
+      <ion-button color="danger" class="center" (click)= "modificaProdottoDaScheda(id)">
+        MODIFICA</ion-button>
+
+      <br>
+
+      <ion-button color="danger" class="center" (click)= "presentAlertConfirm()">
+        ELIMINA</ion-button>
+    </ion-col>
+
+
+    <br>
+      <br>
+
+  </ion-card>
+</ion-content>

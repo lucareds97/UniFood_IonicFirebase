@@ -19,7 +19,7 @@ export class ListaProdottiPage implements OnInit{
   prodotto: Prodotto = {
     nome: '',
     descrizione: '',
-    prezzo: '',
+    prezzo: 0,
     linkImmagine: '',
 
   };
@@ -39,6 +39,14 @@ export class ListaProdottiPage implements OnInit{
 
   rimuoviProdotto(id){
     this.prodService.removeProduct(id);
+  }
+
+  modificaProdotto(id){
+    this.router.navigateByUrl('/tabs/lista-prodotti/modifica-prodotto/' + id);
+  }
+
+  visualizzaSchedaProdotto(id){
+    this.router.navigateByUrl('/tabs/lista-prodotti/visualizza-prodotto/' + id);
   }
 
 }

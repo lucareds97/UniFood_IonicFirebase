@@ -26,6 +26,14 @@ const routes: Routes = [
           {
             path: 'nuovo-prodotto',
             loadChildren: '../nuovo-prodotto/nuovo-prodotto.module#NuovoProdottoPageModule'
+          },
+          {
+            path: 'modifica-prodotto/:id',
+            loadChildren: '../modifica-prodotto/modifica-prodotto.module#ModificaProdottoPageModule'
+          },
+          {
+            path: 'visualizza-prodotto/:id',
+            loadChildren: '../visualizza-prodotto/visualizza-prodotto.module#VisualizzaProdottoPageModule'
           }
         ]
       },

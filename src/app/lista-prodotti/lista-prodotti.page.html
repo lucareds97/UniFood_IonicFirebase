@@ -15,7 +15,7 @@
   </ion-fab>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let prodotto of listaProdotti">
+    <ion-item-sliding *ngFor="let prodotto of listaProdotti" (click)="visualizzaSchedaProdotto(prodotto.id)">
       <ion-item class="item ios in-list ion-focusable item-label hydrated">
         <ion-avatar slot="start" class="ios hydrated">
           <img src={{prodotto.linkImmagine}}>
@@ -24,12 +24,12 @@
           <h2 style="font-weight: bold">{{prodotto.nome}}</h2>
           <h3 style="font-style: italic">{{prodotto.descrizione}}</h3>
         </ion-label>
-        <ion-note slot="end" style="font-size: medium">{{prodotto.prezzo}}
+        <ion-note slot="end" style="font-size: medium"> € {{prodotto.prezzo}}
         </ion-note>
       </ion-item>
 
       <ion-item-options side="end">
-        <ion-item-option >
+        <ion-item-option (click)="modificaProdotto(prodotto.id)">
             <ion-icon slot="icon-only" name="create"></ion-icon>
         </ion-item-option>
         <ion-item-option color="danger" (click)="rimuoviProdotto(prodotto.id)">

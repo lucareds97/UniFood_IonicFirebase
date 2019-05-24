@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button [text]="buttonText" [icon]="buttonIcon">
+        </ion-back-button>
+      </ion-buttons>
+      <ion-title>
+        Modifica Prodotto
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  
+      <br>
+
+    <div class="ion-padding">
+      <ion-item class="text-center">
+        <ion-label position="stacked">Nome Prodotto:</ion-label>
+        <ion-input id = "nomeProdotto" [(ngModel)]="prodotto.nome"></ion-input>
+      </ion-item>
+
+      <ion-item class="text-center">
+          <ion-label position="stacked">Descrizione:</ion-label>
+          <ion-textarea id = "descrizioneProdotto" [(ngModel)]="prodotto.descrizione">
+          </ion-textarea>
+        </ion-item>
+  
+      <ion-item class="text-center">
+        <ion-label position="stacked">Prezzo:</ion-label>
+        <ion-input type="number" id = "prezzo" [(ngModel)]="prodotto.prezzo"></ion-input>
+      </ion-item>
+  
+      <ion-item class="text-center">
+        <ion-label position="stacked">Link Immagine:</ion-label>
+        <ion-input id = "linkImmagine" [(ngModel)]="prodotto.linkImmagine"></ion-input>
+      </ion-item>
+
+      <br>
+      <br>
+
+    <ion-button color="danger" class= "center" (click)="modificaProdotto()"slot="end">MODIFICA</ion-button>
+  
+    </div>
+  
+    
+  
+  </ion-content>
+  
