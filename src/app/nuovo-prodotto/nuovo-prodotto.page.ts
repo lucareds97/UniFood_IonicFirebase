@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { Prodotto } from '../interfaces/prodotti';
-import { AlertController, PickerController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -19,13 +19,13 @@ export class NuovoProdottoPage{
     linkImmagine: '',
   };
 
-  constructor(private prodService: ProductsService, public alertController: AlertController, private router: Router, public pickerCtrl: PickerController) {
+  constructor(private prodService: ProductsService, public alertController: AlertController, private router: Router) {
    }
 
 
   inserisciProdotto(){
     if(this.prodotto.nome == '' || this.prodotto.descrizione == '' || this.prodotto.prezzo == 0 || this.prodotto.nome == ''){
-      console.log("INSERIRE TUTTI I CAMPI!");
+      this.presentAlert();
     }else{
     this.prodService.addProduct(this.prodotto);
     this.router.navigateByUrl("/tabs/lista-prodotti");
@@ -36,11 +36,17 @@ export class NuovoProdottoPage{
     this.prodotto.linkImmagine = "";
     
   }
-
-
 }
 
-} 
+async presentAlert() {
+  const alert = await this.alertController.create({
+    header: 'Attenzione!',
+    subHeader: 'Prodotto non inserito.',
+    message: 'Dei campi sono vuoti!\n Compilare tutti i campi per inserire il prodotto!',
+    buttons: ['OK']
+  });
 
+  await alert.present();
+}
 
-
+}

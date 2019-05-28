@@ -7,34 +7,37 @@
 </ion-header>
 
 <ion-content>
-    <ion-card class="welcome-card">
-      <ion-img src="/assets/shapes.svg"></ion-img>
-      <ion-card-header>
-        <ion-card-subtitle>Get Started</ion-card-subtitle>
-        <ion-card-title>Welcome to Ionic</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
+  <ion-toolbar color="danger" style="height: max-content">
+    <ion-title style="text-shadow: black">DA COMPLETARE</ion-title>
+    <ion-icon slot="end" style="margin-right: 10px" name="arrow-dropdown-circle">
+    </ion-icon>
+  </ion-toolbar>
+
+  <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
+    <ion-item *ngIf="ordine.stato == false">
+      <ion-label >{{ordine.idCliente}}
+        <p>
+          {{ordine.idProdotto}}
+        </p>
+      </ion-label>
+      <ion-checkbox slot="end" (ionChange)="presentAlertConfirm(ordine)" checked="{{isChecked}}"></ion-checkbox>
+    </ion-item>
+  </ion-item-sliding>
+
+  <ion-toolbar color="success">
+    <ion-title style="text-shadow: black">COMPLETATI</ion-title>
+    <ion-icon slot="end" style="margin-right: 10px" name="arrow-dropdown-circle">
+    </ion-icon>
+  </ion-toolbar>
+
+  <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
+      <ion-item *ngIf="ordine.stato == true">
+        <ion-label >{{ordine.idCliente}}
+          <p>
+            {{ordine.idProdotto}}
+          </p>
+        </ion-label>
       </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list>
+    </ion-item-sliding>
+
+</ion-content>
