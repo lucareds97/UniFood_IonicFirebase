@@ -35,7 +35,7 @@ export class ModificaProdottoPage implements OnInit {
 
   modificaProdotto(){
     this.prodService.updateProduct(this.prodotto, this.id);
-    this.router.navigateByUrl('/lista-prodotti');
+    this.router.navigateByUrl('/tabs/lista-prodotti');
   }
 
 }

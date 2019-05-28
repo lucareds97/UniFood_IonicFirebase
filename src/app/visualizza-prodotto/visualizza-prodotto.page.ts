@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/*import { Component, OnInit } from '@angular/core';
 import { Prodotto } from '../interfaces/prodotti';
 import { ProductsService } from '../services/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class VisualizzaProdottoPage implements OnInit {
 
   id: any;
 
-  constructor(private prodService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router,public alertController: AlertController) { }
+  constructor(private prodService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router, public alertController: AlertController) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -61,6 +61,7 @@ export class VisualizzaProdottoPage implements OnInit {
           handler: () => {
             this.rimuoviProdotto(this.id);
             console.log('Confirm Okay');
+           
           }
         }
       ]
@@ -69,3 +70,7 @@ export class VisualizzaProdottoPage implements OnInit {
     await alert.present();
   }
 }
+
+*/
+
+

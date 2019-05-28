@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../services/products.service';
 import { Prodotto } from '../interfaces/prodotti';
-import { AlertController } from '@ionic/angular';
+import { AlertController, PickerController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -19,7 +19,7 @@ export class NuovoProdottoPage{
     linkImmagine: '',
   };
 
-  constructor(private prodService: ProductsService, public alertController: AlertController, private router: Router) {
+  constructor(private prodService: ProductsService, public alertController: AlertController, private router: Router, public pickerCtrl: PickerController) {
    }
 
 
@@ -28,7 +28,7 @@ export class NuovoProdottoPage{
       console.log("INSERIRE TUTTI I CAMPI!");
     }else{
     this.prodService.addProduct(this.prodotto);
-    this.router.navigateByUrl("/lista-prodotti");
+    this.router.navigateByUrl("/tabs/lista-prodotti");
 
     this.prodotto.nome = "";
     this.prodotto.descrizione = "";
@@ -36,6 +36,11 @@ export class NuovoProdottoPage{
     this.prodotto.linkImmagine = "";
     
   }
-}
+
 
 }
+
+} 
+
+
+

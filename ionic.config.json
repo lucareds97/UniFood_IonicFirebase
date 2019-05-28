@@ -1,5 +1,7 @@
 {
   "name": "UniFood_IonicFirebase",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
