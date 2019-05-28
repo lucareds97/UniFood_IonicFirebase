@@ -1,0 +1,12 @@
+<ion-content>
+<ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
+        <ion-item *ngIf="ordine.stato == false">
+          <ion-label >{{ordine.idCliente}}
+            <p>
+              {{ordine.idProdotto}}
+            </p>
+          </ion-label>
+          <ion-checkbox slot="end" (ionChange)="presentAlertConfirm(ordine)" checked="{{isChecked}}"></ion-checkbox>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-content>
