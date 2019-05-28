@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Prodotto } from 'src/app/interfaces/prodotti';
 
-import { NavParams, ModalController } from '@ionic/angular';
+import { NavParams, ModalController, AlertController } from '@ionic/angular';
 import { ProductsService } from 'src/app/services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal',
@@ -19,7 +20,7 @@ export class ModalPage implements OnInit {
   };
 
 id: any;
-  constructor(private prodService: ProductsService, private navParams: NavParams, private modalController: ModalController) { }
+  constructor(private router: Router, private prodService: ProductsService,  public alertController: AlertController, private navParams: NavParams, private modalController: ModalController) { }
 
   ngOnInit() {
     this.id = this.navParams.get('custom_id');
@@ -37,5 +38,42 @@ id: any;
       this.prodotto = res;
       console.log(res);
     });
+  }
+
+  rimuoviProdotto(id) {  
+    this.prodService.removeProduct(this.id);
+    this.closeModal();
+    
+  }
+
+  modificaProdotto(id) {
+    this.closeModal();
+    this.router.navigateByUrl('/tabs/lista-prodotti/modifica-prodotto/' + this.id);
+  }
+
+  
+  async presentAlertConfirm(id: string) {
+    const alert = await this.alertController.create({
+      header: 'Rimuovere il prodotto?',
+      message: 'Così facendo il prodotto verrà <strong>definitivamente</strong> eliminato dal database!!!',
+      buttons: [
+        {
+          text: 'Annulla',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Rimuovi',
+          handler: () => {
+            this.rimuoviProdotto(id);
+            console.log('Confirm Okay');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 }
