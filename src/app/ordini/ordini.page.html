@@ -8,7 +8,7 @@
 
     <ion-content>
       
-        <ion-segment [(ngModel)]="whichPage" color="danger">
+        <ion-segment [(ngModel)]="whichPage" color="danger" padding>
         <ion-segment-button style="font-size: 15px" value="non-completati"  >
          <ion-label >Non completati</ion-label> 
         </ion-segment-button>
@@ -28,7 +28,7 @@
                             {{ordine.idProdotto}}
                           </p>
                         </ion-label>
-                        <ion-checkbox slot="end" (ionChange)="presentAlertConfirm(ordine)" checked="{{isChecked}}"></ion-checkbox>
+                        <ion-checkbox slot="end" (click)="presentAlertConfirm(ordine)" [(ngModel)]="isChecked"></ion-checkbox>
                       </ion-item>
                     </ion-item-sliding>
              </ion-list>

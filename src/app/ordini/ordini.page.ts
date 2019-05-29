@@ -21,20 +21,22 @@ export class OrdiniPage {
     idCliente: '',
     idProdotto: '',
     idSede: '',
-}
+  }
+
+  whichPage = 'non-completati'
   isChecked: boolean = false;
 
   constructor(private ordiniService: OrdiniService, private alertController: AlertController, private navCtrl: NavController) {
   }
 
   ngOnInit() {
-      this.ordiniService.getOrdini().subscribe(res => {
-        this.listaOrdini = res;
-        console.log(this.listaOrdini);
-      });;
+    this.ordiniService.getOrdini().subscribe(res => {
+      this.listaOrdini = res;
+      console.log(this.listaOrdini);
+    });;
   }
 
-  cambiaStato(ordine){
+  cambiaStato(ordine) {
     ordine.stato = true;
     this.ordiniService.updateOrdine(ordine, ordine.id);
   }
@@ -49,7 +51,8 @@ export class OrdiniPage {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            
+            this.isChecked = false;
+            console.log(this.isChecked)
           }
         }, {
           text: 'Conferma',
