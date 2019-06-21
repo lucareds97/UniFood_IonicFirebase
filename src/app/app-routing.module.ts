@@ -6,8 +6,9 @@ const routes: Routes = [
   { path: 'lista-prodotti', loadChildren: './lista-prodotti/lista-prodotti.module#ListaProdottiPageModule' },
   { path: 'modifica-prodotto', loadChildren: './modifica-prodotto/modifica-prodotto.module#ModificaProdottoPageModule' },
   { path: 'visualizza-prodotto', loadChildren: './visualizza-prodotto/visualizza-prodotto.module#VisualizzaProdottoPageModule' },
-  { path: 'modal', loadChildren: './pages/modal/modal.module#ModalPageModule' }
-
+  { path: 'modal', loadChildren: './pages/modal/modal.module#ModalPageModule' },
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule'},
+  
 ];
 @NgModule({
   imports: [
