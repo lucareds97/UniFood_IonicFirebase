@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Prodotto } from 'src/app/interfaces/prodotti';
 
 import { NavParams, ModalController, AlertController } from '@ionic/angular';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductsService } from 'src/app/services/service_personale/products.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -48,7 +48,7 @@ id: any;
 
   modificaProdotto(id) {
     this.closeModal();
-    this.router.navigateByUrl('/tabs/lista-prodotti/modifica-prodotto/' + this.id);
+    this.router.navigateByUrl('/personale/lista-prodotti/modifica-prodotto/' + this.id);
   }
 
   

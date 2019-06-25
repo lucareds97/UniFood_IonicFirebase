@@ -28,7 +28,7 @@
                             {{ordine.idProdotto}}
                           </p>
                         </ion-label>
-                        <ion-checkbox slot="end" (click)="presentAlertConfirm(ordine)" [(ngModel)]="isChecked"></ion-checkbox>
+                        <ion-checkbox slot="end" (click)="presentAlertConfirm(ordine)" [(ngModel)]="ordine.isChecked"></ion-checkbox>
                       </ion-item>
                     </ion-item-sliding>
              </ion-list>

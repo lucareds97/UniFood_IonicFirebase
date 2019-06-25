@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Ordine } from '../interfaces/ordini';
+import { Ordine } from '../../interfaces/ordini';
 import { AngularFirestoreCollection, AngularFirestore, DocumentReference } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

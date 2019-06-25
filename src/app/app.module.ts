@@ -13,7 +13,9 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
-import {ModalPageModule} from './pages/modal/modal.module'
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'
+
+import {ModalPageModule} from './personale/pages/modal/modal.module'
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,8 @@ import {ModalPageModule} from './pages/modal/modal.module'
   imports: [
     BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseCredentials),
+    FormsModule,
+    ReactiveFormsModule,
     AngularFirestoreModule, ModalPageModule,
   ],
   providers: [

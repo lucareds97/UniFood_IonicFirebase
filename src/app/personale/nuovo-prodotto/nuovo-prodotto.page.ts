@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductsService } from '../services/products.service';
-import { Prodotto } from '../interfaces/prodotti';
+import { ProductsService } from '../../services/service_personale/products.service';
+import { Prodotto } from '../../interfaces/prodotti';
 import { AlertController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -28,7 +28,7 @@ export class NuovoProdottoPage{
       this.presentAlert();
     }else{
     this.prodService.addProduct(this.prodotto);
-    this.router.navigateByUrl("/tabs/lista-prodotti");
+    this.router.navigateByUrl("/personale/lista-prodotti");
 
     this.prodotto.nome = "";
     this.prodotto.descrizione = "";

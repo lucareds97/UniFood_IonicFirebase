@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TabsPage } from './tabs.page';
+import { TabsPagePersonale } from './tabs_personale.page';
 
 const routes: Routes = [
+
+
   {
-    path: 'tabs',
-    component: TabsPage,
+    path: 'personale',
+    component: TabsPagePersonale,
     children: [
       {
         path: 'ordini',
@@ -16,6 +18,7 @@ const routes: Routes = [
           }
         ]
       },
+
       {
         path: 'lista-prodotti',
         children: [
@@ -37,6 +40,7 @@ const routes: Routes = [
           }
         ]
       },
+      
       {
         path: 'profilo',
         children: [
@@ -48,16 +52,19 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/tabs/lista-prodotti',
+        redirectTo: '/lista-prodotti',
         pathMatch: 'full'
       }
     ]
   },
+
   {
     path: '',
-    redirectTo: '/tabs/lista-prodotti',
+    redirectTo: '/personale/lista-prodotti',
     pathMatch: 'full'
-  }
+
+}
+
 ];
 
 @NgModule({

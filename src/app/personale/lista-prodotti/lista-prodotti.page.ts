@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from '../../services/service_personale/products.service';
 import { Router } from '@angular/router';
 import { IonInfiniteScroll, ModalController } from '@ionic/angular';
-import { Prodotto } from '../interfaces/prodotti';
+import { Prodotto } from '../../interfaces/prodotti';
 import { AlertController } from '@ionic/angular';
 
 import { NavParams } from '@ionic/angular';
@@ -52,7 +52,7 @@ export class ListaProdottiPage implements OnInit {
 
 
   aggiungiNuovoProdotto() {
-    this.router.navigateByUrl('/tabs/lista-prodotti/nuovo-prodotto');
+    this.router.navigateByUrl('/personale/lista-prodotti/nuovo-prodotto');
   }
 
   rimuoviProdotto(id) {
@@ -61,11 +61,11 @@ export class ListaProdottiPage implements OnInit {
   }
 
   modificaProdotto(id) {
-    this.router.navigateByUrl('/tabs/lista-prodotti/modifica-prodotto/' + id);
+    this.router.navigateByUrl('/personale/lista-prodotti/modifica-prodotto/' + id);
   }
 
   visualizzaSchedaProdotto(id) {
-    this.router.navigateByUrl('/tabs/lista-prodotti/visualizza-prodotto/' + id);
+    this.router.navigateByUrl('/personale/lista-prodotti/visualizza-prodotto/' + id);
   }
 
   async presentAlertConfirm(id: string) {

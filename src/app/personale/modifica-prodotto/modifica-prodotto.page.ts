@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Prodotto } from '../interfaces/prodotti';
-import { ProductsService } from '../services/products.service';
+import { Prodotto } from '../../interfaces/prodotti';
+import { ProductsService } from '../../services/service_personale/products.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -35,7 +35,7 @@ export class ModificaProdottoPage implements OnInit {
 
   modificaProdotto(){
     this.prodService.updateProduct(this.prodotto, this.id);
-    this.router.navigateByUrl('/tabs/lista-prodotti');
+    this.router.navigateByUrl('/personale/lista-prodotti');
   }
 
 }

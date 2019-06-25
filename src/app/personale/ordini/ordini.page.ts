@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { OrdiniService } from '../services/ordini.service';
-import { Ordine } from '../interfaces/ordini';
+import { OrdiniService } from '../../services/service_personale/ordini.service';
+import { Ordine } from '../../interfaces/ordini';
 import { AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
