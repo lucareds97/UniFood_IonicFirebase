@@ -47,6 +47,8 @@ export class LoginPage implements OnInit {
     this.authService.loginUser(email, password).then(() => {
 
       this.authService.getUserData();
+
+      
       
       this.loading.dismiss().then(() => {
 
@@ -71,6 +73,7 @@ export class LoginPage implements OnInit {
             break;
         }
         this.router.navigateByUrl(`/${categoria}/lista-prodotti`);
+        
       });
       },
       error => {

@@ -44,7 +44,7 @@ export class AuthService {
   }
 
 
-  signupUser(email: string, password: string, tipo: string): Promise<any> {
+  signupUser(email: string, password: string, nome: string, cognome: string, tipo: string): Promise<any> {
     
     console.log(tipo);
 
@@ -58,7 +58,7 @@ export class AuthService {
         firebase
           .firestore()
           .doc(`/userProfile/${newUserCredential.user.uid}`)
-          .set({ email, password, tipo});
+          .set({ email, password, nome, cognome,tipo});
       })
       .catch(error => {
         console.error(error);

@@ -17,7 +17,28 @@ export class ProfiloPage implements OnInit {
   };
   
   constructor(private authService: AuthService){
+    let categoria: string;
+    
+    switch (this.authService.utente.tipo) {
+
+      case '1':
+          this.authService.utente.tipo = 'Cliente:';
+        break;
+
+      case '2':
+          this.authService.utente.tipo = 'Personale:';
+        break;
+
+      case '3':
+          this.authService.utente.tipo = 'Amministratore:';
+        break;
+
+      
+    }
+
   }
+
+  
 
   logout(){
     this.authService.logoutUser();

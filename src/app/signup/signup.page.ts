@@ -16,6 +16,8 @@ export class SignupPage implements OnInit {
   public loading: any;
 
   tipo: string;
+  nome: string;
+  cognome: string;
 
   constructor(
     private authService: AuthService,
@@ -33,6 +35,12 @@ export class SignupPage implements OnInit {
         '',
         Validators.compose([Validators.minLength(6), Validators.required]),
       ],
+      nome: [
+        '',
+      ],
+      cognome: [
+        '',
+      ],
     });
   }
 
@@ -44,9 +52,13 @@ export class SignupPage implements OnInit {
     } else {
       const email: string = signupForm.value.email;
       const password: string = signupForm.value.password;
+      const nome: string = signupForm.value.nome;
+      const cognome: string = signupForm.value.cognome;
       this.tipo = '1';
-  
-      this.authService.signupUser(email, password, this.tipo).then(
+
+      console.log(this.nome);
+
+      this.authService.signupUser(email, password, nome, cognome, this.tipo).then(
         () => {
           this.loading.dismiss().then(() => {
             this.router.navigateByUrl('/login');
