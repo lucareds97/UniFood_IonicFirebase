@@ -28,15 +28,39 @@ const routes: Routes = [
   },
 
   { 
-    path: 'modal', loadChildren: './personale/pages/modal/modal.module#ModalPageModule',
+    path: 'modal', 
+    loadChildren: './personale/pages/modal/modal.module#ModalPageModule',
     canActivate: [AuthGuard],
   },
 
   { 
     path: 'login', loadChildren: './login/login.module#LoginPageModule',
   },
-  { path: 'signup', loadChildren: './signup/signup.module#SignupPageModule' },
-  
+
+  { 
+    path: 'signup',
+    loadChildren: './signup/signup.module#SignupPageModule', 
+  },
+
+  { 
+    path: '', 
+    loadChildren: './cliente/tabs_cliente/tabs_cliente.module#TabsPageModule',
+    canActivate: [AuthGuard], 
+  },
+ 
+
+  { 
+    path: 'visualizza-prodotti', 
+    loadChildren: './cliente/visualizza-prodotti/visualizza-prodotti.module#VisualizzaProdottiPageModule',
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'carrello',
+    loadChildren: './cliente/carrello/carrello.module#CarrelloPageModule',
+    canActivate: [AuthGuard],
+  },
+
 ];
 @NgModule({
   imports: [

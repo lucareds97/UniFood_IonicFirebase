@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{prodotto.nome}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <img src="{{prodotto.linkImmagine}}" class="modal-image">
+
+  <div class="price">
+      Prezzo: {{prodotto.prezzo | currency : '€'}}
+  </div>
+  
+  <p class="description">
+      Ingredienti: {{prodotto.descrizione}}
+  </p>
+  
+  <div
+    class="center">
+  <ion-button fill="clear" color="danger" (click)="aggiungiAlCarrello(prodotto.id)">
+    <ion-icon  slot="icon-only" name="cart" ></ion-icon>
+  </ion-button>
+</div>
+
+</ion-content>

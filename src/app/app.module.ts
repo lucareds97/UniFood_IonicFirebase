@@ -16,6 +16,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 
 import {ModalPageModule} from './personale/pages/modal/modal.module'
+import { ModalProdottoClientePageModule } from './cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,7 @@ import {ModalPageModule} from './personale/pages/modal/modal.module'
     AngularFireModule.initializeApp(environment.firebaseCredentials),
     FormsModule,
     ReactiveFormsModule,
-    AngularFirestoreModule, ModalPageModule,
+    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule
   ],
   providers: [
     StatusBar,

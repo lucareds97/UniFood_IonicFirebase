@@ -17,7 +17,7 @@ import { ModalPage } from '../pages/modal/modal.page'
   styleUrls: ['lista-prodotti.page.scss'],
 
 
-
+  
 })
 export class ListaProdottiPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
@@ -26,7 +26,7 @@ export class ListaProdottiPage implements OnInit {
   i: number = 0;
   listaProdotti: any[] = [];
 
-  prodotto: Prodotto = {
+    prodotto: Prodotto = {
     nome: '',
     descrizione: '',
     prezzo: 0,

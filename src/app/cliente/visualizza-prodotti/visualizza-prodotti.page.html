@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Visualizza Prodotti
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+  
+  
+    <ion-list>
+      <ion-item-sliding *ngFor="let prodotto of visualizzaProdotti" class="item ios in-list ion-focusable item-label hydrated"> 
+        <ion-item  (click)="openModal2(prodotto.id)">
+          <ion-avatar slot="start" class="ios hydrated">
+            <img src={{prodotto.linkImmagine}}>
+          </ion-avatar>
+          <ion-label class="sc-ion-label-ios-h sc-ion-label-ios-s ios hydrated">
+            <h2 style="font-weight: bold">{{prodotto.nome}}</h2>
+            <h3 style="font-style: italic">{{prodotto.descrizione}}</h3>
+          </ion-label>
+          <ion-note slot="end" style="font-size: medium"> € {{prodotto.prezzo}}
+          </ion-note>
+          <ion-icon slot="end"  name="cart" isClicked="aggiungiCarrello(prodotto.id)"></ion-icon>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>      
+  </ion-content>

@@ -25,7 +25,6 @@ id: any;
   ngOnInit() {
     this.id = this.navParams.get('custom_id');
     this.getProdotto();
-    
   }
 
   closeModal(){
@@ -43,7 +42,6 @@ id: any;
   rimuoviProdotto(id) {  
     this.prodService.removeProduct(this.id);
     this.closeModal();
-    
   }
 
   modificaProdotto(id) {
