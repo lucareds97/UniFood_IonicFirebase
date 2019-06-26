@@ -23,8 +23,8 @@
   
   <div
     class="center">
-  <ion-button fill="clear" color="danger" (click)="aggiungiAlCarrello(prodotto.id)">
-    <ion-icon  slot="icon-only" name="cart" ></ion-icon>
+  <ion-button fill="clear" color="danger" >
+    <ion-icon  slot="icon-only" name="cart" (click)="aggiungiAlCarrello(prodotto.id)" ></ion-icon>
   </ion-button>
 </div>
 

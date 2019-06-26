@@ -4,6 +4,7 @@ import { Prodotto } from 'src/app/interfaces/prodotti';
 import { ProductsService } from 'src/app/services/service_personale/products.service';
 import { Router } from '@angular/router';
 import {ModalProdottoClientePage} from 'src/app/cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.page';
+import { CarrelloService } from 'src/app/services/service_cliente/carrello.service';
 
 @Component({
   selector: 'app-visualizza-prodotti',
@@ -27,7 +28,10 @@ export class VisualizzaProdottiPage implements OnInit {
   id: any;
   value = 0;
 
-  constructor(private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
+  carrello = [];
+  items = [];
+
+  constructor(private carrelloService: CarrelloService, private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
 
   ngOnInit() {
     this.prodService.getProducts().subscribe(res => {
@@ -35,11 +39,9 @@ export class VisualizzaProdottiPage implements OnInit {
 
     });
 
+    this.carrello = this.carrelloService.getCart();
+    this.items = this.carrelloService.getProducts();
 }
-// visualizzaSchedaProdotto(id) {
-//     this.router.navigateByUrl('/cliente/visualizza-prodotti/visualizza-prodotto/' + id);
-//   }
-
   async openModal2(id) {
     console.log(id);
     const modal = await this.modalController.create({
@@ -50,4 +52,12 @@ export class VisualizzaProdottiPage implements OnInit {
     });
     await modal.present();
   }
+  aggiungiAlCarrello(prodotto){
+    this.carrelloService.addProduct(prodotto);
+  }
+
+  apriCarrello(){
+    this.router.navigate(['carrello']); 
+  }
+
 }
