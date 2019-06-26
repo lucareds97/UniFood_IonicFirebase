@@ -10,11 +10,25 @@
 <ion-card class="sc-ion-card-ios-h sc-ion-card-ios-s ios hydrated">
   <ion-card-header class="ios hydrated" style= "text-align: center">
       <img src="https://image.ibb.co/jRkLL8/personale_red.png" class="center-image" style="max-width: 300px; max-height: 300px;">
-    <ion-card-subtitle class="ios hydrated" role="heading" aria-level="3">Personale</ion-card-subtitle>
-    <ion-card-title class="ios hydrated" role="heading" aria-level="2">Rosaria Fuschino</ion-card-title>
+    <ion-card-subtitle class="ios hydrated" role="heading" aria-level="3">{{utente.tipo}}</ion-card-subtitle>
+    <ion-card-title class="ios hydrated" role="heading" aria-level="2">{{utente.nome}} {{utente.cognome}}</ion-card-title>
   </ion-card-header>
   <ion-card-content class="ios card-content-ios hydrated" style= "text-align: center">
-    e-mail: ro.fuschino@gmail.com
+    e-mail: {{utente.email}}
   </ion-card-content>
+
+  <br>
+
+  <div class="center-button">
+    <ion-button fill="clear" style="color: red" (click)="logout()" >
+      LOGOUT
+        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+      </ion-button>
+      </div>
+
+      <br>
+      
 </ion-card>
+
 </ion-col>
+

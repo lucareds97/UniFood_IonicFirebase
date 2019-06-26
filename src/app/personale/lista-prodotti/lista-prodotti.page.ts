@@ -8,6 +8,7 @@ import { AlertController } from '@ionic/angular';
 import { NavParams } from '@ionic/angular';
 
 import { ModalPage } from '../pages/modal/modal.page'
+import { AuthService } from 'src/app/services/user/auth.service';
 
 
 
@@ -37,14 +38,12 @@ export class ListaProdottiPage implements OnInit {
   id: any;
   value = 0;
 
-  constructor(private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) {
+  constructor(private prodService: ProductsService, private authService: AuthService, private router: Router, public alertController: AlertController, private modalController: ModalController) {
   }
 
   ngOnInit() {
     this.prodService.getProducts().subscribe(res => {
       this.listaProdotti = res;
-
-
 
     });
   }
