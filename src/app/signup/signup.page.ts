@@ -9,9 +9,14 @@ import { Router } from '@angular/router';
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
+
 export class SignupPage implements OnInit {
+  
   public signupForm: FormGroup;
   public loading: any;
+
+  tipo: string;
+
   constructor(
     private authService: AuthService,
     private loadingCtrl: LoadingController,
@@ -39,8 +44,9 @@ export class SignupPage implements OnInit {
     } else {
       const email: string = signupForm.value.email;
       const password: string = signupForm.value.password;
+      this.tipo = '1';
   
-      this.authService.signupUser(email, password).then(
+      this.authService.signupUser(email, password, this.tipo).then(
         () => {
           this.loading.dismiss().then(() => {
             this.router.navigateByUrl('/login');

@@ -1,7 +1,17 @@
-<ion-content padding>
+<ion-content>
+
+  <br>
+        
+  <h6  style="text-align: center">
+    Inserisci qui <b>Email</b> e <b>Password</b> per cominciare ad usare
+  </h6>
+
+  <h1 style="text-align: center; color: black">Uni<b style="color: red">Food</b></h1>
+
+
+    <div class="ion-padding" style="margin-top: 50px">
   <form [formGroup]="signupForm">
-    <ion-item>
-      <ion-label position="stacked">Email</ion-label>
+    <ion-item class="center" >
       <ion-input
         formControlName="email"
         type="email"
@@ -15,11 +25,10 @@
       *ngIf="!signupForm.controls['email'].valid
       && signupForm.controls['email'].touched"
     >
-      <ion-label>Please enter a valid email.</ion-label>
+      <ion-label style="text-align: center">Please enter a valid email.</ion-label>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Password</ion-label>
+    <ion-item class="center" >
       <ion-input
         formControlName="password"
         type="password"
@@ -33,15 +42,16 @@
       *ngIf="!signupForm.controls['password'].valid  &&
       signupForm.controls['password'].touched"
     >
-      <ion-label>Your password needs more than 6 characters.</ion-label>
+      <ion-label style="text-align: center">Your password needs more than 6 characters.</ion-label>
     </ion-item>
 
-    <ion-button
-      expand="block"
-      (click)="signupUser(signupForm)"
-      [disabled]="!signupForm.valid"
-    >
-      Create an Account
-    </ion-button>
+    <br>
   </form>
+  </div>
+
+  <div class="button-center">
+      <ion-button color="danger" slot="end" (click)="signupUser(signupForm)" [disabled]="!signupForm.valid">
+          Crea Account
+        </ion-button>
+  </div>
 </ion-content>

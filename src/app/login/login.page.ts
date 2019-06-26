@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { AuthService } from '../services/user/auth.service';
 import { Router } from '@angular/router';
+import { Utente } from '../interfaces/utente';
 
 
 @Component({
@@ -30,7 +31,6 @@ export class LoginPage implements OnInit {
         '',
         Validators.compose([Validators.required, Validators.minLength(6)]),
       ],
-      tipo: [''],
     });
   }
 
@@ -44,17 +44,34 @@ export class LoginPage implements OnInit {
     const email = loginForm.value.email;
     const password = loginForm.value.password;
 
-    this.authService.loginUser(email, password).then(
-      () => {
-        this.loading.dismiss().then(() => {
+    this.authService.loginUser(email, password).then(() => {
 
+      this.authService.getUserData();
+      
+      this.loading.dismiss().then(() => {
 
-          console.log(this.loginForm.get('tipo').value);
+        let categoria: string;
 
-          this.router.navigateByUrl('');
+        switch (this.authService.utente.tipo) {
 
+          case '1':
+            categoria = 'cliente';
+            break;
 
-        });
+          case '2':
+            categoria = 'personale';
+            break;
+
+          case '3':
+            categoria = 'amministratore';
+            break;
+
+          default:
+            categoria = 'personale';
+            break;
+        }
+        this.router.navigateByUrl(`/${categoria}/lista-prodotti`);
+      });
       },
       error => {
         this.loading.dismiss().then(async () => {
@@ -65,13 +82,14 @@ export class LoginPage implements OnInit {
           await alert.present();
         });
       }
-    );
+    )
   }
 }
 
-  ngOnInit() {
 
-    
+
+
+  ngOnInit() {
   }
 
 
