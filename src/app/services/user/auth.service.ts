@@ -73,16 +73,16 @@ export class AuthService {
 
   getUserId() {
     this.id = firebase.auth().currentUser.uid;
-    console.log(this.id)
+    console.log(this.id);
     return this.id;
   }
 
   getUserData() {
-    
     const id = firebase.auth().currentUser.uid;
+    console.log(id);
     this.usersCollection.doc<Utente>(id).valueChanges().subscribe(res =>{
       this.utente = res;
-      console.log('asdasd' + this.utente);
+      //console.log(this.utente);
       return this.utente;
     });
 

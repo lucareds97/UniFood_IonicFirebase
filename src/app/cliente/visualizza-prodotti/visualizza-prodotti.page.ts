@@ -4,6 +4,7 @@ import { Prodotto } from 'src/app/interfaces/prodotti';
 import { ProductsService } from 'src/app/services/service_personale/products.service';
 import { Router } from '@angular/router';
 import {ModalProdottoClientePage} from 'src/app/cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.page';
+import { AuthService } from 'src/app/services/user/auth.service';
 
 @Component({
   selector: 'app-visualizza-prodotti',
@@ -27,15 +28,24 @@ export class VisualizzaProdottiPage implements OnInit {
   id: any;
   value = 0;
 
-  constructor(private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
+  constructor(private prodService: ProductsService, private authService:AuthService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
 
   ngOnInit() {
+    this.getDatiUtente();
+    this.getProdotti();
+  }
+
+  getProdotti(){
     this.prodService.getProducts().subscribe(res => {
       this.visualizzaProdotti = res;
 
     });
+  }
 
-}
+  getDatiUtente(){
+    this.authService.getUserData();
+  }
+
 // visualizzaSchedaProdotto(id) {
 //     this.router.navigateByUrl('/cliente/visualizza-prodotti/visualizza-prodotto/' + id);
 //   }

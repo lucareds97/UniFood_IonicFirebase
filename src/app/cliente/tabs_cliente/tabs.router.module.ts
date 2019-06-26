@@ -32,23 +32,24 @@ const routes: Routes = [
       ]
      },
 
-    // {
-    //   path: 'profilo',
-    //   children: [
-    //     {
-    //       path: '',
-    //       loadChildren: '../profilo/profilo.module#ProfiloPageModule'
-    //     }
-    //   ]
-    // },
+     {
+        path: 'profilo',
+        children: [
+          {
+            path: '',
+            loadChildren: '../../profilo/profilo.module#ProfiloPageModule'
+          }
+        ]
+      },
 
     
 
-    /*{
+    {
       path: '',
-      redirectTo: '/visualizza-prodotti',
+      component: TabsPageCliente,
+      redirectTo: '/cliente/visualizza-prodotti',
       pathMatch: 'full'
-    }*/
+    }
 
     ]
   }

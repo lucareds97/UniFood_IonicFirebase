@@ -72,7 +72,7 @@ export class LoginPage implements OnInit {
             categoria = 'personale';
             break;
         }
-        this.router.navigateByUrl(`/${categoria}/lista-prodotti`);
+        this.router.navigateByUrl(`/${categoria}`);
         
       });
       },
