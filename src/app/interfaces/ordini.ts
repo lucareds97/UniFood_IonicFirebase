@@ -6,4 +6,5 @@ export interface Ordine {
     idCliente: string;
     idProdotto: string;
     idSede: string;
+    isChecked: boolean,
 }

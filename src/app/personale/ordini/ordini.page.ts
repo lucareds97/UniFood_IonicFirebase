@@ -22,10 +22,10 @@ export class OrdiniPage {
     idCliente: '',
     idProdotto: '',
     idSede: '',
+    isChecked: false,
   }
 
   whichPage = 'non-completati'
-  isChecked: boolean = false;
 
   constructor(private ordiniService: OrdiniService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController) {
   }
@@ -60,8 +60,8 @@ export class OrdiniPage {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            this.isChecked = false;
-            console.log(this.isChecked)
+            ordine.isChecked = false;
+            console.log(ordine.isChecked)
           }
         }, {
           text: 'Conferma',

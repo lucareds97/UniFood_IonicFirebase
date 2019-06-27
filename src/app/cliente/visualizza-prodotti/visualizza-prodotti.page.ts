@@ -5,6 +5,7 @@ import { ProductsService } from 'src/app/services/service_personale/products.ser
 import { Router } from '@angular/router';
 import {ModalProdottoClientePage} from 'src/app/cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.page';
 import { AuthService } from 'src/app/services/user/auth.service';
+import { CarrelloService } from 'src/app/services/service_cliente/carrello.service';
 
 @Component({
   selector: 'app-visualizza-prodotti',
@@ -28,11 +29,17 @@ export class VisualizzaProdottiPage implements OnInit {
   id: any;
   value = 0;
 
-  constructor(private prodService: ProductsService, private authService:AuthService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
+  carrello = [];
+  items = [];
+
+  constructor(private carrelloService: CarrelloService, private authService:AuthService, private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
 
   ngOnInit() {
     this.getDatiUtente();
     this.getProdotti();
+
+    this.carrello = this.carrelloService.getCart();
+    this.items = this.carrelloService.getProducts();
   }
 
   getProdotti(){
@@ -46,10 +53,6 @@ export class VisualizzaProdottiPage implements OnInit {
     this.authService.getUserData();
   }
 
-// visualizzaSchedaProdotto(id) {
-//     this.router.navigateByUrl('/cliente/visualizza-prodotti/visualizza-prodotto/' + id);
-//   }
-
   async openModal2(id) {
     console.log(id);
     const modal = await this.modalController.create({
@@ -60,4 +63,12 @@ export class VisualizzaProdottiPage implements OnInit {
     });
     await modal.present();
   }
+  aggiungiAlCarrello(prodotto){
+    this.carrelloService.addProduct(prodotto);
+  }
+
+  apriCarrello(){
+    this.router.navigate(['carrello']); 
+  }
+
 }
