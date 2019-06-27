@@ -23,6 +23,7 @@ export class VisualizzaProdottiPage implements OnInit {
     descrizione: '',
     prezzo: 0,
     linkImmagine: '',
+    tipo: ''
 
   };
 
