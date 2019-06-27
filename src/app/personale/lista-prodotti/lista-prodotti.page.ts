@@ -33,6 +33,7 @@ export class ListaProdottiPage implements OnInit {
     descrizione: '',
     prezzo: 0,
     linkImmagine: '',
+    tipo: ''
 
   };
 

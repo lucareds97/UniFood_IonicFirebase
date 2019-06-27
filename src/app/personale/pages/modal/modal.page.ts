@@ -17,6 +17,7 @@ export class ModalPage implements OnInit {
     descrizione: '',
     prezzo: 0,
     linkImmagine: '',
+    tipo: []
   };
 
 id: any;
