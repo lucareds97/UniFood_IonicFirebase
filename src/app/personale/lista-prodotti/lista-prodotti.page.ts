@@ -44,11 +44,8 @@ export class ListaProdottiPage implements OnInit {
   ngOnInit() {
     this.prodService.getProducts().subscribe(res => {
       this.listaProdotti = res;
-
     });
   }
-
-
 
   aggiungiNuovoProdotto() {
     this.router.navigateByUrl('/personale/lista-prodotti/nuovo-prodotto');

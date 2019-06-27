@@ -6,8 +6,8 @@ const routes: Routes = [
   
   { 
     path: '', 
-  loadChildren: './personale/tabs_personale/tabs_personale.module#TabsPageModule',
-  canActivate: [AuthGuard], 
+    loadChildren: './personale/tabs_personale/tabs_personale.module#TabsPageModule',
+    canActivate: [AuthGuard], 
 },
 
   { 
@@ -60,6 +60,20 @@ const routes: Routes = [
     loadChildren: './cliente/carrello/carrello.module#CarrelloPageModule',
     canActivate: [AuthGuard],
   },
+
+  { 
+    path: '', 
+    loadChildren: './amministratore/tabs_amministratore/tabs_amministratore.module#TabsPageModule',
+    canActivate: [AuthGuard], 
+  },
+
+  { 
+    path: 'lista-personale', 
+    loadChildren: './amministratore/lista-personale/lista-personale.module#ListaPersonalePageModule'
+  },
+
+
+
 
 ];
 @NgModule({
