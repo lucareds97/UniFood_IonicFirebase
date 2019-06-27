@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/service_personale/products.service';
 import { Prodotto } from '../../interfaces/prodotti';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { PickerOptions, PickerButton } from '@ionic/core';
+import { PickerController } from '@ionic/angular';
 
 @Component({
   selector: 'app-nuovo-prodotto',
@@ -17,14 +19,15 @@ export class NuovoProdottoPage{
     descrizione: '',
     prezzo: 0,
     linkImmagine: '',
+    tipo: '',
   };
-
-  constructor(private prodService: ProductsService, public alertController: AlertController, private router: Router) {
+  framework = '';
+  constructor(private pickerCtrl: PickerController, private prodService: ProductsService, public alertController: AlertController,  private toastCtrl: ToastController, private router: Router) {
    }
 
 
   inserisciProdotto(){
-    if(this.prodotto.nome == '' || this.prodotto.descrizione == '' || this.prodotto.prezzo == 0 || this.prodotto.nome == ''){
+    if(this.prodotto.nome == '' || this.prodotto.descrizione == '' || this.prodotto.prezzo == 0 || this.prodotto.nome == '' || this.prodotto.tipo ==''){
       this.presentAlert();
     }else{
     this.prodService.addProduct(this.prodotto);
@@ -34,8 +37,39 @@ export class NuovoProdottoPage{
     this.prodotto.descrizione = "";
     this.prodotto.prezzo = 0;
     this.prodotto.linkImmagine = "";
+    this.prodotto.tipo = "";
     
   }
+}
+
+async scegliTipo() {
+  let opts: PickerOptions = {
+    buttons: [
+      {
+        text: 'Annulla',
+        role: 'cancel'
+      },
+      {
+        text: 'Scegli'
+      }
+    ],
+    columns: [
+      {
+        name: 'tipo',
+        options: [
+          { text: 'Primo piatto', value: 'A' },
+          { text: 'Secondo piatto', value: 'B' },
+          { text: 'Bibita', value: 'C' }
+        ]
+      }
+    ]
+  };
+  let picker = await this.pickerCtrl.create(opts);
+  picker.present();
+  picker.onDidDismiss().then(async data => {
+    let col = await picker.getColumn('tipo');
+    this.prodotto.tipo = col.options[col.selectedIndex].text;
+  });
 }
 
 async presentAlert() {

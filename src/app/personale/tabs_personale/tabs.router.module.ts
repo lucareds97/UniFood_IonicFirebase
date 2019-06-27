@@ -52,18 +52,12 @@ const routes: Routes = [
       },
       {
         path: '',
-        redirectTo: '/lista-prodotti',
+        redirectTo: '/personale/lista-prodotti',
         pathMatch: 'full'
-      }
+    
+    }
     ]
   },
-
-  {
-    path: '',
-    redirectTo: '/personale/lista-prodotti',
-    pathMatch: 'full'
-
-}
 
 ];
 

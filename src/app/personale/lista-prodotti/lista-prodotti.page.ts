@@ -9,6 +9,7 @@ import { NavParams } from '@ionic/angular';
 
 import { ModalPage } from '../pages/modal/modal.page'
 import { AuthService } from 'src/app/services/user/auth.service';
+import { componentRefresh } from '@angular/core/src/render3/instructions';
 
 
 
@@ -32,6 +33,7 @@ export class ListaProdottiPage implements OnInit {
     descrizione: '',
     prezzo: 0,
     linkImmagine: '',
+    tipo: ''
 
   };
 
@@ -42,6 +44,11 @@ export class ListaProdottiPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getProdotti();
+    this.getDatiUtente();
+  }
+
+  getProdotti(){
     this.prodService.getProducts().subscribe(res => {
       this.listaProdotti = res;
     });

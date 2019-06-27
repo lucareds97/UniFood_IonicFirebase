@@ -3,6 +3,7 @@ import { OrdiniService } from '../../services/service_personale/ordini.service';
 import { Ordine } from '../../interfaces/ordini';
 import { AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/user/auth.service';
 
 @Component({
   selector: 'app-ordini',
@@ -21,19 +22,27 @@ export class OrdiniPage {
     idCliente: '',
     idProdotto: '',
     idSede: '',
+    isChecked: false,
   }
 
   whichPage = 'non-completati'
-  isChecked: boolean = false;
 
-  constructor(private ordiniService: OrdiniService, private alertController: AlertController, private navCtrl: NavController) {
+  constructor(private ordiniService: OrdiniService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController) {
   }
 
   ngOnInit() {
+
+    this.getDatiUtente(); 
     this.ordiniService.getOrdini().subscribe(res => {
       this.listaOrdini = res;
       console.log(this.listaOrdini);
     });;
+  }
+
+
+
+  getDatiUtente(){
+    this.authService.getUserData();
   }
 
   cambiaStato(ordine) {
@@ -51,8 +60,8 @@ export class OrdiniPage {
           role: 'cancel',
           cssClass: 'secondary',
           handler: () => {
-            this.isChecked = false;
-            console.log(this.isChecked)
+            ordine.isChecked = false;
+            console.log(ordine.isChecked)
           }
         }, {
           text: 'Conferma',

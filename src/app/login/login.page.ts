@@ -72,14 +72,14 @@ export class LoginPage implements OnInit {
             categoria = 'personale';
             break;
         }
-        this.router.navigateByUrl(`/${categoria}/lista-prodotti`);
+        this.router.navigateByUrl(`/${categoria}`);
         
       });
       },
       error => {
         this.loading.dismiss().then(async () => {
           const alert = await this.alertCtrl.create({
-            message: error.message,
+            message: 'Impossibile effettuare l\'accesso!\n\n Nessun utente con le credenziali specificate presente nel database!',
             buttons: [{ text: 'Ok', role: 'cancel' }],
           });
           await alert.present();

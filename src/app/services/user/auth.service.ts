@@ -43,6 +43,10 @@ export class AuthService {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
+  resetPassword(email: string) {
+    return firebase.auth().sendPasswordResetEmail(email);
+  }
+
 
   signupUser(email: string, password: string, nome: string, cognome: string, tipo: string): Promise<any> {
     
@@ -73,16 +77,16 @@ export class AuthService {
 
   getUserId() {
     this.id = firebase.auth().currentUser.uid;
-    console.log(this.id)
+    console.log(this.id);
     return this.id;
   }
 
   getUserData() {
-    
     const id = firebase.auth().currentUser.uid;
+    console.log(id);
     this.usersCollection.doc<Utente>(id).valueChanges().subscribe(res =>{
       this.utente = res;
-      console.log('asdasd' + this.utente);
+      //console.log(this.utente);
       return this.utente;
     });
 
