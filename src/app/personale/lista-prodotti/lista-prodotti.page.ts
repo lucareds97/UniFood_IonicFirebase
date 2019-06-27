@@ -54,6 +54,14 @@ export class ListaProdottiPage implements OnInit {
     });
   }
 
+  getDatiUtente(){
+    this.authService.getUserData();
+  }
+
+
+
+
+
   aggiungiNuovoProdotto() {
     this.router.navigateByUrl('/personale/lista-prodotti/nuovo-prodotto');
   }
