@@ -4,6 +4,8 @@ import { Ordine } from '../../interfaces/ordini';
 import { AlertController, NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/user/auth.service';
+import { Prodotto } from 'src/app/interfaces/prodotti';
+import { ProductsService } from 'src/app/services/service_personale/products.service';
 
 @Component({
   selector: 'app-ordini',
@@ -12,7 +14,9 @@ import { AuthService } from 'src/app/services/user/auth.service';
 })
 export class OrdiniPage {
 
-  listaOrdini: any[] = []
+  listaOrdini: Ordine[] = [];
+  listaOrdiniFiltrata: Ordine[] = [];
+  idProdotto: string;
 
   ordine: Ordine = {
     dataOrdine: '',
@@ -25,21 +29,50 @@ export class OrdiniPage {
     isChecked: false,
   }
 
-  whichPage = 'non-completati'
+  prodotto: Prodotto = {
+    nome: '',
+    descrizione: '',
+    prezzo: 0,
+    linkImmagine: '',
+    tipo: '',
+  };
 
-  constructor(private ordiniService: OrdiniService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController) {
+  whichPage = 'non-completati'
+  whichType = 'Tutti'
+
+  constructor(private ordiniService: OrdiniService, private prodService: ProductsService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController) {
   }
 
-  ngOnInit() {
+  ngOnInit() { 
 
     this.getDatiUtente(); 
-    this.ordiniService.getOrdini().subscribe(res => {
-      this.listaOrdini = res;
-      console.log(this.listaOrdini);
-    });;
+
+    this.getOrdini();
+
   }
 
 
+  getOrdini(){
+    this.ordiniService.getOrdini().subscribe(res => {
+      this.listaOrdini = res;
+      //console.log(this.listaOrdini);
+
+      for(let ordine of this.listaOrdini){
+  
+        this.prodService.getProduct(ordine.idProdotto).subscribe(res =>{
+          this.prodotto = res;
+    
+          if((this.prodotto['tipo']) == 'Primo piatto'){
+            this.listaOrdiniFiltrata.push(ordine);
+            console.log(this.listaOrdiniFiltrata);
+          }
+          
+        })
+      }
+    })
+
+
+}
 
   getDatiUtente(){
     this.authService.getUserData();

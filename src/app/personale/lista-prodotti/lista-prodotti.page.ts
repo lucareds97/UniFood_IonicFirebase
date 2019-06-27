@@ -51,7 +51,7 @@ export class ListaProdottiPage implements OnInit {
   getProdotti(){
     this.prodService.getProducts().subscribe(res => {
       this.listaProdotti = res;
-
+      console.log(this.listaProdotti);
     });
   }
 
@@ -59,10 +59,7 @@ export class ListaProdottiPage implements OnInit {
     this.authService.getUserData();
   }
 
-
-
-
-
+  
   aggiungiNuovoProdotto() {
     this.router.navigateByUrl('/personale/lista-prodotti/nuovo-prodotto');
   }
