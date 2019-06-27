@@ -27,7 +27,7 @@ export class NuovoProdottoPage{
 
 
   inserisciProdotto(){
-    if(this.prodotto.nome == '' || this.prodotto.descrizione == '' || this.prodotto.prezzo == 0 || this.prodotto.nome == ''){
+    if(this.prodotto.nome == '' || this.prodotto.descrizione == '' || this.prodotto.prezzo == 0 || this.prodotto.nome == '' || this.prodotto.tipo ==''){
       this.presentAlert();
     }else{
     this.prodService.addProduct(this.prodotto);
@@ -37,6 +37,7 @@ export class NuovoProdottoPage{
     this.prodotto.descrizione = "";
     this.prodotto.prezzo = 0;
     this.prodotto.linkImmagine = "";
+    this.prodotto.tipo = "";
     
   }
 }
