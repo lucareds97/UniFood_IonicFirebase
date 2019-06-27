@@ -79,7 +79,7 @@ export class LoginPage implements OnInit {
       error => {
         this.loading.dismiss().then(async () => {
           const alert = await this.alertCtrl.create({
-            message: error.message,
+            message: 'Impossibile effettuare l\'accesso!\n\n Nessun utente con le credenziali specificate presente nel database!',
             buttons: [{ text: 'Ok', role: 'cancel' }],
           });
           await alert.present();
