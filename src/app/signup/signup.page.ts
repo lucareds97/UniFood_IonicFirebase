@@ -37,9 +37,11 @@ export class SignupPage implements OnInit {
       ],
       nome: [
         '',
+        Validators.compose([Validators.required]),
       ],
       cognome: [
         '',
+        Validators.compose([Validators.required]),
       ],
     });
   }
@@ -67,7 +69,7 @@ export class SignupPage implements OnInit {
         error => {
           this.loading.dismiss().then(async () => {
             const alert = await this.alertCtrl.create({
-              message: error.message,
+              message: 'L\'email inserita è già utilizzata da un altro utente',
               buttons: [{ text: 'Ok', role: 'cancel' }],
             });
             await alert.present();

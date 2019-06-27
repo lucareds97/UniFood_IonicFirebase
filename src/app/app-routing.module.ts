@@ -60,6 +60,7 @@ const routes: Routes = [
     loadChildren: './cliente/carrello/carrello.module#CarrelloPageModule',
     canActivate: [AuthGuard],
   },
+  { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
 
 ];
 @NgModule({

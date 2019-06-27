@@ -43,6 +43,10 @@ export class AuthService {
     return firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
+  resetPassword(email: string) {
+    return firebase.auth().sendPasswordResetEmail(email);
+  }
+
 
   signupUser(email: string, password: string, nome: string, cognome: string, tipo: string): Promise<any> {
     
