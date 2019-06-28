@@ -4,6 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { PersonaleService } from 'src/app/services/service_amministratore/personale.service';
 import { UtenteService } from 'src/app/services/service_amministratore/utente.service';
+import { AuthService } from 'src/app/services/user/auth.service';
 
 @Component({
   selector: 'app-nuovo-personale',
@@ -19,7 +20,7 @@ export class NuovoPersonalePage {
     tipo: '',
   };
 
-  constructor(private utenteService: UtenteService, private router: Router, private alertController: AlertController) { }
+  constructor(private authService: AuthService, private utenteService: UtenteService, private router: Router, private alertController: AlertController) { }
   inserisciPersonale() {
     this.personale['tipo'] = '2';
     if (this.personale.nome == '' || this.personale.cognome == '' || this.personale.email == '') {
