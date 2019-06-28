@@ -20,7 +20,7 @@ export class CarrelloPage implements OnInit {
 
   ngOnInit() {
 
-    this.carrelloService.getCart();
+    //this.carrelloService.getCart();
       // let items = this.carrelloService.getCart();
       // let selected = {};
       // for(let obj of items){
@@ -33,7 +33,7 @@ export class CarrelloPage implements OnInit {
     
       // this.selectedItems = Object.keys(selected).map(key => selected[key])
       // console.log('items: ', this.selectedItems);
-      this.total = this.selectedItems.reduce((a,b) => a + (b.count * b.price),0);
+      //his.total = this.selectedItems.reduce((a,b) => a + (b.count * b.price),0);
 
   }
 

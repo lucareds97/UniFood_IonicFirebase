@@ -10,16 +10,16 @@
 
   <ion-item>
     <ion-label>Filtro Ordini</ion-label>
-    <ion-select [(ngModel)]="whichType" role="combobox" aria-haspopup="dialog" aria-expanded="false">
-      <ion-select-option selected="" id="ion-selopt-0" class="ios hydrated" value="non-filtrata">Tutti
+    <ion-select [(ngModel)]="whichType">
+      <ion-select-option selected="Tutti" id="ion-selopt-0" value="Tutti">Tutti
       </ion-select-option>
-      <ion-select-option role="option" id="ion-selopt-0" class="ios hydrated" value="filtrata">Primo Piatto
-      </ion-select-option>
-      <ion-select-option role="option" id="ion-selopt-32" class="ios hydrated" value="filtrata">Secondo Piatto
-      </ion-select-option>
-      <ion-select-option role="option" id="ion-selopt-37" class="ios hydrated" value="filtrata">Bibita
-      </ion-select-option>
-      <input type="hidden" class="aux-input" name="ion-sel-6" value="">
+        <ion-select-option role="option" id="ion-selopt-1" value="Primo piatto">Primo Piatto
+        </ion-select-option>
+        <ion-select-option role="option" id="ion-selopt-2" value="Secondo piatto">Secondo Piatto
+        </ion-select-option>
+        <ion-select-option role="option" id="ion-selopt-3" value="Bibita">Bibita
+        </ion-select-option>
+      <input type="hidden" name="ion-sel-6">
     </ion-select>
   </ion-item>
 
@@ -37,12 +37,12 @@
   <br>
 
   <div [ngSwitch]="whichType">
-    <div *ngSwitchCase="filtrata">
+    <div *ngSwitchCase="'Primo piatto'">
 
       <div [ngSwitch]="whichPage">
         <ion-list *ngSwitchCase="'non-completati'">
 
-          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdiniFiltrata">
+          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaPrimi">
             <ion-item *ngIf="ordine.stato == false">
               <ion-label>{{ordine.idCliente}}
                 <p>
@@ -61,11 +61,100 @@
   </div>
 
   <div [ngSwitch]="whichType">
-    <div *ngSwitchCase="filtrata">
+    <div *ngSwitchCase="'Primo piatto'">
 
       <div [ngSwitch]="whichPage">
         <ion-list *ngSwitchCase="'completati'">
-          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdiniFiltrata">
+          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaPrimi">
+            <ion-item *ngIf="ordine.stato == true">
+              <ion-label>{{ordine.idCliente}}
+                <p>
+                  {{ordine.idProdotto}}
+                </p>
+              </ion-label>
+            </ion-item>
+          </ion-item-sliding>
+        </ion-list>
+      </div>
+    </div>
+  </div>
+
+
+  <div [ngSwitch]="whichType">
+    <div *ngSwitchCase="'Secondo piatto'">
+
+      <div [ngSwitch]="whichPage">
+        <ion-list *ngSwitchCase="'non-completati'">
+
+          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaSecondi">
+            <ion-item *ngIf="ordine.stato == false">
+              <ion-label>{{ordine.idCliente}}
+                <p>
+                  {{ordine.idProdotto}}
+                </p>
+              </ion-label>
+              <ion-checkbox slot="end" (click)="presentAlertConfirm(ordine)" [(ngModel)]="ordine.isChecked">
+              </ion-checkbox>
+            </ion-item>
+          </ion-item-sliding>
+        </ion-list>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div [ngSwitch]="whichType">
+    <div *ngSwitchCase="'Secondo piatto'">
+
+      <div [ngSwitch]="whichPage">
+        <ion-list *ngSwitchCase="'completati'">
+          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaSecondi">
+            <ion-item *ngIf="ordine.stato == true">
+              <ion-label>{{ordine.idCliente}}
+                <p>
+                  {{ordine.idProdotto}}
+                </p>
+              </ion-label>
+            </ion-item>
+          </ion-item-sliding>
+        </ion-list>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div [ngSwitch]="whichType">
+    <div *ngSwitchCase="'Bibita'">
+
+      <div [ngSwitch]="whichPage">
+        <ion-list *ngSwitchCase="'non-completati'">
+
+          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaBibite">
+            <ion-item *ngIf="ordine.stato == false">
+              <ion-label>{{ordine.idCliente}}
+                <p>
+                  {{ordine.idProdotto}}
+                </p>
+              </ion-label>
+              <ion-checkbox slot="end" (click)="presentAlertConfirm(ordine)" [(ngModel)]="ordine.isChecked">
+              </ion-checkbox>
+            </ion-item>
+          </ion-item-sliding>
+        </ion-list>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div [ngSwitch]="whichType">
+    <div *ngSwitchCase="'Bibita'">
+
+      <div [ngSwitch]="whichPage">
+        <ion-list *ngSwitchCase="'completati'">
+          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaBibite">
             <ion-item *ngIf="ordine.stato == true">
               <ion-label>{{ordine.idCliente}}
                 <p>
@@ -84,11 +173,11 @@
 
 
   <div [ngSwitch]="whichType">
-    <div *ngSwitchCase="'non-filtrata'">
+    <div *ngSwitchCase="'Tutti'">
 
       <div [ngSwitch]="whichPage">
         <ion-list *ngSwitchCase="'non-completati'">
-          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdiniFiltrata">
+          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
             <ion-item *ngIf="ordine.stato == false">
               <ion-label>{{ordine.idCliente}}
                 <p>
@@ -106,11 +195,11 @@
   </div>
 
   <div [ngSwitch]="whichType">
-    <div *ngSwitchCase="'non-filtrata'">
+    <div *ngSwitchCase="'Tutti'">
 
       <div [ngSwitch]="whichPage">
         <ion-list *ngSwitchCase="'completati'">
-          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdiniFiltrata">
+          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
             <ion-item *ngIf="ordine.stato == true">
               <ion-label>{{ordine.idCliente}}
                 <p>

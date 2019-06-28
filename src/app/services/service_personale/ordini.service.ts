@@ -26,7 +26,7 @@ export class OrdiniService {
     );
   }
 
-  getOrdini(): Observable<Ordine[]> {
+  getOrdini() {
     return this.ordini;
   }
 

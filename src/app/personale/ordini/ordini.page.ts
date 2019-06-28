@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdiniService } from '../../services/service_personale/ordini.service';
 import { Ordine } from '../../interfaces/ordini';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/user/auth.service';
 import { Prodotto } from 'src/app/interfaces/prodotti';
 import { ProductsService } from 'src/app/services/service_personale/products.service';
+import { NgSwitch, NgSwitchCase } from '@angular/common';
+import { ModalPage } from '../pages/modal/modal.page';
 
 @Component({
   selector: 'app-ordini',
@@ -15,20 +17,12 @@ import { ProductsService } from 'src/app/services/service_personale/products.ser
 export class OrdiniPage {
 
   listaOrdini: Ordine[] = [];
-  listaOrdiniFiltrata: Ordine[] = [];
+  listaPrimi: Ordine[] = [];
+  listaSecondi: Ordine[] = [];
+  listaBibite: Ordine[] = [];
+
   idProdotto: string;
-
-  ordine: Ordine = {
-    dataOrdine: '',
-    orarioOrdine: '',
-    prezzoTotale: '',
-    stato: false,
-    idCliente: '',
-    idProdotto: '',
-    idSede: '',
-    isChecked: false,
-  }
-
+  
   prodotto: Prodotto = {
     nome: '',
     descrizione: '',
@@ -40,7 +34,7 @@ export class OrdiniPage {
   whichPage = 'non-completati'
   whichType = 'Tutti'
 
-  constructor(private ordiniService: OrdiniService, private prodService: ProductsService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController) {
+  constructor(private ordiniService: OrdiniService, private prodService: ProductsService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController, private modalController: ModalController) {
   }
 
   ngOnInit() { 
@@ -51,20 +45,39 @@ export class OrdiniPage {
 
   }
 
+  setWhichType(tipo: string){
+    this.whichType = tipo;
+    console.log(this.whichType);
+  }
+
 
   getOrdini(){
     this.ordiniService.getOrdini().subscribe(res => {
       this.listaOrdini = res;
-      //console.log(this.listaOrdini);
+      
+      console.log(this.listaOrdini);
 
-      for(let ordine of this.listaOrdini){
+      for(let ordine of this.listaOrdini){  // IL PROBLEMA DOVREBBE ESSERE QUI, È COME SE CI FOSSE UN SOLO ORDINE ANCHE SE NON È COSÌ
   
         this.prodService.getProduct(ordine.idProdotto).subscribe(res =>{
           this.prodotto = res;
-    
-          if((this.prodotto['tipo']) == 'Primo piatto'){
-            this.listaOrdiniFiltrata.push(ordine);
-            console.log(this.listaOrdiniFiltrata);
+
+          switch (this.prodotto['tipo']) {
+
+            case 'Primo piatto':
+              this.listaPrimi.push(ordine);
+              break;
+  
+            case 'Secondo piatto':
+              this.listaSecondi.push(ordine);
+              break;
+  
+            case 'Bibita':
+              this.listaBibite.push(ordine);
+              break;
+  
+            default:
+              break;
           }
           
         })
@@ -107,6 +120,19 @@ export class OrdiniPage {
     });
 
     await alert.present();
+  }
+
+  async openModal(id) {
+    console.log(id);
+
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        custom_id: id
+      }
+    });
+
+    await modal.present();
   }
 
 }

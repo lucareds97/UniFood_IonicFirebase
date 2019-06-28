@@ -34,6 +34,10 @@ export class ProductsService {
     return this.productsCollection.doc<Prodotto>(id).valueChanges();
   }
 
+  getProductType(id:string): Observable<string>{
+    return this.productsCollection.doc<Prodotto['tipo']>(id).valueChanges();
+  }
+
   addProduct(product: Prodotto): Promise<DocumentReference> {
     return this.productsCollection.add(product);
   }
