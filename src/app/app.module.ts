@@ -26,7 +26,7 @@ import { ModalProdottoClientePageModule } from './cliente/pages/modal-prodotto-c
     AngularFireModule.initializeApp(environment.firebaseCredentials),
     FormsModule,
     ReactiveFormsModule,
-    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule
+    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule,
   ],
   providers: [
     StatusBar,

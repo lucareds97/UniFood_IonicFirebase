@@ -10,6 +10,7 @@ import { NavParams } from '@ionic/angular';
 import { ModalPage } from '../pages/modal/modal.page'
 import { AuthService } from 'src/app/services/user/auth.service';
 import { componentRefresh } from '@angular/core/src/render3/instructions';
+import { subscribeOn } from 'rxjs/operators';
 
 
 
@@ -21,24 +22,31 @@ import { componentRefresh } from '@angular/core/src/render3/instructions';
 
   
 })
+
+
 export class ListaProdottiPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
 
   i: number = 0;
-  listaProdotti: any[] = [];
+  listaProdotti: Prodotto[] = [];
 
-    prodotto: Prodotto = {
-    nome: '',
-    descrizione: '',
-    prezzo: 0,
-    linkImmagine: '',
-    tipo: ''
+  //   prodotto: Prodotto = {
+  //   nome: '',
+  //   descrizione: '',
+  //   prezzo: 0,
+  //   linkImmagine: '',
+  //   tipo: ''
 
-  };
+  // };
 
   id: any;
   value = 0;
+  index : any;
+
+  
+
+  
 
   constructor(private prodService: ProductsService, private authService: AuthService, private router: Router, public alertController: AlertController, private modalController: ModalController) {
   }
@@ -118,6 +126,72 @@ export class ListaProdottiPage implements OnInit {
 
     await modal.present();
   }
-}
+
+
+  getListaProdotti($event) {
+
+   let text = event.target.value;
+   console.log(this.listaProdotti);
+      
+    this.prodService.getProducts().subscribe((res)=>{
+    
+      this.listaProdotti = this.getProdotto(res);
+      console.log(this.listaProdotti);
+      return this.listaProdotti;
+    });
+   }
+
+  getProdotto(array) {
+    let ar = [];
+    array.forEach(element => {
+      if (element['nome'] == "acqua") {
+        ar.push(element);
+      }
+    });
+    return ar;
+  }
+
+
+
+  getInputElement($event){
+  
+
+      let text = event.target.value;
+      console.log(text);
+      console.log(this.listaProdotti);
+
+
+     
+
+      // if(!text){
+      //   this.getProdotti();
+      // }
+
+      // this.listaProdotti = this.listaProdotti.filter((text) =>{
+      //   if(this.prodotto.nome && text.trim() !=''){
+      //     console.log(this.prodotto.nome);
+      //     return(this.prodotto.nome.toLowerCase().indexOf(text.toLowerCase()) > -1)
+          
+          
+
+      //   }
+      // });
+
+      // console.log(text, this.listaProdotti);
+   
+    }
+
+   
+
+
+    
+      
+
+      
+
+    
+
+} 
+
 
 

@@ -1,32 +1,50 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore, DocumentReference } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { Carrello } from 'src/app/interfaces/carrello';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarrelloService {
 
-  carrelloCollection: AngularFirestoreCollection<Carrello>;
-  prodotti: Observable<Carrello[]>;
+  cartCollection: AngularFirestoreCollection<Carrello>;
+  cart: Observable<Carrello[]>;
 
 
-  public carrello = [];
-  public data = [];
+  
 
-  constructor() { }
+  constructor(private db: AngularFirestore) {
+    this.cartCollection = db.collection<Carrello>('carrello');
 
-  getProducts(){
-  return this.data;
+    
+    this.cart = this.cartCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  
+
+   }
+
+   getProducts(): Observable<Carrello[]> {
+    return this.cart;
   }
 
-  getCart(){
-    return this.carrello;
+  getCart(): Observable<Carrello[]> {
+    return this.cart;
   }
 
-  addProduct(product){
-    this.carrello.push(product);
-    console.log(this.carrello);
+  addProduct(cart: Carrello): Promise<DocumentReference> {
+    return this.cartCollection.add(cart);
+
+ 
   }
+
+  
 }

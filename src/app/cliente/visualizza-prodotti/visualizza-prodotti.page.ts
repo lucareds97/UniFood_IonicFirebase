@@ -39,8 +39,6 @@ export class VisualizzaProdottiPage implements OnInit {
     this.getDatiUtente();
     this.getProdotti();
 
-    this.carrello = this.carrelloService.getCart();
-    this.items = this.carrelloService.getProducts();
   }
 
   getProdotti(){
@@ -64,8 +62,9 @@ export class VisualizzaProdottiPage implements OnInit {
     });
     await modal.present();
   }
-  aggiungiAlCarrello(prodotto){
-    this.carrelloService.addProduct(prodotto);
+
+  aggiungiAlCarrello(){
+    this.carrelloService.addProduct(this.prodotto);
   }
 
   apriCarrello(){

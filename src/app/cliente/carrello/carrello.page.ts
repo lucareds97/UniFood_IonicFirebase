@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarrelloService } from 'src/app/services/service_cliente/carrello.service';
 import { Router } from '@angular/router';
 import {Prodotto} from 'src/app/interfaces/prodotti';
+import { Carrello } from 'src/app/interfaces/carrello';
 @Component({
   selector: 'app-carrello',
   templateUrl: './carrello.page.html',
@@ -9,7 +10,11 @@ import {Prodotto} from 'src/app/interfaces/prodotti';
 })
 export class CarrelloPage implements OnInit {
 
+  visualizzaCarrello: any[] = [];
 
+  carrello: Carrello = {
+};
+  
   selectedItems = [];
   total = 0;
 
@@ -36,6 +41,8 @@ export class CarrelloPage implements OnInit {
       this.total = this.selectedItems.reduce((a,b) => a + (b.count * b.price),0);
 
   }
+
+  
 
   
 
