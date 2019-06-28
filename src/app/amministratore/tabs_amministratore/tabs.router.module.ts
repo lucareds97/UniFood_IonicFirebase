@@ -25,7 +25,11 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../lista-personale/lista-personale.module#ListaPersonalePageModule'
-          }
+          },
+          {
+            path: 'nuovo-personale',
+            loadChildren: '../nuovo-personale/nuovo-personale.module#NuovoPersonalePageModule'
+          },
         ]
       },
       

@@ -20,7 +20,7 @@ export class CarrelloPage implements OnInit {
 
   ngOnInit() {
 
-    this.carrelloService.getCart();
+    // this.carrelloService.getCart();
       // let items = this.carrelloService.getCart();
       // let selected = {};
       // for(let obj of items){

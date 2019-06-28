@@ -73,6 +73,18 @@ const routes: Routes = [
     loadChildren: './amministratore/lista-personale/lista-personale.module#ListaPersonalePageModule'
   },
 
+  { 
+    path: 'modalPersonale', 
+    loadChildren: './amministratore/pages/modal/modal.module#ModalPageModule',
+    canActivate: [AuthGuard],
+  },
+
+  // {
+  // path: 'nuovo-personale',
+  // loadChildren: './amministratore/nuovo-personale/nuovo-personale.module#NuovoPersonalePageModule'
+  // },
+
+
 
 
 

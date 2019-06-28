@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{personale.nome}} {{personale.cognome}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <img src="https://image.ibb.co/jRkLL8/personale_red.png" class="modal-image">
+
+  <div class="price">
+    Email: {{personale.email}}
+  </div>
+
+  <div class="center">
+  <ion-button fill="clear"  >
+      <ion-icon slot="icon-only" name="create"></ion-icon>
+    </ion-button>
+
+    <ion-button fill="clear" color="danger" >
+        <ion-icon  slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </div>
+
+  
+</ion-content>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore, DocumentReference } from 'angularfire2/firestore';
 import { Utente } from 'src/app/interfaces/utente';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -25,9 +25,18 @@ export class UtenteService {
       })
     );
   }
-
+  
   getListaUtente(): Observable<Utente[]> {
     return this.listUsers;
   }
+  
+  getUserCollection(id: string): Observable<Utente> {
+    return this.usersCollection.doc<Utente>(id).valueChanges();
+  }
+
+  addUtente(utente: Utente): Promise<DocumentReference>{
+    return this.usersCollection.add(utente);
+  }
+
 
 }
