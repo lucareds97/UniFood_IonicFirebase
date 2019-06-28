@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Utente } from 'src/app/interfaces/utente';
 import { PersonaleService } from 'src/app/services/service_amministratore/personale.service';
 import { UtenteService } from 'src/app/services/service_amministratore/utente.service';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../pages/modal/modal.page';
+import { AuthService } from 'src/app/services/user/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-personale',
@@ -19,16 +23,32 @@ export class ListaPersonalePage implements OnInit {
   //   tipo: '',
   // };
 
-  constructor(private utenteService: UtenteService, private personaleService: PersonaleService) { }
-
+  constructor(private router: Router, private authService: AuthService, private utenteService: UtenteService, private personaleService: PersonaleService, private modalController: ModalController) {}
   ngOnInit() {
 
     this.utenteService.getListaUtente().subscribe((res) => {
       this.listaPersonale = this.personaleService.getPersonale(res);
-      console.log(this.listaPersonale);
       return this.listaPersonale;
     });
 
   }
 
+  aggiungiNuovoPersonale() {
+    this.router.navigateByUrl('/amministratore/lista-personale/nuovo-personale');
+  }
+
+  async openModalPersonale(id) {
+    console.log(id);
+
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        custom_id: id
+      }
+    });
+
+    await modal.present();
+  }
+
 }
+
