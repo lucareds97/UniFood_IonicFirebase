@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/user/auth.guard';
+import { CanActivate } from '@angular/router/src/utils/preactivation';
 
 const routes: Routes = [
   
@@ -70,8 +71,21 @@ const routes: Routes = [
 
   { 
     path: 'lista-personale', 
-    loadChildren: './amministratore/lista-personale/lista-personale.module#ListaPersonalePageModule'
+    loadChildren: './amministratore/lista-personale/lista-personale.module#ListaPersonalePageModule',
+    canActivate: [AuthGuard],
   },
+
+  { 
+    path: 'modalPersonale', 
+    loadChildren: './amministratore/pages/modal/modal.module#ModalPageModule',
+    canActivate: [AuthGuard],
+  },
+
+  // {
+  // path: 'nuovo-personale',
+  // loadChildren: './amministratore/nuovo-personale/nuovo-personale.module#NuovoPersonalePageModule'
+  // },
+
 
 
 

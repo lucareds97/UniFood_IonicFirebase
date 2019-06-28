@@ -19,16 +19,17 @@ import { componentRefresh } from '@angular/core/src/render3/instructions';
   styleUrls: ['lista-prodotti.page.scss'],
 
 
-  
+
 })
 export class ListaProdottiPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
 
   i: number = 0;
-  listaProdotti: any[] = [];
+  listaProdotti: Prodotto[] = [];
+  listaProdottiFiltrata: Prodotto[] = [];
 
-    prodotto: Prodotto = {
+  prodotto: Prodotto = {
     nome: '',
     descrizione: '',
     prezzo: 0,
@@ -39,6 +40,7 @@ export class ListaProdottiPage implements OnInit {
 
   id: any;
   value = 0;
+  public text: string = "";
 
   constructor(private prodService: ProductsService, private authService: AuthService, private router: Router, public alertController: AlertController, private modalController: ModalController) {
   }
@@ -48,13 +50,15 @@ export class ListaProdottiPage implements OnInit {
     this.getDatiUtente();
   }
 
-  getProdotti(){
+  getProdotti() {
     this.prodService.getProducts().subscribe(res => {
       this.listaProdotti = res;
+      this.listaProdottiFiltrata = res;
+
     });
   }
 
-  getDatiUtente(){
+  getDatiUtente() {
     this.authService.getUserData();
   }
 
@@ -113,6 +117,15 @@ export class ListaProdottiPage implements OnInit {
     });
 
     await modal.present();
+  }
+
+  search() {
+    if (this.text !== '') {
+      const searchKeyLowered = this.text.toLowerCase();
+      this.listaProdotti = this.listaProdotti.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
+    } else {
+      this.listaProdotti = this.listaProdottiFiltrata;
+    }
   }
 }
 
