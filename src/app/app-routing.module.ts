@@ -79,10 +79,10 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
-  // {
-  // path: 'nuovo-personale',
-  // loadChildren: './amministratore/nuovo-personale/nuovo-personale.module#NuovoPersonalePageModule'
-  // },
+  {
+  path: 'nuovo-personale',
+  loadChildren: './amministratore/nuovo-personale/nuovo-personale.module#NuovoPersonalePageModule'
+  },
 
 
 
