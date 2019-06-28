@@ -6,55 +6,68 @@
   </ion-toolbar>
 </ion-header>
 
-    <ion-content>
-      
-        <ion-segment [(ngModel)]="whichPage" color="danger" padding>
-        <ion-segment-button style="font-size: 15px" value="non-completati"  >
-         <ion-label >Non completati</ion-label> 
-        </ion-segment-button>
-      
-        <ion-segment-button style="font-size: 15px" value="completati">
-            <ion-label>Completati</ion-label>
-          </ion-segment-button>
-        </ion-segment>
+<ion-content>
 
-      <br>
-      <div [ngSwitch]="whichPage" >
-          <ion-list *ngSwitchCase="'non-completati'">
-                  <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
-                      <ion-item *ngIf="ordine.stato == false">
-                        <ion-label>{{ordine.idCliente}}
-                          <p>
-                            {{ordine.idProdotto}}
-                          </p>
-                        </ion-label>
-                        <ion-checkbox slot="end" (click)="presentAlertConfirm(ordine)" [(ngModel)]="ordine.isChecked"></ion-checkbox>
-                      </ion-item>
-                    </ion-item-sliding>
-             </ion-list>
-             
-      </div>
-         
-      
-        <div [ngSwitch]="whichPage">
-            <ion-list *ngSwitchCase="'completati'">
-        <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
-            <ion-item *ngIf="ordine.stato == true">
-              <ion-label>{{ordine.idCliente}}
+  <ion-segment [(ngModel)]="whichPage" color="danger" padding>
+    <ion-segment-button style="font-size: 15px" value="non-completati">
+      <ion-label>Non completati</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button style="font-size: 15px" value="completati">
+      <ion-label>Completati</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <div [ngSwitch]="whichPage">
+    <ion-list *ngSwitchCase="'non-completati'">
+
+      <ion-grid>
+        <ion-row class="ios hydrated" *ngFor="let ordine of listaOrdini">
+
+          <ion-col size="9">
+            <ion-item *ngIf="ordine.stato == false">
+              <ion-label font-size="60px">{{ordine.idCliente}}
                 <p>
                   {{ordine.idProdotto}}
                 </p>
               </ion-label>
             </ion-item>
-          </ion-item-sliding>
-        </ion-list>
-             
-      </div>
-      </ion-content>
+          </ion-col>
+
+          <ion-col size="3" align-self-center text-center>
+            <ion-checkbox *ngIf="ordine.stato == false" (click)="presentAlertConfirm(ordine)"
+              [(ngModel)]="ordine.isChecked"> </ion-checkbox>
+          </ion-col>
+
+
+        </ion-row>
+      </ion-grid>
+
+    </ion-list>
+
+  </div>
+
+
+  <div [ngSwitch]="whichPage">
+    <ion-list *ngSwitchCase="'completati'">
+      <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
+        <ion-item *ngIf="ordine.stato == true">
+          <ion-label>{{ordine.idCliente}}
+            <p>
+              {{ordine.idProdotto}}
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+
+  </div>
+</ion-content>
 
 
 
-  <!--- <ion-segment ion-padding>
+<!--- <ion-segment ion-padding>
     <ion-segment-button href="#completati" value="completati">
       <ion-label>Non Completati</ion-label>
     </ion-segment-button>
