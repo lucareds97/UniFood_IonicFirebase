@@ -6,8 +6,8 @@ const routes: Routes = [
   
   { 
     path: '', 
-  loadChildren: './personale/tabs_personale/tabs_personale.module#TabsPageModule',
-  canActivate: [AuthGuard], 
+    loadChildren: './personale/tabs_personale/tabs_personale.module#TabsPageModule',
+    canActivate: [AuthGuard], 
 },
 
   { 
@@ -61,6 +61,20 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
+
+  { 
+    path: '', 
+    loadChildren: './amministratore/tabs_amministratore/tabs_amministratore.module#TabsPageModule',
+    canActivate: [AuthGuard], 
+  },
+
+  { 
+    path: 'lista-personale', 
+    loadChildren: './amministratore/lista-personale/lista-personale.module#ListaPersonalePageModule'
+  },
+
+
+
 
 ];
 @NgModule({

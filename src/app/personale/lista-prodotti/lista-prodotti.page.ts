@@ -51,7 +51,6 @@ export class ListaProdottiPage implements OnInit {
   getProdotti(){
     this.prodService.getProducts().subscribe(res => {
       this.listaProdotti = res;
-
     });
   }
 

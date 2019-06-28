@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista Personale</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item class="ios hydrated" *ngFor="let personale of listaPersonale">
+      <ion-label>{{personale.nome}} {{personale.cognome}}
+        <p>
+          {{personale.email}}
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
