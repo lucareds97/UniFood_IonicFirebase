@@ -77,18 +77,9 @@ const routes: Routes = [
 
   { 
     path: 'modalPersonale', 
-    loadChildren: './amministratore/pages/modal/modal.module#ModalPageModule',
+    loadChildren: './amministratore/pages/modal/modal.module#ModalPersonalePageModule',
     canActivate: [AuthGuard],
   },
-
-  // {
-  // path: 'nuovo-personale',
-  // loadChildren: './amministratore/nuovo-personale/nuovo-personale.module#NuovoPersonalePageModule'
-  // },
-
-
-
-
 
 ];
 @NgModule({
