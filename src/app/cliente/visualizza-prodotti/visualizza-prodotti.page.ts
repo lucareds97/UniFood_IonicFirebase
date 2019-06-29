@@ -17,6 +17,10 @@ export class VisualizzaProdottiPage implements OnInit {
 
   i: number = 0;
   visualizzaProdotti: any[] = [];
+  visualizzaProdottiFiltrata: any[] = [];
+
+
+  public tipo: string = "Tutti";
 
   prodotto: Prodotto = {
     nome: '',
@@ -29,6 +33,7 @@ export class VisualizzaProdottiPage implements OnInit {
 
   id: any;
   value = 0;
+  public text: string = "";
 
   carrello = [];
   items = [];
@@ -46,6 +51,7 @@ export class VisualizzaProdottiPage implements OnInit {
   getProdotti() {
     this.prodService.getProducts().subscribe(res => {
       this.visualizzaProdotti = res;
+      this.visualizzaProdottiFiltrata = res;
 
     });
   }
@@ -64,7 +70,7 @@ export class VisualizzaProdottiPage implements OnInit {
     });
     await modal.present();
   }
-  
+
   aggiungiAlCarrello(prodotto) {
     this.cartService.addProduct(prodotto);
   }
@@ -72,5 +78,49 @@ export class VisualizzaProdottiPage implements OnInit {
   apriCarrello() {
     this.router.navigate(['carrello']);
   }
+  
+  filtraProdotti() {
 
+    const searchKeyLowered = this.tipo.toLowerCase();
+
+if(this.tipo !== ''){
+    switch (this.tipo) {
+
+      case 'Primo piatto':
+          this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.visualizzaProdotti);
+        break;
+
+      case 'Secondo piatto':
+          this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.visualizzaProdotti);
+        break;
+
+      case 'Bibita':
+          this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.visualizzaProdotti);
+        break;
+
+      case 'Tutti':
+        this.getProdotti();
+      this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
+      console.log(this.visualizzaProdotti);
+        break;
+
+      default:
+        break;
+    }
+
+  }
+
+}
+
+search() {
+  if (this.text !== '') {
+    const searchKeyLowered = this.text.toLowerCase();
+    this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
+  } else {
+    this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
+  }
+}
 }
