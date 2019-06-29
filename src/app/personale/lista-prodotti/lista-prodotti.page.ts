@@ -10,6 +10,7 @@ import { NavParams } from '@ionic/angular';
 import { ModalPage } from '../pages/modal/modal.page'
 import { AuthService } from 'src/app/services/user/auth.service';
 import { componentRefresh } from '@angular/core/src/render3/instructions';
+import { subscribeOn } from 'rxjs/operators';
 
 
 
@@ -19,26 +20,33 @@ import { componentRefresh } from '@angular/core/src/render3/instructions';
   styleUrls: ['lista-prodotti.page.scss'],
 
 
-  
+
 })
+
+
 export class ListaProdottiPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
 
-  i: number = 0;
-  listaProdotti: any[] = [];
 
-    prodotto: Prodotto = {
+  public tipo: string = "Tutti";
+
+  i: number = 0;
+  listaProdotti: Prodotto[] = [];
+  listaProdottiFiltrata: Prodotto[] = [];
+
+  prodotto: Prodotto = {
     nome: '',
     descrizione: '',
     prezzo: 0,
     linkImmagine: '',
     tipo: ''
 
-  };
+   };
 
   id: any;
   value = 0;
+  public text: string = "";
 
   constructor(private prodService: ProductsService, private authService: AuthService, private router: Router, public alertController: AlertController, private modalController: ModalController) {
   }
@@ -48,20 +56,19 @@ export class ListaProdottiPage implements OnInit {
     this.getDatiUtente();
   }
 
-  getProdotti(){
+  getProdotti() {
     this.prodService.getProducts().subscribe(res => {
       this.listaProdotti = res;
+      this.listaProdottiFiltrata = res;
+
     });
   }
 
-  getDatiUtente(){
+  getDatiUtente() {
     this.authService.getUserData();
   }
 
-
-
-
-
+  
   aggiungiNuovoProdotto() {
     this.router.navigateByUrl('/personale/lista-prodotti/nuovo-prodotto');
   }
@@ -116,6 +123,51 @@ export class ListaProdottiPage implements OnInit {
     });
 
     await modal.present();
+  }
+
+  filtraProdotti() {
+
+    const searchKeyLowered = this.tipo.toLowerCase();
+
+if(this.tipo !== ''){
+    switch (this.tipo) {
+
+      case 'Primo piatto':
+          this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaProdotti);
+        break;
+
+      case 'Secondo piatto':
+          this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaProdotti);
+        break;
+
+      case 'Bibita':
+          this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaProdotti);
+        break;
+
+      case 'Tutti':
+        this.getProdotti();
+      this.listaProdotti = this.listaProdottiFiltrata;
+      console.log(this.listaProdotti);
+        break;
+
+      default:
+        break;
+    }
+
+  }
+
+}
+
+  search() {
+    if (this.text !== '') {
+      const searchKeyLowered = this.text.toLowerCase();
+      this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
+    } else {
+      this.listaProdotti = this.listaProdottiFiltrata;
+    }
   }
 }
 

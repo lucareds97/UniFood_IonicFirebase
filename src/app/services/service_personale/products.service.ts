@@ -8,6 +8,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductsService {
+  search(nome: string) {
+    throw new Error("Method not implemented.");
+  }
 
   productsCollection: AngularFirestoreCollection<Prodotto>;
   products: Observable<Prodotto[]>;
@@ -32,6 +35,10 @@ export class ProductsService {
 
   getProduct(id: string): Observable<Prodotto> {
     return this.productsCollection.doc<Prodotto>(id).valueChanges();
+  }
+
+  getProductType(id:string): Observable<string>{
+    return this.productsCollection.doc<Prodotto['tipo']>(id).valueChanges();
   }
 
   addProduct(product: Prodotto): Promise<DocumentReference> {

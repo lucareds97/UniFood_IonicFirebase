@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdiniService } from '../../services/service_personale/ordini.service';
 import { Ordine } from '../../interfaces/ordini';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/user/auth.service';
+import { Prodotto } from 'src/app/interfaces/prodotti';
+import { ProductsService } from 'src/app/services/service_personale/products.service';
+import { NgSwitch, NgSwitchCase } from '@angular/common';
+import { ModalPage } from '../pages/modal/modal.page';
 
 @Component({
   selector: 'app-ordini',
@@ -12,34 +16,33 @@ import { AuthService } from 'src/app/services/user/auth.service';
 })
 export class OrdiniPage {
 
-  listaOrdini: any[] = []
+  listaOrdini: Ordine[] = [];
+  listaOrdiniFiltrata: Ordine[] = [];
 
-  ordine: Ordine = {
-    dataOrdine: '',
-    orarioOrdine: '',
-    prezzoTotale: '',
-    stato: false,
-    idCliente: '',
-    idProdotto: '',
-    idSede: '',
-    isChecked: false,
-  }
+  idProdotto: string;
+  nomeProdotto: string;
+
 
   whichPage = 'non-completati'
+  public tipo: string = "Tutti";
 
-  constructor(private ordiniService: OrdiniService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController) {
+  constructor(private ordiniService: OrdiniService, private prodService: ProductsService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController, private modalController: ModalController) {
   }
 
-  ngOnInit() {
+  ngOnInit() { 
 
     this.getDatiUtente(); 
-    this.ordiniService.getOrdini().subscribe(res => {
-      this.listaOrdini = res;
-      console.log(this.listaOrdini);
-    });;
+
+    this.getOrdini();
+
   }
 
-
+  getOrdini() {
+    this.ordiniService.getOrdini().subscribe(res => {
+      this.listaOrdini = res;
+      this.listaOrdiniFiltrata = res;
+    });
+  }
 
   getDatiUtente(){
     this.authService.getUserData();
@@ -75,6 +78,56 @@ export class OrdiniPage {
 
     await alert.present();
   }
+
+  async openModal(id) {
+    console.log(id);
+
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        custom_id: id
+      }
+    });
+
+    await modal.present();
+  }
+
+  filtraOrdini() {
+
+    const searchKeyLowered = this.tipo.toLowerCase();
+
+if(this.tipo !== ''){
+    switch (this.tipo) {
+
+      case 'Primo piatto':
+          this.listaOrdini = this.listaOrdiniFiltrata.filter(ordine => ordine.tipologia.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaOrdini);
+        break;
+
+      case 'Secondo piatto':
+          this.listaOrdini = this.listaOrdiniFiltrata.filter(ordine => ordine.tipologia.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaOrdini);
+        break;
+
+      case 'Bibita':
+          this.listaOrdini = this.listaOrdiniFiltrata.filter(ordine => ordine.tipologia.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaOrdini);
+        break;
+
+      case 'Tutti':
+        this.getOrdini();
+      this.listaOrdini = this.listaOrdiniFiltrata;
+      console.log(this.listaOrdini);
+        break;
+
+      default:
+        break;
+    }
+
+  }
+}
+
+
 
 }
 

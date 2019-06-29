@@ -3,9 +3,9 @@ import { IonInfiniteScroll, AlertController, ModalController } from '@ionic/angu
 import { Prodotto } from 'src/app/interfaces/prodotti';
 import { ProductsService } from 'src/app/services/service_personale/products.service';
 import { Router } from '@angular/router';
-import {ModalProdottoClientePage} from 'src/app/cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.page';
+import { ModalProdottoClientePage } from 'src/app/cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.page';
 import { AuthService } from 'src/app/services/user/auth.service';
-import { CarrelloService } from 'src/app/services/service_cliente/carrello.service';
+import { CartService } from 'src/app/services/service_cliente/cart.service';
 
 @Component({
   selector: 'app-visualizza-prodotti',
@@ -14,11 +14,15 @@ import { CarrelloService } from 'src/app/services/service_cliente/carrello.servi
 })
 export class VisualizzaProdottiPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  
+
   i: number = 0;
   visualizzaProdotti: any[] = [];
+  visualizzaProdottiFiltrata: any[] = [];
 
-    prodotto: Prodotto = {
+
+  public tipo: string = "Tutti";
+
+  prodotto: Prodotto = {
     nome: '',
     descrizione: '',
     prezzo: 0,
@@ -29,11 +33,12 @@ export class VisualizzaProdottiPage implements OnInit {
 
   id: any;
   value = 0;
+  public text: string = "";
 
   carrello = [];
   items = [];
 
-  constructor(private carrelloService: CarrelloService, private authService:AuthService, private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
+  constructor(private cartService: CartService, private authService: AuthService, private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
 
   ngOnInit() {
     this.getDatiUtente();
@@ -43,14 +48,15 @@ export class VisualizzaProdottiPage implements OnInit {
     // this.items = this.carrelloService.getProducts();
   }
 
-  getProdotti(){
+  getProdotti() {
     this.prodService.getProducts().subscribe(res => {
       this.visualizzaProdotti = res;
+      this.visualizzaProdottiFiltrata = res;
 
     });
   }
 
-  getDatiUtente(){
+  getDatiUtente() {
     this.authService.getUserData();
   }
 
@@ -64,12 +70,57 @@ export class VisualizzaProdottiPage implements OnInit {
     });
     await modal.present();
   }
-  aggiungiAlCarrello(prodotto){
-    // this.carrelloService.addProduct(prodotto);
+
+  aggiungiAlCarrello(prodotto) {
+    this.cartService.addProduct(prodotto);
   }
 
-  apriCarrello(){
-    this.router.navigate(['carrello']); 
+  apriCarrello() {
+    this.router.navigate(['carrello']);
+  }
+  
+  filtraProdotti() {
+
+    const searchKeyLowered = this.tipo.toLowerCase();
+
+if(this.tipo !== ''){
+    switch (this.tipo) {
+
+      case 'Primo piatto':
+          this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.visualizzaProdotti);
+        break;
+
+      case 'Secondo piatto':
+          this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.visualizzaProdotti);
+        break;
+
+      case 'Bibita':
+          this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.visualizzaProdotti);
+        break;
+
+      case 'Tutti':
+        this.getProdotti();
+      this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
+      console.log(this.visualizzaProdotti);
+        break;
+
+      default:
+        break;
+    }
+
   }
 
+}
+
+search() {
+  if (this.text !== '') {
+    const searchKeyLowered = this.text.toLowerCase();
+    this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
+  } else {
+    this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
+  }
+}
 }
