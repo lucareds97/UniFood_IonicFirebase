@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Utente } from 'src/app/interfaces/utente';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { PersonaleService } from 'src/app/services/service_amministratore/personale.service';
 import { UtenteService } from 'src/app/services/service_amministratore/utente.service';
 import { AuthService } from 'src/app/services/user/auth.service';
 
