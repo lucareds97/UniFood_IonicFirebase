@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
 import { Utente } from 'src/app/interfaces/utente';
 import { map } from 'rxjs/operators';
+import { CartService } from '../service_cliente/cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -63,11 +64,14 @@ export class AuthService {
           .firestore()
           .doc(`/userProfile/${newUserCredential.user.uid}`)
           .set({ email, password, nome, cognome,tipo});
-      })
+
+        })
       .catch(error => {
         console.error(error);
         throw new Error(error);
       });
+
+      
   }
 
 

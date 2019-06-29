@@ -17,22 +17,14 @@ import { ModalPage } from '../pages/modal/modal.page';
 export class OrdiniPage {
 
   listaOrdini: Ordine[] = [];
-  listaPrimi: Ordine[] = [];
-  listaSecondi: Ordine[] = [];
-  listaBibite: Ordine[] = [];
+  listaOrdiniFiltrata: Ordine[] = [];
 
   idProdotto: string;
-  
-  prodotto: Prodotto = {
-    nome: '',
-    descrizione: '',
-    prezzo: 0,
-    linkImmagine: '',
-    tipo: '',
-  };
+  nomeProdotto: string;
+
 
   whichPage = 'non-completati'
-  whichType = 'Tutti'
+  public tipo: string = "Tutti";
 
   constructor(private ordiniService: OrdiniService, private prodService: ProductsService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController, private modalController: ModalController) {
   }
@@ -45,47 +37,12 @@ export class OrdiniPage {
 
   }
 
-  setWhichType(tipo: string){
-    this.whichType = tipo;
-    console.log(this.whichType);
-  }
-
-
-  getOrdini(){
+  getOrdini() {
     this.ordiniService.getOrdini().subscribe(res => {
       this.listaOrdini = res;
-      
-      console.log(this.listaOrdini);
-
-      for(let ordine of this.listaOrdini){  // IL PROBLEMA DOVREBBE ESSERE QUI, È COME SE CI FOSSE UN SOLO ORDINE ANCHE SE NON È COSÌ
-  
-        this.prodService.getProduct(ordine.idProdotto).subscribe(res =>{
-          this.prodotto = res;
-
-          switch (this.prodotto['tipo']) {
-
-            case 'Primo piatto':
-              this.listaPrimi.push(ordine);
-              break;
-  
-            case 'Secondo piatto':
-              this.listaSecondi.push(ordine);
-              break;
-  
-            case 'Bibita':
-              this.listaBibite.push(ordine);
-              break;
-  
-            default:
-              break;
-          }
-          
-        })
-      }
-    })
-
-
-}
+      this.listaOrdiniFiltrata = res;
+    });
+  }
 
   getDatiUtente(){
     this.authService.getUserData();
@@ -134,6 +91,43 @@ export class OrdiniPage {
 
     await modal.present();
   }
+
+  filtraOrdini() {
+
+    const searchKeyLowered = this.tipo.toLowerCase();
+
+if(this.tipo !== ''){
+    switch (this.tipo) {
+
+      case 'Primo piatto':
+          this.listaOrdini = this.listaOrdiniFiltrata.filter(ordine => ordine.tipologia.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaOrdini);
+        break;
+
+      case 'Secondo piatto':
+          this.listaOrdini = this.listaOrdiniFiltrata.filter(ordine => ordine.tipologia.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaOrdini);
+        break;
+
+      case 'Bibita':
+          this.listaOrdini = this.listaOrdiniFiltrata.filter(ordine => ordine.tipologia.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaOrdini);
+        break;
+
+      case 'Tutti':
+        this.getOrdini();
+      this.listaOrdini = this.listaOrdiniFiltrata;
+      console.log(this.listaOrdini);
+        break;
+
+      default:
+        break;
+    }
+
+  }
+}
+
+
 
 }
 

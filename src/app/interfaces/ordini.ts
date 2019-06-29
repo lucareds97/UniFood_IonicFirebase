@@ -7,4 +7,5 @@ export interface Ordine {
     idProdotto: string;
     idSede: string;
     isChecked: boolean,
+    tipologia: string,
 }

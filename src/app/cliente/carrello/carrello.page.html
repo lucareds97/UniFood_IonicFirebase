@@ -23,7 +23,10 @@
 
     <ion-item>
       Total: <span slot="end"> {{total | currency: 'EUR' : 'symbol'}} </span>
-      <ion-label></ion-label>
+    <ion-icon color="danger" slot="end" name="trash" (click)="removeAllProducts()"></ion-icon>
+      <ion-label>
+        
+      </ion-label>
     </ion-item>
   </ion-list>
 

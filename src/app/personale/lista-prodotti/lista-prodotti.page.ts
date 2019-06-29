@@ -122,7 +122,7 @@ export class ListaProdottiPage implements OnInit {
   search() {
     if (this.text !== '') {
       const searchKeyLowered = this.text.toLowerCase();
-      this.listaProdotti = this.listaProdotti.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
+      this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
     } else {
       this.listaProdotti = this.listaProdottiFiltrata;
     }

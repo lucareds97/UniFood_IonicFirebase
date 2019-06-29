@@ -1,19 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Prodotto } from 'src/app/interfaces/prodotti';
 import { CartService } from 'src/app/services/service_cliente/cart.service';
 @Component({
   selector: 'app-carrello',
   templateUrl: './carrello.page.html',
   styleUrls: ['./carrello.page.scss'],
 })
-export class CarrelloPage {
+export class CarrelloPage implements OnInit{
 
   selectedItems = [];
   total = 0;
 
+  idCarrello: string;
+
   constructor(private cartService: CartService, private router: Router) {
 
+  }
+
+  ngOnInit(){
   }
 
   ionViewWillEnter() {
@@ -39,6 +43,10 @@ export class CarrelloPage {
   removeProduct(product) {
     this.cartService.removeProduct(product);
     this.asd();
+  }
+
+  removeAllProducts(){
+    this.cartService.removeAllProducts();
   }
 
 }

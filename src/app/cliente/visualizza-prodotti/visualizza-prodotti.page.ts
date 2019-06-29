@@ -5,7 +5,6 @@ import { ProductsService } from 'src/app/services/service_personale/products.ser
 import { Router } from '@angular/router';
 import { ModalProdottoClientePage } from 'src/app/cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.page';
 import { AuthService } from 'src/app/services/user/auth.service';
-import { CarrelloService } from 'src/app/services/service_cliente/carrello.service';
 import { CartService } from 'src/app/services/service_cliente/cart.service';
 
 @Component({
@@ -65,6 +64,7 @@ export class VisualizzaProdottiPage implements OnInit {
     });
     await modal.present();
   }
+  
   aggiungiAlCarrello(prodotto) {
     this.cartService.addProduct(prodotto);
   }
