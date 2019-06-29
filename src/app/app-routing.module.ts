@@ -75,19 +75,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
-<<<<<<< HEAD
   { 
     path: 'modalPersonale', 
     loadChildren: './amministratore/pages/modal/modal.module#ModalPersonalePageModule',
     canActivate: [AuthGuard],
   },
-=======
-  // { 
-  //   path: 'modalPersonale', 
-  //   loadChildren: './amministratore/pages/modal/modal.module#ModalPageModule',
-  //   canActivate: [AuthGuard],
-  // },
->>>>>>> 4e4098e8f4503edaf29e69d2c2c16235e01e62f7
 
 ];
 @NgModule({
