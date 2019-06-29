@@ -30,15 +30,6 @@ export class ListaProdottiPage implements OnInit {
 
   i: number = 0;
   listaProdotti: Prodotto[] = [];
-<<<<<<< HEAD
-
-  //   prodotto: Prodotto = {
-  //   nome: '',
-  //   descrizione: '',
-  //   prezzo: 0,
-  //   linkImmagine: '',
-  //   tipo: ''
-=======
   listaProdottiFiltrata: Prodotto[] = [];
 
   prodotto: Prodotto = {
@@ -47,21 +38,12 @@ export class ListaProdottiPage implements OnInit {
     prezzo: 0,
     linkImmagine: '',
     tipo: ''
->>>>>>> 3a43130c4bcbee5e7a48257cf0ce3a2f08f0b31e
 
-  // };
+   };
 
   id: any;
   value = 0;
-<<<<<<< HEAD
-  index : any;
-
-  
-
-  
-=======
   public text: string = "";
->>>>>>> 3a43130c4bcbee5e7a48257cf0ce3a2f08f0b31e
 
   constructor(private prodService: ProductsService, private authService: AuthService, private router: Router, public alertController: AlertController, private modalController: ModalController) {
   }
@@ -140,74 +122,6 @@ export class ListaProdottiPage implements OnInit {
     await modal.present();
   }
 
-<<<<<<< HEAD
-
-  getListaProdotti($event) {
-
-   let text = event.target.value;
-   console.log(this.listaProdotti);
-      
-    this.prodService.getProducts().subscribe((res)=>{
-    
-      this.listaProdotti = this.getProdotto(res);
-      console.log(this.listaProdotti);
-      return this.listaProdotti;
-    });
-   }
-
-  getProdotto(array) {
-    let ar = [];
-    array.forEach(element => {
-      if (element['nome'] == "acqua") {
-        ar.push(element);
-      }
-    });
-    return ar;
-  }
-
-
-
-  getInputElement($event){
-  
-
-      let text = event.target.value;
-      console.log(text);
-      console.log(this.listaProdotti);
-
-
-     
-
-      // if(!text){
-      //   this.getProdotti();
-      // }
-
-      // this.listaProdotti = this.listaProdotti.filter((text) =>{
-      //   if(this.prodotto.nome && text.trim() !=''){
-      //     console.log(this.prodotto.nome);
-      //     return(this.prodotto.nome.toLowerCase().indexOf(text.toLowerCase()) > -1)
-          
-          
-
-      //   }
-      // });
-
-      // console.log(text, this.listaProdotti);
-   
-    }
-
-   
-
-
-    
-      
-
-      
-
-    
-
-} 
-
-=======
   search() {
     if (this.text !== '') {
       const searchKeyLowered = this.text.toLowerCase();
@@ -217,6 +131,5 @@ export class ListaProdottiPage implements OnInit {
     }
   }
 }
->>>>>>> 3a43130c4bcbee5e7a48257cf0ce3a2f08f0b31e
 
 

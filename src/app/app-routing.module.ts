@@ -75,11 +75,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
-  { 
-    path: 'modalPersonale', 
-    loadChildren: './amministratore/pages/modal/modal.module#ModalPageModule',
-    canActivate: [AuthGuard],
-  },
+  // { 
+  //   path: 'modalPersonale', 
+  //   loadChildren: './amministratore/pages/modal/modal.module#ModalPageModule',
+  //   canActivate: [AuthGuard],
+  // },
 
   // {
   // path: 'nuovo-personale',

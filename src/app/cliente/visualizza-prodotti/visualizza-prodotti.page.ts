@@ -39,11 +39,8 @@ export class VisualizzaProdottiPage implements OnInit {
     this.getDatiUtente();
     this.getProdotti();
 
-<<<<<<< HEAD
-=======
     // this.carrello = this.carrelloService.getCart();
     // this.items = this.carrelloService.getProducts();
->>>>>>> 3a43130c4bcbee5e7a48257cf0ce3a2f08f0b31e
   }
 
   getProdotti() {
@@ -67,15 +64,9 @@ export class VisualizzaProdottiPage implements OnInit {
     });
     await modal.present();
   }
-<<<<<<< HEAD
-
-  aggiungiAlCarrello(){
-    this.carrelloService.addProduct(this.prodotto);
-=======
   
   aggiungiAlCarrello(prodotto) {
     this.cartService.addProduct(prodotto);
->>>>>>> 3a43130c4bcbee5e7a48257cf0ce3a2f08f0b31e
   }
 
   apriCarrello() {

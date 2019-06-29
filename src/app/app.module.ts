@@ -27,11 +27,7 @@ import { ModalPersonalePageModule } from './amministratore/pages/modal/modal.mod
     AngularFireModule.initializeApp(environment.firebaseCredentials),
     FormsModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
-    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule,
-=======
     AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule, ModalPersonalePageModule
->>>>>>> 3a43130c4bcbee5e7a48257cf0ce3a2f08f0b31e
   ],
   providers: [
     StatusBar,
