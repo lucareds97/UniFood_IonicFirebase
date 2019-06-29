@@ -3,6 +3,7 @@ import { Prodotto } from 'src/app/interfaces/prodotti';
 import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/service_personale/products.service';
 import { AlertController, NavParams, ModalController, IonInfiniteScroll } from '@ionic/angular';
+import { CartService } from 'src/app/services/service_cliente/cart.service';
 
 @Component({
   selector: 'app-modal-prodotto-cliente',
@@ -21,7 +22,7 @@ export class ModalProdottoClientePage implements OnInit {
 
   id: any;
 
-  constructor(private router: Router, private prodService: ProductsService,  public alertController: AlertController, private navParams: NavParams, private modalController: ModalController) { }
+  constructor(private router: Router, private cartService: CartService, private prodService: ProductsService,  public alertController: AlertController, private navParams: NavParams, private modalController: ModalController) { }
 
   ngOnInit() {
     this.id = this.navParams.get('custom_id');
@@ -38,6 +39,15 @@ export class ModalProdottoClientePage implements OnInit {
       this.prodotto = res;
       console.log(res);
     });
+  }
+
+  aggiungiAlCarrello(id) {
+    this.prodService.getProduct(id).subscribe(res =>{
+      this.prodotto = res;
+      this.cartService.addProduct(this.prodotto);
+      console.log(res);
+    });
+
   }
 
 }

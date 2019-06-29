@@ -3,6 +3,7 @@ import { AuthService } from '../services/user/auth.service';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CartService } from '../services/service_cliente/cart.service';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +25,8 @@ export class SignupPage implements OnInit {
     private loadingCtrl: LoadingController,
     private alertCtrl: AlertController,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private cartService: CartService,
   ) {
     this.signupForm = this.formBuilder.group({
       email: [
@@ -63,6 +65,9 @@ export class SignupPage implements OnInit {
       this.authService.signupUser(email, password, nome, cognome, this.tipo).then(
         () => {
           this.loading.dismiss().then(() => {
+
+            this.cartService.addCart();
+            
             this.router.navigateByUrl('/login');
           });
         },

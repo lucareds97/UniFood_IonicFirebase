@@ -3,9 +3,9 @@ import { IonInfiniteScroll, AlertController, ModalController } from '@ionic/angu
 import { Prodotto } from 'src/app/interfaces/prodotti';
 import { ProductsService } from 'src/app/services/service_personale/products.service';
 import { Router } from '@angular/router';
-import {ModalProdottoClientePage} from 'src/app/cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.page';
+import { ModalProdottoClientePage } from 'src/app/cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.page';
 import { AuthService } from 'src/app/services/user/auth.service';
-import { CarrelloService } from 'src/app/services/service_cliente/carrello.service';
+import { CartService } from 'src/app/services/service_cliente/cart.service';
 
 @Component({
   selector: 'app-visualizza-prodotti',
@@ -14,11 +14,11 @@ import { CarrelloService } from 'src/app/services/service_cliente/carrello.servi
 })
 export class VisualizzaProdottiPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  
+
   i: number = 0;
   visualizzaProdotti: any[] = [];
 
-    prodotto: Prodotto = {
+  prodotto: Prodotto = {
     nome: '',
     descrizione: '',
     prezzo: 0,
@@ -33,22 +33,27 @@ export class VisualizzaProdottiPage implements OnInit {
   carrello = [];
   items = [];
 
-  constructor(private carrelloService: CarrelloService, private authService:AuthService, private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
+  constructor(private cartService: CartService, private authService: AuthService, private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
 
   ngOnInit() {
     this.getDatiUtente();
     this.getProdotti();
 
+<<<<<<< HEAD
+=======
+    // this.carrello = this.carrelloService.getCart();
+    // this.items = this.carrelloService.getProducts();
+>>>>>>> 3a43130c4bcbee5e7a48257cf0ce3a2f08f0b31e
   }
 
-  getProdotti(){
+  getProdotti() {
     this.prodService.getProducts().subscribe(res => {
       this.visualizzaProdotti = res;
 
     });
   }
 
-  getDatiUtente(){
+  getDatiUtente() {
     this.authService.getUserData();
   }
 
@@ -62,13 +67,19 @@ export class VisualizzaProdottiPage implements OnInit {
     });
     await modal.present();
   }
+<<<<<<< HEAD
 
   aggiungiAlCarrello(){
     this.carrelloService.addProduct(this.prodotto);
+=======
+  
+  aggiungiAlCarrello(prodotto) {
+    this.cartService.addProduct(prodotto);
+>>>>>>> 3a43130c4bcbee5e7a48257cf0ce3a2f08f0b31e
   }
 
-  apriCarrello(){
-    this.router.navigate(['carrello']); 
+  apriCarrello() {
+    this.router.navigate(['carrello']);
   }
 
 }

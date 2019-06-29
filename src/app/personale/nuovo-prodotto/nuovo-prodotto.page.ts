@@ -31,7 +31,7 @@ export class NuovoProdottoPage{
       this.presentAlert();
     }else{
     this.prodService.addProduct(this.prodotto);
-    this.router.navigateByUrl("/personale/lista-prodotti");
+    this.router.navigateByUrl("/amministratore/lista-personale");
 
     this.prodotto.nome = "";
     this.prodotto.descrizione = "";
