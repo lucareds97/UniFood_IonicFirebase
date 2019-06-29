@@ -28,6 +28,9 @@ export class ListaProdottiPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
 
+
+  public tipo: string = "Tutti";
+
   i: number = 0;
   listaProdotti: Prodotto[] = [];
   listaProdottiFiltrata: Prodotto[] = [];
@@ -121,6 +124,42 @@ export class ListaProdottiPage implements OnInit {
 
     await modal.present();
   }
+
+  filtraProdotti() {
+
+    const searchKeyLowered = this.tipo.toLowerCase();
+
+if(this.tipo !== ''){
+    switch (this.tipo) {
+
+      case 'Primo piatto':
+          this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaProdotti);
+        break;
+
+      case 'Secondo piatto':
+          this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaProdotti);
+        break;
+
+      case 'Bibita':
+          this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+          console.log(this.listaProdotti);
+        break;
+
+      case 'Tutti':
+        this.getProdotti();
+      this.listaProdotti = this.listaProdottiFiltrata;
+      console.log(this.listaProdotti);
+        break;
+
+      default:
+        break;
+    }
+
+  }
+
+}
 
   search() {
     if (this.text !== '') {
