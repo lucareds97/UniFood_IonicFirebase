@@ -27,7 +27,7 @@ export class NuovoPersonalePage {
       this.presentAlert();
     } else {
       this.utenteService.addUtente(this.personale);
-      this.router.navigateByUrl("/personale/lista-prodotti");
+      this.router.navigateByUrl("amministratore/lista-personale");
 
       this.personale.nome = "";
       this.personale.cognome = "";

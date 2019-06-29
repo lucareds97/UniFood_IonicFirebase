@@ -3,7 +3,7 @@ import { Utente } from 'src/app/interfaces/utente';
 import { PersonaleService } from 'src/app/services/service_amministratore/personale.service';
 import { UtenteService } from 'src/app/services/service_amministratore/utente.service';
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../pages/modal/modal.page';
+import { ModalPage } from '../pages/modal-personale/modal-personale.page';
 import { AuthService } from 'src/app/services/user/auth.service';
 import { Router } from '@angular/router';
 
@@ -24,6 +24,7 @@ export class ListaPersonalePage implements OnInit {
   // };
 
   constructor(private router: Router, private authService: AuthService, private utenteService: UtenteService, private personaleService: PersonaleService, private modalController: ModalController) {}
+  
   ngOnInit() {
 
     this.utenteService.getListaUtente().subscribe((res) => {
@@ -31,10 +32,16 @@ export class ListaPersonalePage implements OnInit {
       return this.listaPersonale;
     });
 
+    this.getDatiUtente();
+
   }
 
   aggiungiNuovoPersonale() {
     this.router.navigateByUrl('/amministratore/lista-personale/nuovo-personale');
+  }
+
+  getDatiUtente() {
+    this.authService.getUserData();
   }
 
   async openModalPersonale(id) {

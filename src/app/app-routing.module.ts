@@ -3,55 +3,61 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './services/user/auth.guard';
 import { CanActivate } from '@angular/router/src/utils/preactivation';
 
+
 const routes: Routes = [
-  
-  { 
-    path: '', 
+
+  {
+    path: '',
+    loadChildren: './login/login.module#LoginPageModule',
+  },
+
+  {
+    path: 'login', loadChildren: './login/login.module#LoginPageModule',
+  },
+
+  {
+    path: '',
     loadChildren: './personale/tabs_personale/tabs_personale.module#TabsPageModule',
-    canActivate: [AuthGuard], 
-},
+    canActivate: [AuthGuard],
+  },
 
-  { 
-    path: 'lista-prodotti', 
-  loadChildren: './personale/lista-prodotti/lista-prodotti.module#ListaProdottiPageModule',
-  canActivate: [AuthGuard], 
-},
-  { 
-    path: 'modifica-prodotto', 
+  {
+    path: 'lista-prodotti',
+    loadChildren: './personale/lista-prodotti/lista-prodotti.module#ListaProdottiPageModule',
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'modifica-prodotto',
     loadChildren: './personale/modifica-prodotto/modifica-prodotto.module#ModificaProdottoPageModule',
-    canActivate: [AuthGuard],  
+    canActivate: [AuthGuard],
   },
 
-  { 
-    path: 'visualizza-prodotto', 
+  {
+    path: 'visualizza-prodotto',
     loadChildren: './personale/visualizza-prodotto/visualizza-prodotto.module#VisualizzaProdottoPageModule',
-    canActivate: [AuthGuard], 
+    canActivate: [AuthGuard],
   },
 
-  { 
-    path: 'modal', 
+  {
+    path: 'modal',
     loadChildren: './personale/pages/modal/modal.module#ModalPageModule',
     canActivate: [AuthGuard],
   },
 
-  { 
-    path: 'login', loadChildren: './login/login.module#LoginPageModule',
-  },
-
-  { 
+  {
     path: 'signup',
-    loadChildren: './signup/signup.module#SignupPageModule', 
+    loadChildren: './signup/signup.module#SignupPageModule',
   },
 
-  { 
-    path: '', 
+  {
+    path: '',
     loadChildren: './cliente/tabs_cliente/tabs_cliente.module#TabsPageModule',
-    canActivate: [AuthGuard], 
+    canActivate: [AuthGuard],
   },
- 
 
-  { 
-    path: 'visualizza-prodotti', 
+
+  {
+    path: 'visualizza-prodotti',
     loadChildren: './cliente/visualizza-prodotti/visualizza-prodotti.module#VisualizzaProdottiPageModule',
     canActivate: [AuthGuard],
   },
@@ -63,23 +69,36 @@ const routes: Routes = [
   },
   { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
 
-  { 
-    path: '', 
+  {
+    path: '',
     loadChildren: './amministratore/tabs_amministratore/tabs_amministratore.module#TabsPageModule',
-    canActivate: [AuthGuard], 
+    canActivate: [AuthGuard],
   },
 
-  { 
-    path: 'lista-personale', 
+  {
+    path: 'lista-personale',
     loadChildren: './amministratore/lista-personale/lista-personale.module#ListaPersonalePageModule',
     canActivate: [AuthGuard],
   },
 
-  { 
-    path: 'modalPersonale', 
-    loadChildren: './amministratore/pages/modal/modal.module#ModalPersonalePageModule',
+  {
+    path: 'modalPersonale',
+    loadChildren: './amministratore/pages/modal/modal-personale.module#ModalPersonalePageModule',
     canActivate: [AuthGuard],
   },
+
+  {
+    path: 'lista-clienti',
+    loadChildren: './amministratore/lista-clienti/lista-clienti.module#ListaClientiPageModule',
+    canActivate: [AuthGuard],
+  },
+
+  {
+    path: 'modalCliente',
+    loadChildren: './amministratore/pages/modal-cliente/modal-cliente.module#ModalClientePageModule',
+    canActivate: [AuthGuard]
+  },
+
 
 ];
 @NgModule({
@@ -88,4 +107,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

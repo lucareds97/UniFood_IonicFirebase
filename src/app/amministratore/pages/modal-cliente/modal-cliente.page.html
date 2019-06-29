@@ -1,0 +1,21 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{cliente.nome}} {{cliente.cognome}}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+  
+    <img src="https://image.ibb.co/jRkLL8/personale_red.png" class="modal-image">
+  
+    <div class="price">
+      Email: {{cliente.email}}
+    </div>
+  
+    
+  </ion-content>
