@@ -8,6 +8,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductsService {
+  search(nome: string) {
+    throw new Error("Method not implemented.");
+  }
 
   productsCollection: AngularFirestoreCollection<Prodotto>;
   products: Observable<Prodotto[]>;

@@ -8,6 +8,7 @@ import { CartService } from 'src/app/services/service_cliente/cart.service';
 })
 export class CarrelloPage implements OnInit{
 
+  
   selectedItems = [];
   total = 0;
 
@@ -48,5 +49,7 @@ export class CarrelloPage implements OnInit{
   removeAllProducts(){
     this.cartService.removeAllProducts();
   }
+
+  
 
 }

@@ -10,6 +10,7 @@ import { NavParams } from '@ionic/angular';
 import { ModalPage } from '../pages/modal/modal.page'
 import { AuthService } from 'src/app/services/user/auth.service';
 import { componentRefresh } from '@angular/core/src/render3/instructions';
+import { subscribeOn } from 'rxjs/operators';
 
 
 
@@ -21,6 +22,8 @@ import { componentRefresh } from '@angular/core/src/render3/instructions';
 
 
 })
+
+
 export class ListaProdottiPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
@@ -39,7 +42,7 @@ export class ListaProdottiPage implements OnInit {
     linkImmagine: '',
     tipo: ''
 
-  };
+   };
 
   id: any;
   value = 0;
