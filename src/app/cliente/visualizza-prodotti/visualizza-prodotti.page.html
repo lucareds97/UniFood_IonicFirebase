@@ -1,5 +1,20 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="secondary">
+      <ion-button (click)="filtraProdotti()">
+          <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" [(ngModel)]="tipo" (ngModelChange)="filtraProdotti()">
+              <ion-select-option selected="Tutti" id="ion-selopt-0" value="Tutti">Tutti
+              </ion-select-option>
+                <ion-select-option role="option" id="ion-selopt-1" value="Primo piatto">Primo Piatto
+                </ion-select-option>
+                <ion-select-option role="option" id="ion-selopt-2" value="Secondo piatto">Secondo Piatto
+                </ion-select-option>
+                <ion-select-option role="option" id="ion-selopt-3" value="Bibita">Bibita
+                </ion-select-option>
+                </ion-select>
+        <ion-icon slot="icon-only" name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       Visualizza Prodotti
     </ion-title>
@@ -8,19 +23,7 @@
 
 <ion-content>
 
-    <ion-item>
-        <ion-label>Filtro Ordini</ion-label>
-        <ion-select [(ngModel)]="tipo" (ngModelChange)="filtraProdotti()">
-          <ion-select-option selected="Tutti" id="ion-selopt-0" value="Tutti">Tutti
-          </ion-select-option>
-            <ion-select-option role="option" id="ion-selopt-1" value="Primo piatto">Primo Piatto
-            </ion-select-option>
-            <ion-select-option role="option" id="ion-selopt-2" value="Secondo piatto">Secondo Piatto
-            </ion-select-option>
-            <ion-select-option role="option" id="ion-selopt-3" value="Bibita">Bibita
-            </ion-select-option>
-            </ion-select>
-          </ion-item>
+   
 
 
     <ion-searchbar showCancelButton="always" id="testo" [(ngModel)]="text" (ngModelChange)="search()"></ion-searchbar>

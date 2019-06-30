@@ -27,8 +27,7 @@ import { ModalPersonalePageModule } from './amministratore/pages/modal/modal.mod
     AngularFireModule.initializeApp(environment.firebaseCredentials),
     FormsModule,
     ReactiveFormsModule,
-    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule, ModalPersonalePageModule
-  ],
+    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule, ModalPersonalePageModule ],
   providers: [
     StatusBar,
     SplashScreen,
