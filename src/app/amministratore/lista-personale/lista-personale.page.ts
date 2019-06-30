@@ -3,7 +3,7 @@ import { Utente } from 'src/app/interfaces/utente';
 import { PersonaleService } from 'src/app/services/service_amministratore/personale.service';
 import { UtenteService } from 'src/app/services/service_amministratore/utente.service';
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../pages/modal-personale/modal-personale.page';
+import { ModalPersonalePage } from '../pages/modal-personale/modal-personale.page';
 import { AuthService } from 'src/app/services/user/auth.service';
 import { Router } from '@angular/router';
 
@@ -16,18 +16,18 @@ export class ListaPersonalePage implements OnInit {
 
   listaPersonale: any[] = [];
 
-  // personale: Utente = {
-  //   nome: '',
-  //   cognome: '',
-  //   email: '',
-  //   tipo: '',
-  // };
+  personale: Utente = {
+    nome: '',
+    cognome: '',
+    email: '',
+    tipo: '',
+  };
 
-  constructor(private router: Router, private authService: AuthService, private utenteService: UtenteService, private personaleService: PersonaleService, private modalController: ModalController) {}
-  
+  constructor(private router: Router, private authService: AuthService, private utenteService: UtenteService, private personaleService: PersonaleService, private modalController: ModalController) { }
+
   ngOnInit() {
 
-    this.utenteService.getListaUtente().subscribe((res) => {
+    this.utenteService.getListaUtente2().subscribe((res) => {
       this.listaPersonale = this.personaleService.getPersonale(res);
       return this.listaPersonale;
     });
@@ -48,7 +48,7 @@ export class ListaPersonalePage implements OnInit {
     console.log(id);
 
     const modal = await this.modalController.create({
-      component: ModalPage,
+      component: ModalPersonalePage,
       componentProps: {
         custom_id: id
       }

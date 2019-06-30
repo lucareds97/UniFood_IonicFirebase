@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{personale.nome}} {{personale.cognome}}</ion-title>
+    <ion-title>Personale</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="closeModal()">
         <ion-icon slot="icon-only" name="close"></ion-icon>
@@ -11,21 +11,24 @@
 
 <ion-content padding>
 
-  <img src="https://image.ibb.co/jRkLL8/personale_red.png" class="modal-image">
 
-  <div class="price">
-    Email: {{personale.email}}
+  <img src="https://image.ibb.co/jRkLL8/personale_red.png" class="center-image">
+
+  <div style="text-align: center; ">
+    <h2>{{personale.nome}} {{personale.cognome}}</h2>
   </div>
 
+  <div style="text-align: center">
+    e-mail: {{personale.email}}
+  </div>
+
+  <br>
+  <br>
+
   <div class="center">
-  <ion-button fill="clear"  >
-      <ion-icon slot="icon-only" name="create"></ion-icon>
+    <ion-button fill="clear" color="danger" (click)="presentAlertConfirm(personale.id)">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
     </ion-button>
+  </div>
 
-    <ion-button fill="clear" color="danger" >
-        <ion-icon  slot="icon-only" name="trash"></ion-icon>
-      </ion-button>
-    </div>
-
-  
 </ion-content>

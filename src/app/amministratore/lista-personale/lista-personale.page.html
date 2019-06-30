@@ -1,20 +1,18 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
     <ion-title>Lista Personale</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <ion-list >
-    <ion-item *ngFor="let personale of listaPersonale">
-      <ion-item (click)="openModalPersonale(personale.id)">
-        <ion-label>{{personale.nome}} {{personale.cognome}}
-          <p>
-            {{personale.email}}
-          </p>
-        </ion-label>
-      </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let personale of listaPersonale" (click)="openModalPersonale(personale.id)">
+      <ion-label>{{personale.nome}} {{personale.cognome}}
+        <p>
+          {{personale.email}}
+        </p>
+      </ion-label>
     </ion-item>
   </ion-list>
 

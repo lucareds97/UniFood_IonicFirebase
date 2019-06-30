@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+import { ModalPersonalePage } from './modal-personale.page';
 
-import { ModalPage } from './modal-personale.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ModalPage
+    component: ModalPersonalePage
   }
 ];
 
@@ -21,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ModalPage]
+  declarations: [ModalPersonalePage]
 })
 export class ModalPersonalePageModule {}
