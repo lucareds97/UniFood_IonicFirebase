@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { NavParams, ModalController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UtenteService } from 'src/app/services/service_amministratore/utente.service';
@@ -8,8 +7,8 @@ import { AuthService } from 'src/app/services/user/auth.service';
 
 @Component({
   selector: 'app-modal',
-  templateUrl: './modal.page.html',
-  styleUrls: ['./modal.page.scss'],
+  templateUrl: './modal-personale.page.html',
+  styleUrls: ['./modal-personale.page.scss'],
 })
 export class ModalPage implements OnInit {
 

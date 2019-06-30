@@ -1,5 +1,17 @@
-ion-item{
-    --inner-padding-end: 0px;
-    --padding-start:0px
+// ion-item{
+//     --inner-padding-end: 0px;
+//     --padding-start:0px
+// }
+
+fieldset{
+    border: 0;
+    text-align: left;
 }
 
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    display: block !important;
+    max-width: 50%;
+    min-width: 40%;
+  }

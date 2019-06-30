@@ -10,11 +10,11 @@ const routes: Routes = [
     component: TabsPageAmministratore,
     children: [
       {
-        path: 'niente',
+        path: 'lista-clienti',
         children: [
           {
             path: '',
-            loadChildren: ''
+            loadChildren: '../lista-clienti/lista-clienti.module#ListaClientiPageModule'
           }
         ]
       },

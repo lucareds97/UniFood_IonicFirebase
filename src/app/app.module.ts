@@ -17,7 +17,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 
 import {ModalPageModule} from './personale/pages/modal/modal.module'
 import { ModalProdottoClientePageModule } from './cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.module';
-import { ModalPersonalePageModule } from './amministratore/pages/modal/modal.module';
+import { ModalPersonalePageModule } from './amministratore/pages/modal-personale/modal-personale.module';
+import { ModalClientePageModule } from './amministratore/pages/modal-cliente/modal-cliente.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import { ModalPersonalePageModule } from './amministratore/pages/modal/modal.mod
     AngularFireModule.initializeApp(environment.firebaseCredentials),
     FormsModule,
     ReactiveFormsModule,
-    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule, ModalPersonalePageModule ],
+    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule, ModalPersonalePageModule, ModalClientePageModule
+  ],
   providers: [
     StatusBar,
     SplashScreen,

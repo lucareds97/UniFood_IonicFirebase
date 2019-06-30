@@ -31,6 +31,7 @@ export class ProfiloPage implements OnInit {
 
       case '3':
           this.authService.utente.tipo = 'Amministratore:';
+          this.getDatiProfilo();
         break;
 
       
