@@ -42,7 +42,7 @@ export class ListaProdottiPage implements OnInit {
     linkImmagine: '',
     tipo: ''
 
-   };
+  };
 
   id: any;
   value = 0;
@@ -68,7 +68,7 @@ export class ListaProdottiPage implements OnInit {
     this.authService.getUserData();
   }
 
-  
+
   aggiungiNuovoProdotto() {
     this.router.navigateByUrl('/personale/lista-prodotti/nuovo-prodotto');
   }
@@ -125,41 +125,44 @@ export class ListaProdottiPage implements OnInit {
     await modal.present();
   }
 
+
+
+
   filtraProdotti() {
 
     const searchKeyLowered = this.tipo.toLowerCase();
 
-if(this.tipo !== ''){
-    switch (this.tipo) {
+    if (this.tipo !== '') {
+      switch (this.tipo) {
 
-      case 'Primo piatto':
+        case 'Primo piatto':
           this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
           console.log(this.listaProdotti);
-        break;
+          break;
 
-      case 'Secondo piatto':
+        case 'Secondo piatto':
           this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
           console.log(this.listaProdotti);
-        break;
+          break;
 
-      case 'Bibita':
+        case 'Bibita':
           this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
           console.log(this.listaProdotti);
-        break;
+          break;
 
-      case 'Tutti':
-        this.getProdotti();
-      this.listaProdotti = this.listaProdottiFiltrata;
-      console.log(this.listaProdotti);
-        break;
+        case 'Tutti':
+          this.getProdotti();
+          this.listaProdotti = this.listaProdottiFiltrata;
+          console.log(this.listaProdotti);
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
+
     }
 
   }
-
-}
 
   search() {
     if (this.text !== '') {

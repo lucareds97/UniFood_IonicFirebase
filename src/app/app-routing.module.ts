@@ -92,6 +92,17 @@ const routes: Routes = [
     loadChildren: './amministratore/lista-clienti/lista-clienti.module#ListaClientiPageModule',
     canActivate: [AuthGuard],
   },
+  
+
+  
+  // { path: 'modal-tipo', 
+  // loadChildren: '.personale/pages/modal-tipo/modal-tipo.module#ModalTipoPageModule',
+  
+   
+//},
+  //{ path: 'pages', loadChildren: './pages/pages.module#PagesPageModule' },
+
+
 
   {
     path: 'modalCliente',

@@ -1,5 +1,21 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="secondary">
+      <ion-button (click)="filtraOrdini()">
+        <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" [(ngModel)]="tipo"
+          (ngModelChange)="filtraOrdini()">
+          <ion-select-option selected="Tutti" id="ion-selopt-0" value="Tutti">Tutti
+          </ion-select-option>
+          <ion-select-option role="option" id="ion-selopt-1" value="Primo piatto">Primo Piatto
+          </ion-select-option>
+          <ion-select-option role="option" id="ion-selopt-2" value="Secondo piatto">Secondo Piatto
+          </ion-select-option>
+          <ion-select-option role="option" id="ion-selopt-3" value="Bibita">Bibita
+          </ion-select-option>
+        </ion-select>
+        <ion-icon slot="icon-only" name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       Ordini
     </ion-title>
@@ -8,20 +24,6 @@
 
 <ion-content>
 
-    <ion-item>
-        <ion-label>Filtro Ordini</ion-label>
-        <ion-select [(ngModel)]="tipo" (ngModelChange)="filtraOrdini()">
-          <ion-select-option selected="Tutti" id="ion-selopt-0" value="Tutti">Tutti
-          </ion-select-option>
-            <ion-select-option role="option" id="ion-selopt-1" value="Primo piatto">Primo Piatto
-            </ion-select-option>
-            <ion-select-option role="option" id="ion-selopt-2" value="Secondo piatto">Secondo Piatto
-            </ion-select-option>
-            <ion-select-option role="option" id="ion-selopt-3" value="Bibita">Bibita
-            </ion-select-option>
-            </ion-select>
-          </ion-item>
-    
   <ion-segment [(ngModel)]="whichPage" color="danger" padding>
     <ion-segment-button style="font-size: 15px" value="non-completati">
       <ion-label>Non completati</ion-label>
@@ -32,38 +34,47 @@
     </ion-segment-button>
   </ion-segment>
 
-  <br>
 
-      <div [ngSwitch]="whichPage">
-        <ion-list *ngSwitchCase="'non-completati'">
-          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
+  <div [ngSwitch]="whichPage">
+    <ion-list *ngSwitchCase="'non-completati'">
+      
+      <ion-grid>
+        <ion-row class="ios hydrated" *ngFor="let ordine of listaOrdini">
+
+          <ion-col size="9">
             <ion-item *ngIf="ordine.stato == false">
-              <ion-label>{{ordine.idCliente}}
-                <p>
-                  {{ordine.idProdotto}}
-                </p>
-              </ion-label>
-              <ion-checkbox slot="end" (click)="presentAlertConfirm(ordine)" [(ngModel)]="ordine.isChecked">
-              </ion-checkbox>
-            </ion-item>
-          </ion-item-sliding>
-        </ion-list>
-
-      </div>
-
-      <div [ngSwitch]="whichPage">
-        <ion-list *ngSwitchCase="'completati'">
-          <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
-            <ion-item *ngIf="ordine.stato == true">
-              <ion-label>{{ordine.idCliente}}
+              <ion-label font-size="60px">{{ordine.idCliente}}
                 <p>
                   {{ordine.idProdotto}}
                 </p>
               </ion-label>
             </ion-item>
-          </ion-item-sliding>
-        </ion-list>
-      </div>
+          </ion-col>
+
+          <ion-col size="3" align-self-center text-center>
+            <ion-checkbox *ngIf="ordine.stato == false" (click)="presentAlertConfirm(ordine)"
+              [(ngModel)]="ordine.isChecked">
+            </ion-checkbox>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+  </div>
+
+  <div [ngSwitch]="whichPage">
+    <ion-list *ngSwitchCase="'completati'">
+      <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
+        <ion-item *ngIf="ordine.stato == true">
+          <ion-label>{{ordine.idCliente}}
+            <p>
+              {{ordine.idProdotto}}
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
 
 </ion-content>
 

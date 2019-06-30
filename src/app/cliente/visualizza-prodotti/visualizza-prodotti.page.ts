@@ -19,6 +19,9 @@ export class VisualizzaProdottiPage implements OnInit {
   visualizzaProdotti: any[] = [];
   visualizzaProdottiFiltrata: any[] = [];
 
+  listaProdotti: Prodotto[] = [];
+  listaProdottiFiltrata: Prodotto[] = [];
+
 
   public tipo: string = "Tutti";
 
@@ -78,49 +81,49 @@ export class VisualizzaProdottiPage implements OnInit {
   apriCarrello() {
     this.router.navigate(['carrello']);
   }
-  
+
   filtraProdotti() {
 
     const searchKeyLowered = this.tipo.toLowerCase();
 
-if(this.tipo !== ''){
-    switch (this.tipo) {
+    if (this.tipo !== '') {
+      switch (this.tipo) {
 
-      case 'Primo piatto':
+        case 'Primo piatto':
           this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
           console.log(this.visualizzaProdotti);
-        break;
+          break;
 
-      case 'Secondo piatto':
+        case 'Secondo piatto':
           this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
           console.log(this.visualizzaProdotti);
-        break;
+          break;
 
-      case 'Bibita':
+        case 'Bibita':
           this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
           console.log(this.visualizzaProdotti);
-        break;
+          break;
 
-      case 'Tutti':
-        this.getProdotti();
-      this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
-      console.log(this.visualizzaProdotti);
-        break;
+        case 'Tutti':
+          this.getProdotti();
+          this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
+          console.log(this.visualizzaProdotti);
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
+
     }
 
   }
 
-}
-
-search() {
-  if (this.text !== '') {
-    const searchKeyLowered = this.text.toLowerCase();
-    this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
-  } else {
-    this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
+  search() {
+    if (this.text !== '') {
+      const searchKeyLowered = this.text.toLowerCase();
+      this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
+    } else {
+      this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
+    }
   }
-}
 }
