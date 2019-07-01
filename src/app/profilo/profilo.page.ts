@@ -21,6 +21,7 @@ export class ProfiloPage implements OnInit {
   id: any;
   email: string;
   password: any;
+  type: any;
   
   constructor(private authService: AuthService, private router: Router, private alertCtrl: AlertController,){
     let categoria: string;
@@ -75,6 +76,7 @@ export class ProfiloPage implements OnInit {
     
     );
   }
+
   getDatiUtente(){
 
     this.authService.userDataPromise().then((utente) => {
@@ -83,15 +85,15 @@ export class ProfiloPage implements OnInit {
       switch (this.utente.tipo) {
 
         case '1':
-            this.utente.tipo = 'Cliente:';
+            this.type = 'Cliente:';
           break;
   
         case '2':
-            this.utente.tipo = 'Personale:';
+            this.type = 'Personale:';
           break;
   
         case '3':
-            this.utente.tipo = 'Amministratore:';
+            this.type = 'Amministratore:';
           break;
   
         
