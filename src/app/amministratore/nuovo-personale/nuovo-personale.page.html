@@ -11,8 +11,63 @@
 </ion-header>
 
 <ion-content>
-  
-  <div class="ion-padding">
+
+  <br>
+
+
+  <div class="ion-icon">
+    <ion-icon name="person-add" color="danger"></ion-icon>
+  </div>
+
+  <div class="center">
+      <form [formGroup]="signupFormPersonale">
+
+      <ion-item class="center">
+        <ion-input id="nome" formControlName="nome" placeholder="Nome (es. Mario)"
+          [class.invalid]="!signupFormPersonale.controls['nome'].valid && signupFormPersonale.controls['nome'].touched">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="center">
+        <ion-input id="cognome" formControlName="cognome" placeholder="Cognome (es. Rossi)"
+          [class.invalid]="!signupFormPersonale.controls['cognome'].valid && signupFormPersonale.controls['cognome'].touched">
+        </ion-input>
+      </ion-item>
+
+
+      <ion-item class="center">
+        <ion-input formControlName="email" type="email" placeholder="Email"
+          [class.invalid]="!signupFormPersonale.controls['email'].valid && signupFormPersonale.controls['email'].touched">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="error-message"
+        *ngIf="!signupFormPersonale.controls['email'].valid && signupFormPersonale.controls['email'].touched">
+        <ion-label style="text-align: center">Inserisci una mail valida.</ion-label>
+      </ion-item>
+
+      <ion-item class="center">
+        <ion-input formControlName="password" type="password" placeholder="Password"
+          [class.invalid]="!signupFormPersonale.controls['password'].valid && signupFormPersonale.controls['password'].touched">
+        </ion-input>
+      </ion-item>
+
+      <ion-item class="error-message"
+        *ngIf="!signupFormPersonale.controls['password'].valid  && signupFormPersonale.controls['password'].touched">
+        <ion-label style="text-align: center">La tua password deve avere almeno 6 caratteri.</ion-label>
+      </ion-item>
+
+      <br>
+    </form>
+  </div>
+
+  <div class="button-center">
+    <ion-button color="danger" slot="end" (click)="signupPersonale(signupFormPersonale)" [disabled]="!signupFormPersonale.valid">
+      Crea Account
+    </ion-button>
+  </div>
+
+  <!-- <div class="ion-padding">
     <ion-item class="text-center">
       <ion-label position="stacked">Nome Personale:</ion-label>
       <ion-input id="nomePersonale" [(ngModel)]="personale.nome"></ion-input>
@@ -33,7 +88,7 @@
 
       <ion-button color="danger" class="center" (click)="inserisciPersonale()" slot="end">INSERISCI</ion-button>
 
-  </div>
+  </div> -->
 
 
 </ion-content>

@@ -52,8 +52,10 @@
       margin: auto;
       text-align:center">
       
-      <ion-icon class="cart" name="cart" (click)="aggiungiAlCarrello(prodotto)"></ion-icon>
-
+      <ion-button fill="clear" color="danger" (click)="aggiungiAlCarrello(prodotto)">
+          <ion-icon  slot="icon-only" name="cart" ></ion-icon>
+        </ion-button>
+        
       </ion-col>
     </ion-row>
   </ion-grid>

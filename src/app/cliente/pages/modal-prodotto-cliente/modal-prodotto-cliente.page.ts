@@ -41,13 +41,44 @@ export class ModalProdottoClientePage implements OnInit {
     });
   }
 
-  aggiungiAlCarrello(id) {
+  addToCart(id) {
     this.prodService.getProduct(id).subscribe(res =>{
       this.prodotto = res;
       this.cartService.addProduct(this.prodotto);
       console.log(res);
     });
 
+  }
+  
+  aggiungiAlCarrello(prodotto) {
+    this.cartService.addProduct(prodotto);
+    }
+  
+    
+    async presentAlertConfirm(id: string) {
+      const alert = await this.alertController.create({
+        header: 'Vuoi aggiungere il prodotto al carrello?',
+        buttons: [
+          {
+            text: 'ANNULLA',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: (annullato) => {
+            console.log('Confirm Cancel: annullato');
+            } }, 
+          {
+            text: 'AGGIUNGI',
+            handler: () => {
+              this.closeModal();
+              this.aggiungiAlCarrello(this.prodotto);
+              console.log('Aggiunto');
+            }
+          }
+        ]
+      });
+  
+      await alert.present();
+  
   }
 
 }
