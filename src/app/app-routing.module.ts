@@ -81,11 +81,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
 
-  {
-    path: 'modalPersonale',
-    loadChildren: './amministratore/pages/modal/modal-personale.module#ModalPersonalePageModule',
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: 'modalPersonale',
+  //   loadChildren: './amministratore/pages/modal/modal-personale.module#ModalPersonalePageModule',
+  //   canActivate: [AuthGuard],
+  // },
 
   {
     path: 'lista-clienti',
@@ -104,11 +104,11 @@ const routes: Routes = [
 
 
 
-  {
-    path: 'modalCliente',
-    loadChildren: './amministratore/pages/modal-cliente/modal-cliente.module#ModalClientePageModule',
-    canActivate: [AuthGuard]
-  },
+  // {
+  //   path: 'modalCliente',
+  //   loadChildren: './amministratore/pages/modal-cliente/modal-cliente.module#ModalClientePageModule',
+  //   canActivate: [AuthGuard]
+  // },
 
 
 ];
