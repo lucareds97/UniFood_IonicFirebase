@@ -19,29 +19,34 @@ const routes: Routes = [
     path: '',
     loadChildren: './personale/tabs_personale/tabs_personale.module#TabsPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '2'}
   },
 
   {
     path: 'lista-prodotti',
     loadChildren: './personale/lista-prodotti/lista-prodotti.module#ListaProdottiPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '2'}
   },
   {
     path: 'modifica-prodotto',
     loadChildren: './personale/modifica-prodotto/modifica-prodotto.module#ModificaProdottoPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '2'}
   },
 
   {
     path: 'visualizza-prodotto',
     loadChildren: './personale/visualizza-prodotto/visualizza-prodotto.module#VisualizzaProdottoPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '2'}
   },
 
   {
     path: 'modal',
     loadChildren: './personale/pages/modal/modal.module#ModalPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '2'}
   },
 
   {
@@ -53,6 +58,7 @@ const routes: Routes = [
     path: '',
     loadChildren: './cliente/tabs_cliente/tabs_cliente.module#TabsPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '1'}
   },
 
 
@@ -60,12 +66,14 @@ const routes: Routes = [
     path: 'visualizza-prodotti',
     loadChildren: './cliente/visualizza-prodotti/visualizza-prodotti.module#VisualizzaProdottiPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '1'}
   },
 
   {
     path: 'carrello',
     loadChildren: './cliente/carrello/carrello.module#CarrelloPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '1'}
   },
   { path: 'reset-password', loadChildren: './reset-password/reset-password.module#ResetPasswordPageModule' },
 
@@ -73,24 +81,36 @@ const routes: Routes = [
     path: '',
     loadChildren: './amministratore/tabs_amministratore/tabs_amministratore.module#TabsPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '3'}
   },
 
   {
     path: 'lista-personale',
     loadChildren: './amministratore/lista-personale/lista-personale.module#ListaPersonalePageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '3'}
   },
 
+<<<<<<< HEAD
   // {
   //   path: 'modalPersonale',
   //   loadChildren: './amministratore/pages/modal/modal-personale.module#ModalPersonalePageModule',
   //   canActivate: [AuthGuard],
   // },
+=======
+  {
+    path: 'modalPersonale',
+    loadChildren: './amministratore/pages/modal/modal-personale.module#ModalPersonalePageModule',
+    canActivate: [AuthGuard],
+    data: {tipo: '3'}
+  },
+>>>>>>> 78405d589186dc42023f3686c3f00077cdbcb776
 
   {
     path: 'lista-clienti',
     loadChildren: './amministratore/lista-clienti/lista-clienti.module#ListaClientiPageModule',
     canActivate: [AuthGuard],
+    data: {tipo: '3'}
   },
   
 
@@ -104,11 +124,27 @@ const routes: Routes = [
 
 
 
+<<<<<<< HEAD
   // {
   //   path: 'modalCliente',
   //   loadChildren: './amministratore/pages/modal-cliente/modal-cliente.module#ModalClientePageModule',
   //   canActivate: [AuthGuard]
   // },
+=======
+  {
+    path: 'modalCliente',
+    loadChildren: './amministratore/pages/modal-cliente/modal-cliente.module#ModalClientePageModule',
+    canActivate: [AuthGuard],
+    data: {tipo: '3'}
+  },
+
+  { 
+    path: 'eh-volevi', 
+    loadChildren: './eh-volevi/eh-volevi.module#EhVoleviPageModule',
+    canActivate: [AuthGuard],
+    data: {tipo: '3' && '2' && '1'}
+  },
+>>>>>>> 78405d589186dc42023f3686c3f00077cdbcb776
 
 
 ];

@@ -17,6 +17,13 @@ export class LoginPage implements OnInit {
   public loginForm: FormGroup;
   public loading: HTMLIonLoadingElement;
 
+  utente: Utente = {
+    nome: '',
+    cognome: '',
+    email: '',
+    tipo: '',
+  };
+
   constructor(
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
@@ -45,35 +52,39 @@ export class LoginPage implements OnInit {
     const password = loginForm.value.password;
 
     this.authService.loginUser(email, password).then(() => {
-
-      this.authService.getUserData();
-
       
-      
-      this.loading.dismiss().then(() => {
-
-        let categoria: string;
-
-        switch (this.authService.utente.tipo) {
-
-          case '1':
-            categoria = 'cliente';
-            break;
-
-          case '2':
-            categoria = 'personale';
-            break;
-
-          case '3':
-            categoria = 'amministratore';
-            break;
-
-          default:
-            categoria = 'personale';
-            break;
-        }
-        this.router.navigateByUrl(`/${categoria}`);
+      this.authService.userDataPromise().then((utente) => {
+        this.utente = utente;
         
+        console.log(this.utente);
+
+        this.loading.dismiss().then(() => {
+
+          let categoria: string;
+  
+  
+          switch (this.utente.tipo) {
+  
+            case '1':
+              categoria = 'cliente';
+              break;
+  
+            case '2':
+              categoria = 'personale';
+              break;
+  
+            case '3':
+              categoria = 'amministratore';
+              break;
+  
+            default:
+              categoria = 'personale';
+              break;
+          }
+          this.router.navigateByUrl(`/${categoria}`);
+          
+        })
+
       });
       },
       error => {

@@ -25,17 +25,19 @@ export class ListaClientiPage implements OnInit {
 
   ngOnInit() {
 
+    this.getDatiUtente();
+
     this.utenteService.getListaUtente().subscribe((res) => {
       this.listaClienti = this.clienteService.getCliente(res);
       return this.listaClienti;
     });
 
-    this.getDatiUtente();
   }
 
-  getDatiUtente() {
-    this.authService.getUserData();
+  getDatiUtente(){
+    this.authService.userDataPromise();
   }
+
 
   async openModalCliente(id) {
     console.log(id);

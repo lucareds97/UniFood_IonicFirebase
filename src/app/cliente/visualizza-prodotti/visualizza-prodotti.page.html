@@ -27,7 +27,7 @@
   <ion-searchbar showCancelButton="always" id="testo" [(ngModel)]="text" (ngModelChange)="search()"></ion-searchbar>
 
   <ion-grid>
-    <ion-row *ngFor="let prodotto of visualizzaProdotti">
+    <ion-row *ngFor="let prodotto of listaProdottiFiltrata">
 
       <ion-col size="10.5">
         <ion-item (click)="openModal2(prodotto.id)">
@@ -50,8 +50,10 @@
       margin: auto;
       text-align:center">
       
-      <ion-icon class="cart" name="cart" (click)="aggiungiAlCarrello(prodotto)"></ion-icon>
-
+      <ion-button fill="clear" color="danger" (click)="aggiungiAlCarrello(prodotto)">
+          <ion-icon  slot="icon-only" name="cart" ></ion-icon>
+        </ion-button>
+        
       </ion-col>
     </ion-row>
   </ion-grid>

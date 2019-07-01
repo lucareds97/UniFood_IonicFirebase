@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/service_cliente/cart.service';
+import { AuthService } from 'src/app/services/user/auth.service';
 @Component({
   selector: 'app-carrello',
   templateUrl: './carrello.page.html',
@@ -14,11 +15,17 @@ export class CarrelloPage implements OnInit{
 
   idCarrello: string;
 
-  constructor(private cartService: CartService, private router: Router) {
+  constructor(private cartService: CartService, private authService: AuthService, private router: Router) {
 
   }
 
   ngOnInit(){
+    this.getDatiUtente();
+  }
+
+
+  getDatiUtente(){
+    this.authService.userDataPromise();
   }
 
   ionViewWillEnter() {
