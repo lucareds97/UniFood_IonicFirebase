@@ -51,16 +51,11 @@ export class AuthService {
 
   changePassword(email: string) {
     return firebase.auth().sendPasswordResetEmail(email);
-    //  this.user.updatePassword(this.newPassword).then(function(res){
-    //    //update
-    //    console.log(res);
-    //  }).catch(function(error){
-    //    //an error
-    //  })
   }
 
-  
-
+  changeEmail(email){
+    return firebase.auth().currentUser.updateEmail(email);
+  }
 
 
 
@@ -100,6 +95,12 @@ export class AuthService {
   getUserId() {
     this.id = firebase.auth().currentUser.uid;
     console.log(this.id);
+    return this.id;
+  }
+
+  getUserId2(id) {
+    id = firebase.auth().currentUser.uid;
+    console.log(id);
     return this.id;
   }
 

@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/user/auth.service';
 import { Utente } from 'src/app/interfaces/utente';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-profilo',
@@ -18,6 +19,8 @@ export class ProfiloPage implements OnInit {
     tipo: '',
   };
   id: any;
+  email: string;
+  password: any;
   
   constructor(private authService: AuthService, private router: Router, private alertCtrl: AlertController,){
     let categoria: string;
@@ -39,6 +42,10 @@ export class ProfiloPage implements OnInit {
   modificaProfilo() {
     this.id = this.authService.getUserId();
     this.router.navigateByUrl('cliente/profilo/modifica-profilo');
+  }
+
+  changeEmail(){
+    this.authService.changeEmail('p.prioriello@gmail.com');   
   }
 
   changePassword(){

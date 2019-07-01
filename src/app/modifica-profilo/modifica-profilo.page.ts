@@ -47,13 +47,13 @@ export class ModificaProfiloPage implements OnInit {
     console.log(this.utente);
   }
 
-  
-
-  
+    
   modificaProfilo(){
     this.id = this.authService.getUserId();
     console.log(this.id);
-    this.authService.updateProfile(this.utente, this.id);
+    this.authService.updateProfile(this.utente, this.id).then(() =>{
+      this.authService.changeEmail(this.utente.email);
+    });
     this.location.back();
     
   }

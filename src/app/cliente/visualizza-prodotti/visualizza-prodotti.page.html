@@ -19,12 +19,14 @@
     <ion-title>
       Visualizza Prodotti
     </ion-title>
+
   </ion-toolbar>
+  <ion-searchbar showCancelButton="always" id="testo" [(ngModel)]="text" (ngModelChange)="search()"></ion-searchbar>
+
 </ion-header>
 
 <ion-content>
 
-  <ion-searchbar showCancelButton="always" id="testo" [(ngModel)]="text" (ngModelChange)="search()"></ion-searchbar>
 
   <ion-grid>
     <ion-row *ngFor="let prodotto of listaProdottiFiltrata">
