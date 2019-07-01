@@ -91,20 +91,11 @@ const routes: Routes = [
     data: {tipo: '3'}
   },
 
-<<<<<<< HEAD
   // {
   //   path: 'modalPersonale',
   //   loadChildren: './amministratore/pages/modal/modal-personale.module#ModalPersonalePageModule',
   //   canActivate: [AuthGuard],
   // },
-=======
-  {
-    path: 'modalPersonale',
-    loadChildren: './amministratore/pages/modal/modal-personale.module#ModalPersonalePageModule',
-    canActivate: [AuthGuard],
-    data: {tipo: '3'}
-  },
->>>>>>> 78405d589186dc42023f3686c3f00077cdbcb776
 
   {
     path: 'lista-clienti',
@@ -124,13 +115,6 @@ const routes: Routes = [
 
 
 
-<<<<<<< HEAD
-  // {
-  //   path: 'modalCliente',
-  //   loadChildren: './amministratore/pages/modal-cliente/modal-cliente.module#ModalClientePageModule',
-  //   canActivate: [AuthGuard]
-  // },
-=======
   {
     path: 'modalCliente',
     loadChildren: './amministratore/pages/modal-cliente/modal-cliente.module#ModalClientePageModule',
@@ -144,7 +128,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {tipo: '3' && '2' && '1'}
   },
->>>>>>> 78405d589186dc42023f3686c3f00077cdbcb776
 
 
 ];
