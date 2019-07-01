@@ -21,24 +21,6 @@ export class ProfiloPage implements OnInit {
   
   constructor(private authService: AuthService, private router: Router, private alertCtrl: AlertController,){
     let categoria: string;
-    
-    switch (this.authService.utente.tipo) {
-
-      case '1':
-          this.authService.utente.tipo = 'Cliente:';
-        break;
-
-      case '2':
-          this.authService.utente.tipo = 'Personale:';
-        break;
-
-      case '3':
-          this.authService.utente.tipo = 'Amministratore:';
-          this.getDatiProfilo();
-        break;
-
-      
-    }
 
   }
 
@@ -46,15 +28,12 @@ export class ProfiloPage implements OnInit {
 
   logout(){
     this.authService.logoutUser();
-  }
-
-  getDatiProfilo(){
-    this.utente = this.authService.utente;
-    console.log(this.utente);
+    this.router.navigateByUrl("/login");
   }
 
   ngOnInit() {
-    this.getDatiProfilo();
+
+    this.getDatiUtente();
   }
 
   modificaProfilo() {
@@ -89,6 +68,30 @@ export class ProfiloPage implements OnInit {
     
     );
   }
+  getDatiUtente(){
 
+    this.authService.userDataPromise().then((utente) => {
+      this.utente = utente;
+
+      switch (this.utente.tipo) {
+
+        case '1':
+            this.utente.tipo = 'Cliente:';
+          break;
+  
+        case '2':
+            this.utente.tipo = 'Personale:';
+          break;
+  
+        case '3':
+            this.utente.tipo = 'Amministratore:';
+          break;
+  
+        
+      }
+
+    })
+
+  }
 }
 

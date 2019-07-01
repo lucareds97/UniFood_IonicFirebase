@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="danger">
     <ion-title>Lista Clienti</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,14 +7,12 @@
 <ion-content>
 
     <ion-list >
-        <ion-item *ngFor="let cliente of listaClienti">
-          <ion-item (click)="openModalCliente(cliente.id)">
+        <ion-item *ngFor="let cliente of listaClienti" (click)="openModalCliente(cliente.id)">
             <ion-label>{{cliente.nome}} {{cliente.cognome}}
               <p>
                 {{cliente.email}}
               </p>
             </ion-label>
-          </ion-item>
         </ion-item>
       </ion-list>
 

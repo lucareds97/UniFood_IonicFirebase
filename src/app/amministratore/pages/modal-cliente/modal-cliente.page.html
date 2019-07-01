@@ -1,21 +1,34 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-title>{{cliente.nome}} {{cliente.cognome}}</ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="closeModal()">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content padding>
-  
-    <img src="https://image.ibb.co/jRkLL8/personale_red.png" class="modal-image">
-  
-    <div class="price">
-      Email: {{cliente.email}}
-    </div>
-  
-    
-  </ion-content>
+  <ion-toolbar>
+    <ion-title>Cliente</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <img src="https://image.ibb.co/jRkLL8/personale_red.png" class="center-image">
+
+  <div style="text-align: center; ">
+    <h2>{{cliente.nome}} {{cliente.cognome}}</h2>
+  </div>
+
+  <div style="text-align: center">
+    e-mail: {{cliente.email}}
+  </div>
+
+  <br>
+  <br>
+
+  <div class="center">
+    <ion-button fill="clear" color="danger" (click)="presentAlertConfirm(cliente.id)">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-button>
+  </div>
+
+</ion-content>

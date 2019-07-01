@@ -29,13 +29,14 @@ export class OrdiniPage {
   constructor(private ordiniService: OrdiniService, private prodService: ProductsService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController, private modalController: ModalController) {
   }
 
-  ngOnInit() { 
-
-    this.getDatiUtente(); 
+  ngOnInit() {  
 
     this.getOrdini();
 
+    this.getDatiUtente();
+
   }
+  
 
   getOrdini() {
     this.ordiniService.getOrdini().subscribe(res => {

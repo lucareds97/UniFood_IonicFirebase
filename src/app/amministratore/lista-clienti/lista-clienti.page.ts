@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/user/auth.service';
 import { UtenteService } from 'src/app/services/service_amministratore/utente.service';
 import { ClienteService } from 'src/app/services/service_amministratore/cliente.service';
-import { ModalPage } from 'src/app/personale/pages/modal/modal.page';
+import { ModalPage } from 'src/app/amministratore/pages/modal-cliente/modal-cliente.page';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -25,17 +25,19 @@ export class ListaClientiPage implements OnInit {
 
   ngOnInit() {
 
+    this.getDatiUtente();
+
     this.utenteService.getListaUtente().subscribe((res) => {
       this.listaClienti = this.clienteService.getCliente(res);
       return this.listaClienti;
     });
 
-    this.getDatiUtente();
   }
 
-  getDatiUtente() {
-    this.authService.getUserData();
+  getDatiUtente(){
+    this.authService.userDataPromise();
   }
+
 
   async openModalCliente(id) {
     console.log(id);

@@ -111,9 +111,23 @@ export class AuthService {
       console.log(this.utente);
       return this.utente;
     });
-
-
-
-
   }
+
+  userDataPromise(): Promise<any> {
+      const id = firebase.auth().currentUser.uid;
+      return new Promise((resolve, reject) => {
+        this.usersCollection.doc<Utente>(id).valueChanges().subscribe(res => {
+          this.utente = res;
+          resolve(res);
+        });
+      });
+  }
+  
+  deleteUser(id: any) {
+    this.id = id;
+    console.log(this.id);
+    this.usersCollection.doc<Utente>(id).delete();
+    //firebase.auth().currentUser.delete();
+  }
+  
 }
