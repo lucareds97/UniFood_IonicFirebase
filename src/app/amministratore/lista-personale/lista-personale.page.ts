@@ -27,22 +27,23 @@ export class ListaPersonalePage implements OnInit {
 
   ngOnInit() {
 
+    this.getDatiUtente();
+
     this.utenteService.getListaUtente2().subscribe((res) => {
       this.listaPersonale = this.personaleService.getPersonale(res);
       return this.listaPersonale;
     });
 
-    this.getDatiUtente();
+  }
 
+  getDatiUtente(){
+    this.authService.userDataPromise();
   }
 
   aggiungiNuovoPersonale() {
     this.router.navigateByUrl('/amministratore/lista-personale/nuovo-personale');
   }
 
-  getDatiUtente() {
-    this.authService.getUserData();
-  }
 
   async openModalPersonale(id) {
     console.log(id);

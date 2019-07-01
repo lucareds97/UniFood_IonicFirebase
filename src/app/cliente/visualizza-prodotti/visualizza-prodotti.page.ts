@@ -16,11 +16,9 @@ export class VisualizzaProdottiPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   i: number = 0;
-  visualizzaProdotti: any[] = [];
-  visualizzaProdottiFiltrata: any[] = [];
-
-  listaProdotti: Prodotto[] = [];
-  listaProdottiFiltrata: Prodotto[] = [];
+  listaProdotti: any[] = [];
+  listaProdottiFiltrata: any[] = [];
+  listaProdottiSearch: any[] = [];
 
 
   public tipo: string = "Tutti";
@@ -51,16 +49,15 @@ export class VisualizzaProdottiPage implements OnInit {
     // this.items = this.carrelloService.getProducts();
   }
 
-  getProdotti() {
-    this.prodService.getProducts().subscribe(res => {
-      this.visualizzaProdotti = res;
-      this.visualizzaProdottiFiltrata = res;
-
-    });
+  getDatiUtente(){
+    this.authService.userDataPromise();
   }
 
-  getDatiUtente() {
-    this.authService.getUserData();
+  getProdotti() {
+    this.prodService.getProducts().subscribe(res => {
+      this.listaProdotti = res;
+      this.listaProdottiFiltrata = res;
+    });
   }
 
   async openModal2(id) {
@@ -90,40 +87,43 @@ export class VisualizzaProdottiPage implements OnInit {
       switch (this.tipo) {
 
         case 'Primo piatto':
-          this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
-          console.log(this.visualizzaProdotti);
-          break;
+            this.listaProdottiFiltrata = this.listaProdotti.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+            this.listaProdottiSearch = this.listaProdottiFiltrata;
+            console.log(this.listaProdotti);
+            break;
 
         case 'Secondo piatto':
-          this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
-          console.log(this.visualizzaProdotti);
-          break;
+            this.listaProdottiFiltrata = this.listaProdotti.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+            this.listaProdottiSearch = this.listaProdottiFiltrata;
+            console.log(this.listaProdotti);
+            break;
 
         case 'Bibita':
-          this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
-          console.log(this.visualizzaProdotti);
-          break;
+            this.listaProdottiFiltrata = this.listaProdotti.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+            this.listaProdottiSearch = this.listaProdottiFiltrata;
+            console.log(this.listaProdotti);
+            break;
 
         case 'Tutti':
           this.getProdotti();
-          this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
-          console.log(this.visualizzaProdotti);
+          this.listaProdottiFiltrata = this.listaProdotti;
+          console.log(this.listaProdotti);
           break;
 
         default:
           break;
       }
-
     }
-
   }
+
 
   search() {
     if (this.text !== '') {
       const searchKeyLowered = this.text.toLowerCase();
-      this.visualizzaProdotti = this.visualizzaProdottiFiltrata.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
+      this.listaProdottiFiltrata = this.listaProdottiSearch.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
     } else {
-      this.visualizzaProdotti = this.visualizzaProdottiFiltrata;
+      this.listaProdottiFiltrata = this.listaProdottiSearch;
     }
   }
+  
 }

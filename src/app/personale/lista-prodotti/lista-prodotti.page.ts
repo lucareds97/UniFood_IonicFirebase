@@ -32,8 +32,9 @@ export class ListaProdottiPage implements OnInit {
   public tipo: string = "Tutti";
 
   i: number = 0;
-  listaProdotti: Prodotto[] = [];
-  listaProdottiFiltrata: Prodotto[] = [];
+  listaProdotti: any[] = [];
+  listaProdottiFiltrata: any[] = [];
+  listaProdottiSearch: any[] = [];
 
   prodotto: Prodotto = {
     nome: '',
@@ -56,16 +57,16 @@ export class ListaProdottiPage implements OnInit {
     this.getDatiUtente();
   }
 
+  getDatiUtente(){
+    this.authService.userDataPromise();
+  }
+
   getProdotti() {
     this.prodService.getProducts().subscribe(res => {
       this.listaProdotti = res;
       this.listaProdottiFiltrata = res;
 
     });
-  }
-
-  getDatiUtente() {
-    this.authService.getUserData();
   }
 
 
@@ -136,23 +137,26 @@ export class ListaProdottiPage implements OnInit {
       switch (this.tipo) {
 
         case 'Primo piatto':
-          this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
-          console.log(this.listaProdotti);
+            this.listaProdottiFiltrata = this.listaProdotti.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+            this.listaProdottiSearch = this.listaProdottiFiltrata;
+            console.log(this.listaProdotti);
           break;
 
         case 'Secondo piatto':
-          this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
-          console.log(this.listaProdotti);
+            this.listaProdottiFiltrata = this.listaProdotti.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+            this.listaProdottiSearch = this.listaProdottiFiltrata;
+            console.log(this.listaProdotti);
           break;
 
         case 'Bibita':
-          this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
-          console.log(this.listaProdotti);
+            this.listaProdottiFiltrata = this.listaProdotti.filter(prodotto => prodotto.tipo.toLowerCase().search(searchKeyLowered) == 0);
+            this.listaProdottiSearch = this.listaProdottiFiltrata;
+            console.log(this.listaProdotti);
           break;
 
         case 'Tutti':
           this.getProdotti();
-          this.listaProdotti = this.listaProdottiFiltrata;
+          this.listaProdottiFiltrata = this.listaProdotti;
           console.log(this.listaProdotti);
           break;
 
@@ -167,9 +171,9 @@ export class ListaProdottiPage implements OnInit {
   search() {
     if (this.text !== '') {
       const searchKeyLowered = this.text.toLowerCase();
-      this.listaProdotti = this.listaProdottiFiltrata.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
+      this.listaProdottiFiltrata = this.listaProdottiSearch.filter(prodotto => prodotto.nome.toLowerCase().search(searchKeyLowered) >= 0);
     } else {
-      this.listaProdotti = this.listaProdottiFiltrata;
+      this.listaProdottiFiltrata = this.listaProdottiSearch;
     }
   }
 }

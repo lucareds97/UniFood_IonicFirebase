@@ -27,7 +27,7 @@
   <ion-searchbar showCancelButton="always" id="testo" [(ngModel)]="text" (ngModelChange)="search()"></ion-searchbar>
 
   <ion-grid>
-    <ion-row *ngFor="let prodotto of visualizzaProdotti">
+    <ion-row *ngFor="let prodotto of listaProdottiFiltrata">
 
       <ion-col size="10.5">
         <ion-item (click)="openModal2(prodotto.id)">
