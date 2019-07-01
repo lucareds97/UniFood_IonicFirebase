@@ -1,34 +1,91 @@
 <ion-header>
   <ion-toolbar color="danger">
+
+    <!-- <ion-buttons slot="secondary">
+          <ion-button fill="clear" (click)="modificaProfilo()">
+            <ion-icon slot="icon-only" name="build" ></ion-icon>
+          </ion-button>
+          </ion-buttons> -->
+
     <ion-title>
       Profilo
     </ion-title>
+
   </ion-toolbar>
 </ion-header>
 
 <ion-col>
-<ion-card class="sc-ion-card-ios-h sc-ion-card-ios-s ios hydrated">
-  <ion-card-header class="ios hydrated" style= "text-align: center">
-      <img src="https://image.ibb.co/jRkLL8/personale_red.png" class="center-image" style="max-width: 300px; max-height: 300px;">
-    <ion-card-subtitle class="ios hydrated" role="heading" aria-level="3">{{utente.tipo}}</ion-card-subtitle>
-    <ion-card-title class="ios hydrated" role="heading" aria-level="2">{{utente.nome}} {{utente.cognome}}</ion-card-title>
-  </ion-card-header>
-  <ion-card-content class="ios card-content-ios hydrated" style= "text-align: center">
-    e-mail: {{utente.email}}
-  </ion-card-content>
+  <ion-card class="sc-ion-card-ios-h sc-ion-card-ios-s ios hydrated">
+    <ion-card-header class="ios hydrated" style="text-align: center">
 
-  <br>
 
-  <div class="center-button">
-    <ion-button fill="clear" style="color: red" (click)="logout()" >
-      LOGOUT
-        <ion-icon slot="icon-only" name="log-out"></ion-icon>
+
+
+      <img src="https://image.ibb.co/jRkLL8/personale_red.png" class="center-image"
+        style="max-width: 300px; max-height: 300px;">
+      <ion-card-subtitle class="ios hydrated" role="heading" aria-level="3">{{utente.tipo}}</ion-card-subtitle>
+      <ion-card-title class="ios hydrated" role="heading" aria-level="2">{{utente.nome}} {{utente.cognome}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="ios card-content-ios hydrated" style="text-align: center">
+      e-mail: {{utente.email}}
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" fill="clear" color="primary" (click)="modificaProfilo()">
+          <div >
+              
+              <p style="font-size:12px; text-align: left">  Modifica<br>Profilo</p>
+          </div>
+          <ion-icon slot="icon-only" name="options"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="full" fill="clear" color="primary" (click)="changePassword()">
+            <div>
+                <p style="font-size:12px; text-align: left">  Cambia<br>Password</p>
+            </div>
+          <ion-icon slot="icon-only" name="key"></ion-icon>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="full" fill="clear" color="danger" (click)="logout()">
+            <div>
+                <p style="font-size:15px">Logout</p>
+            </div>
+          <ion-icon slot="icon-only" name="log-out"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+
+    <!-- <br>
+    <br>
+
+    <div class="center-button">
+      <ion-button expand="full" fill="clear" color="primary" (click)="modificaProfilo()">
+        <ion-label>
+          Modifica Profilo
+        </ion-label>
+        <ion-icon slot="start" name="options"></ion-icon>
       </ion-button>
-      </div>
 
-      <br>
-      
-</ion-card>
+      <ion-button expand="full" fill="clear" color="primary" (click)="changePassword()">
+        <ion-label>
+          Cambia Password
+        </ion-label>
+        <ion-icon slot="start" name="key"></ion-icon>
+      </ion-button>
+
+      <ion-button expand="full" fill="clear" color="danger" (click)="logout()">
+        <ion-label>
+          Logout
+        </ion-label>
+        <ion-icon slot="start" name="log-out"></ion-icon>
+      </ion-button>
+    </div> -->
+
+  </ion-card>
 
 </ion-col>
-

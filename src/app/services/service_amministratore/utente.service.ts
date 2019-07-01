@@ -38,5 +38,12 @@ export class UtenteService {
     return this.usersCollection.add(utente);
   }
 
+  getProfile(id: string): Observable<Utente> {
+    return this.usersCollection.doc<Utente>(id).valueChanges();
+  }
+
+  updateProfile(utente: Utente, id: string): Promise<void> {
+    return this.usersCollection.doc(id).update(utente);
+  }
 
 }

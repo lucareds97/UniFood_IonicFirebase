@@ -38,7 +38,11 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: '../../profilo/profilo.module#ProfiloPageModule'
-          }
+          },
+          {
+            path: 'modifica-profilo',
+            loadChildren: '../../modifica-profilo/modifica-profilo.module#ModificaProfiloPageModule'
+          },
         ]
       },
 

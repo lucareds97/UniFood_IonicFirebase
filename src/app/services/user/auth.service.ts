@@ -11,7 +11,7 @@ import { CartService } from '../service_cliente/cart.service';
 })
 export class AuthService {
 
-  
+
   usersCollection: AngularFirestoreCollection<Utente>;
   users: Observable<Utente[]>;
 
@@ -28,7 +28,7 @@ export class AuthService {
 
   constructor(private db: AngularFirestore) {
     this.usersCollection = db.collection<Utente>('userProfile');
- 
+
     this.users = this.usersCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -49,8 +49,23 @@ export class AuthService {
   }
 
 
+  changePassword(email: string) {
+    return firebase.auth().sendPasswordResetEmail(email);
+    //  this.user.updatePassword(this.newPassword).then(function(res){
+    //    //update
+    //    console.log(res);
+    //  }).catch(function(error){
+    //    //an error
+    //  })
+  }
+
+  
+
+
+
+
   signupUser(email: string, password: string, nome: string, cognome: string, tipo: string): Promise<any> {
-    
+
     console.log(tipo);
 
     return firebase
@@ -59,27 +74,30 @@ export class AuthService {
       .then((newUserCredential: firebase.auth.UserCredential) => {
 
 
-        
+
         firebase
           .firestore()
           .doc(`/userProfile/${newUserCredential.user.uid}`)
-          .set({ email, password, nome, cognome,tipo});
+          .set({ email, password, nome, cognome, tipo });
 
-        })
+      })
       .catch(error => {
         console.error(error);
         throw new Error(error);
       });
 
-      
+
   }
 
+  updateProfile(user: Utente, id: string): Promise<void> {
+    return this.usersCollection.doc(id).update(user);
+  }
 
-  logoutUser():Promise<void> {
+  logoutUser(): Promise<void> {
     return firebase.auth().signOut();
   }
 
-  getUserId() {
+  getUserId() {
     this.id = firebase.auth().currentUser.uid;
     console.log(this.id);
     return this.id;
@@ -88,12 +106,14 @@ export class AuthService {
   getUserData() {
     const id = firebase.auth().currentUser.uid;
     console.log(id);
-    this.usersCollection.doc<Utente>(id).valueChanges().subscribe(res =>{
+    this.usersCollection.doc<Utente>(id).valueChanges().subscribe(res => {
       this.utente = res;
-      //console.log(this.utente);
+      console.log(this.utente);
       return this.utente;
     });
 
-    
+
+
+
   }
 }

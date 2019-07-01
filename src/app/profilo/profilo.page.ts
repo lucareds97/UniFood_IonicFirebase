@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/user/auth.service';
 import { Utente } from 'src/app/interfaces/utente';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-profilo',
@@ -15,8 +17,9 @@ export class ProfiloPage implements OnInit {
     email: '',
     tipo: '',
   };
+  id: any;
   
-  constructor(private authService: AuthService){
+  constructor(private authService: AuthService, private router: Router, private alertCtrl: AlertController,){
     let categoria: string;
     
     switch (this.authService.utente.tipo) {
@@ -54,7 +57,38 @@ export class ProfiloPage implements OnInit {
     this.getDatiProfilo();
   }
 
+  modificaProfilo() {
+    this.id = this.authService.getUserId();
+    this.router.navigateByUrl('cliente/profilo/modifica-profilo');
+  }
 
+  changePassword(){
+    this.authService.changePassword(this.utente.email).then(
+      async () => {
+        const alert = await this.alertCtrl.create({
+          message: 'Controlla la tua mail per reimpostare la password',
+          buttons: [
+            {
+              text: 'Ok',
+              role: 'cancel',
+              handler: () => {
+                this.router.navigateByUrl('login');
+              },
+            },
+          ],
+        });
+        await alert.present();
+      },
+      async error => {
+        const errorAlert = await this.alertCtrl.create({
+          message: error.message,
+          buttons: [{ text: 'Ok', role: 'cancel' }],
+        });
+        await errorAlert.present();
+      }
+    
+    );
+  }
 
 }
 
