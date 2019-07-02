@@ -22,6 +22,7 @@ export class LoginPage implements OnInit {
     cognome: '',
     email: '',
     tipo: '',
+    idUtente: '',
   };
 
   constructor(

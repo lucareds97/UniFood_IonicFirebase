@@ -40,6 +40,7 @@ export class ModificaProdottoPage implements OnInit {
     this.prodService.updateProduct(this.prodotto, this.id);
     this.router.navigateByUrl('/personale/lista-prodotti');
   }
+  
   async scegliTipo() {
     let opts: PickerOptions = {
       buttons: [

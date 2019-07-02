@@ -26,6 +26,7 @@ export class NuovoPersonalePage {
     cognome: '',
     email: '',
     tipo: '',
+    idUtente: '',
   };
 
   constructor(

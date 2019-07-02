@@ -17,6 +17,7 @@ export class ProfiloPage implements OnInit {
     cognome: '',
     email: '',
     tipo: '',
+    idUtente: ''
   };
   id: any;
   email: string;

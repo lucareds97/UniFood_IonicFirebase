@@ -17,7 +17,8 @@ export class ModalPage implements OnInit {
     nome: '',
     cognome: '',
     email: '',
-    tipo: ''
+    tipo: '',
+    idUtente: '',
   };
 
   id: any;
