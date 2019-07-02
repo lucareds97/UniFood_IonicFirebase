@@ -50,6 +50,16 @@ export class AuthService {
   }
 
 
+  changePassword(email: string) {
+    return firebase.auth().sendPasswordResetEmail(email);
+  }
+
+  changeEmail(email){
+    return firebase.auth().currentUser.updateEmail(email);
+  }
+
+
+
   signupUser(email: string, password: string, nome: string, cognome: string, tipo: string): Promise<any> {
 
     console.log(tipo);
@@ -75,6 +85,9 @@ export class AuthService {
 
   }
 
+  updateProfile(user: Utente, id: string): Promise<void> {
+    return this.usersCollection.doc(id).update(user);
+  }
 
   logoutUser(): Promise<void> {
     return firebase.auth().signOut();

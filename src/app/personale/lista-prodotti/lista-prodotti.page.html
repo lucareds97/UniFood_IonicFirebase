@@ -17,12 +17,13 @@
     </ion-buttons>
         <ion-title>Lista Prodotti</ion-title>
   </ion-toolbar>
+  <ion-searchbar showCancelButton="always" id="testo" [(ngModel)]="text" (ngModelChange)="search()"></ion-searchbar>
+
 </ion-header>
 
 <ion-content>
 
 
-  <ion-searchbar showCancelButton="always" id="testo" [(ngModel)]="text" (ngModelChange)="search()"></ion-searchbar>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="danger" (click)="aggiungiNuovoProdotto()">

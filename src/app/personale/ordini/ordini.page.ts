@@ -8,6 +8,11 @@ import { Prodotto } from 'src/app/interfaces/prodotti';
 import { ProductsService } from 'src/app/services/service_personale/products.service';
 import { NgSwitch, NgSwitchCase } from '@angular/common';
 import { ModalPage } from '../pages/modal/modal.page';
+import { UtenteService } from 'src/app/services/service_amministratore/utente.service';
+import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { Utente } from 'src/app/interfaces/utente';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-ordini',
@@ -15,6 +20,8 @@ import { ModalPage } from '../pages/modal/modal.page';
   styleUrls: ['ordini.page.scss']
 })
 export class OrdiniPage {
+  usersCollection: AngularFirestoreCollection<Utente>;
+  users: Observable<Utente[]>;
 
   listaOrdini: Ordine[] = [];
   listaOrdiniFiltrata: Ordine[] = [];
@@ -22,21 +29,38 @@ export class OrdiniPage {
   idProdotto: string;
   nomeProdotto: string;
 
+  i: any;
+
+  ordine: Ordine = {
+    dataOrdine: '',
+    prezzo: 0,
+    stato: false,
+    idCliente: '',
+    prodotti: [],
+    idSede: '',
+    isChecked: false,
+    tipologia: '',
+}
+
+
 
   whichPage = 'non-completati'
   public tipo: string = "Tutti";
 
-  constructor(private ordiniService: OrdiniService, private prodService: ProductsService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController, private modalController: ModalController) {
+  constructor(private db: AngularFirestore, private ordiniService: OrdiniService, private utenteService: UtenteService, private prodService: ProductsService, private authService: AuthService, private alertController: AlertController, private navCtrl: NavController, private modalController: ModalController) {
+    this.usersCollection = db.collection<Utente>('userProfile');
   }
 
-  ngOnInit() {  
+  ngOnInit() {
 
     this.getOrdini();
 
     this.getDatiUtente();
 
   }
-  
+
+
+
 
   getOrdini() {
     this.ordiniService.getOrdini().subscribe(res => {
@@ -48,6 +72,8 @@ export class OrdiniPage {
   getDatiUtente(){
     this.authService.userDataPromise();
   }
+
+
 
   cambiaStato(ordine) {
     ordine.stato = true;
@@ -97,36 +123,40 @@ export class OrdiniPage {
 
     const searchKeyLowered = this.tipo.toLowerCase();
 
-if(this.tipo !== ''){
-    switch (this.tipo) {
+    if (this.tipo !== '') {
+      switch (this.tipo) {
 
-      case 'Primo piatto':
+        case 'Primo piatto':
           this.listaOrdini = this.listaOrdiniFiltrata.filter(ordine => ordine.tipologia.toLowerCase().search(searchKeyLowered) == 0);
           console.log(this.listaOrdini);
-        break;
+          break;
 
-      case 'Secondo piatto':
+        case 'Secondo piatto':
           this.listaOrdini = this.listaOrdiniFiltrata.filter(ordine => ordine.tipologia.toLowerCase().search(searchKeyLowered) == 0);
           console.log(this.listaOrdini);
-        break;
+          break;
 
-      case 'Bibita':
+        case 'Bibita':
           this.listaOrdini = this.listaOrdiniFiltrata.filter(ordine => ordine.tipologia.toLowerCase().search(searchKeyLowered) == 0);
           console.log(this.listaOrdini);
-        break;
+          break;
 
-      case 'Tutti':
-        this.getOrdini();
-      this.listaOrdini = this.listaOrdiniFiltrata;
-      console.log(this.listaOrdini);
-        break;
+        case 'Tutti':
+          this.getOrdini();
+          this.listaOrdini = this.listaOrdiniFiltrata;
+          console.log(this.listaOrdini);
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
+
+
+
     }
 
+
   }
-}
 
 
 

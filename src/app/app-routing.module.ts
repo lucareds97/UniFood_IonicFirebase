@@ -130,6 +130,12 @@ const routes: Routes = [
     data: {tipo: '3' && '2' && '1'}
   },
 
+  { path: 'modifica-profilo', 
+    loadChildren: './modifica-profilo/modifica-profilo.module#ModificaProfiloPageModule',
+    // canActivate: [AuthGuard]
+  },
+
+
 
 ];
 @NgModule({
