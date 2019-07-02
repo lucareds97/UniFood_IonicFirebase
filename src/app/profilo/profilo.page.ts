@@ -51,9 +51,9 @@ export class ProfiloPage implements OnInit {
     this.router.navigateByUrl('storico-ordini');
   }
 
-  changeEmail(){
-    this.authService.changeEmail('p.prioriello@gmail.com');   
-  }
+  // changeEmail(){
+  //   this.authService.changeEmail('p.prioriello@gmail.com');   
+  // }
 
   changePassword(){
     this.authService.changePassword(this.utente.email).then(
