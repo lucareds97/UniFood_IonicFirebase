@@ -67,25 +67,27 @@
   </div>
 
   <div [ngSwitch]="whichPage">
-    <ion-list *ngSwitchCase="'completati'">
-      <div *ngFor="let ordine of listaOrdini">
-        <div *ngFor="let utente of listaUtenti">
-          <ion-row *ngIf="ordine.stato == true && ordine.idCliente == utente.id">
-
-            <ion-item>
-              <ion-label> {{ordine.idProdotto}}
-                <p>
-                    {{utente.nome}} {{utente.cognome}}
-                </p>
-              </ion-label>
-            </ion-item>
-
-          </ion-row>
-        </div>
-      </div>
-    </ion-list>
-  </div>
-
+      <ion-list *ngSwitchCase="'completati'">
+  
+          <div *ngFor="let ordine of listaOrdini; let i=index">
+            <div *ngFor="let utente of listaUtenti">
+              <div *ngIf="ordine.stato == true && ordine.idCliente == utente.id">
+  
+                  <ion-item (click)="openModal(ordine.id, listaProdotti)">
+                      
+                    <ion-label>
+                        Ordine {{i+1}}
+                      <p>
+                          {{utente.nome}} {{utente.cognome}}
+                      </p>
+                    </ion-label>
+                  </ion-item>
+  
+                </div>
+            </div>
+          </div>
+      </ion-list>
+    </div>
 </ion-content>
 
 
