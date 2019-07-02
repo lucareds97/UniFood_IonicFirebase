@@ -4,6 +4,8 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CartService } from '../services/service_cliente/cart.service';
+import { UtenteService } from '../services/service_amministratore/utente.service';
+import { Utente } from '../interfaces/utente';
 
 @Component({
   selector: 'app-signup',
@@ -20,6 +22,10 @@ export class SignupPage implements OnInit {
   nome: string;
   cognome: string;
 
+  idCliente: string;
+
+  utente: any;
+
   constructor(
     private authService: AuthService,
     private loadingCtrl: LoadingController,
@@ -27,6 +33,7 @@ export class SignupPage implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private cartService: CartService,
+    private userService: UtenteService,
   ) {
     this.signupForm = this.formBuilder.group({
       email: [
@@ -60,15 +67,15 @@ export class SignupPage implements OnInit {
       const cognome: string = signupForm.value.cognome;
       this.tipo = '1';
 
-      console.log(this.nome);
+      this.authService.signupUser(email, password, nome, cognome, this.tipo).then(() => {
 
-      this.authService.signupUser(email, password, nome, cognome, this.tipo).then(
-        () => {
           this.loading.dismiss().then(() => {
 
-            this.cartService.addCart();
-            
-            this.router.navigateByUrl('/login');
+            this.authService.loginUser(email,password).then(() =>
+            this.cartService.addCart()
+              );
+              this.router.navigateByUrl('/cliente/visualizza-prodotti');
+
           });
         },
         error => {

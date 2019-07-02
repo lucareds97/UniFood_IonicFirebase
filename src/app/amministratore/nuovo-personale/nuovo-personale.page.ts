@@ -17,6 +17,7 @@ export class NuovoPersonalePage {
     cognome: '',
     email: '',
     tipo: '',
+    idUtente: '',
   };
 
   constructor(private authService: AuthService, private utenteService: UtenteService, private router: Router, private alertController: AlertController) { }

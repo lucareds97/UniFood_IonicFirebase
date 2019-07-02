@@ -21,6 +21,7 @@ export class ListaPersonalePage implements OnInit {
     cognome: '',
     email: '',
     tipo: '',
+    idUtente: '',
   };
 
   constructor(private router: Router, private authService: AuthService, private utenteService: UtenteService, private personaleService: PersonaleService, private modalController: ModalController) { }

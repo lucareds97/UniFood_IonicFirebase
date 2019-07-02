@@ -46,7 +46,7 @@ export class OrdiniPage {
   }
 
   getDatiUtente(){
-    this.authService.getUserData();
+    this.authService.userDataPromise();
   }
 
   cambiaStato(ordine) {

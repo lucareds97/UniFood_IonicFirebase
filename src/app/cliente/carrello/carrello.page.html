@@ -3,6 +3,11 @@
     <ion-title>
       Carrello
     </ion-title>
+    
+    <ion-button fill="clear" slot="end" color="light" (click)="presentAlertConfirm()">
+      CONFERMA
+        <ion-icon slot="end" name="checkmark-circle-outline"></ion-icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -23,7 +28,7 @@
 
     <ion-item>
       Total: <span slot="end"> {{total | currency: 'EUR' : 'symbol'}} </span>
-    <ion-icon color="danger" slot="end" name="trash" (click)="removeAllProducts()"></ion-icon>
+    <ion-icon color="danger" slot="end" name="trash" (click)="removeAllProducts();"></ion-icon>
       <ion-label>
         
       </ion-label>

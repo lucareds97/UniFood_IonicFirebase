@@ -15,6 +15,7 @@ export class ProfiloPage implements OnInit {
     cognome: '',
     email: '',
     tipo: '',
+    idUtente: ''
   };
   
   constructor(private authService: AuthService, private router: Router){

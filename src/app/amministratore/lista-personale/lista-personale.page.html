@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <ion-list>
+  <ion-list padding>
     <ion-item *ngFor="let personale of listaPersonale" (click)="openModalPersonale(personale.id)">
       <ion-label>{{personale.nome}} {{personale.cognome}}
         <p>

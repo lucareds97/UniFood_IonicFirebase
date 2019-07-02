@@ -24,6 +24,7 @@ export class AuthService {
     cognome: '',
     email: '',
     tipo: '',
+    idUtente: '',
   };
 
   constructor(private db: AngularFirestore) {
@@ -81,26 +82,16 @@ export class AuthService {
 
   getUserId() {
     this.id = firebase.auth().currentUser.uid;
-    console.log(this.id);
     return this.id;
   }
 
-  getUserData() {
-    const id = firebase.auth().currentUser.uid;
-    console.log(id);
-    this.usersCollection.doc<Utente>(id).valueChanges().subscribe(res => {
-      this.utente = res;
-      //console.log(this.utente);
-      return this.utente;
-    });
-  }
-
+  
   userDataPromise(): Promise<any> {
       const id = firebase.auth().currentUser.uid;
       return new Promise((resolve, reject) => {
         this.usersCollection.doc<Utente>(id).valueChanges().subscribe(res => {
           this.utente = res;
-          resolve(res);
+          resolve(this.utente);
         });
       });
   }
