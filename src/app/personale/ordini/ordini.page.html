@@ -37,42 +37,52 @@
 
   <div [ngSwitch]="whichPage">
     <ion-list *ngSwitchCase="'non-completati'">
-      
+
       <ion-grid>
-        <ion-row class="ios hydrated" *ngFor="let ordine of listaOrdini">
+        <div *ngFor="let ordine of listaOrdini; let i=index">
+          <div *ngFor="let utente of listaUtenti">
+            <ion-row *ngIf="ordine.stato == false && ordine.idCliente == utente.id">
 
-          <ion-col size="9">
-            <ion-item *ngIf="ordine.stato == false">
-              <ion-label font-size="60px">{{ordine.idCliente}}
-                <p>
-                  {{ordine.idProdotto}}
-                </p>
-              </ion-label>
-            </ion-item>
-          </ion-col>
+              <ion-col size="10">
+                <ion-item (click)="openModal(ordine.id, listaProdotti)">
+                    
+                  <ion-label>
+                      Ordine {{i+1}}
+                    <p>
+                        {{utente.nome}} {{utente.cognome}}
+                    </p>
+                  </ion-label>
+                </ion-item>
+              </ion-col>
 
-          <ion-col size="3" align-self-center text-center>
-            <ion-checkbox *ngIf="ordine.stato == false" (click)="presentAlertConfirm(ordine)"
-              [(ngModel)]="ordine.isChecked">
-            </ion-checkbox>
-          </ion-col>
+              <ion-col size="2" align-self-center text-center>
+                <ion-checkbox (click)="presentAlertConfirm(ordine)" [(ngModel)]="ordine.isChecked"></ion-checkbox>
+              </ion-col>
 
-        </ion-row>
+            </ion-row>
+          </div>
+        </div>
       </ion-grid>
     </ion-list>
   </div>
 
   <div [ngSwitch]="whichPage">
     <ion-list *ngSwitchCase="'completati'">
-      <ion-item-sliding class="ios hydrated" *ngFor="let ordine of listaOrdini">
-        <ion-item *ngIf="ordine.stato == true">
-          <ion-label>{{ordine.idCliente}}
-            <p>
-              {{ordine.idProdotto}}
-            </p>
-          </ion-label>
-        </ion-item>
-      </ion-item-sliding>
+      <div *ngFor="let ordine of listaOrdini">
+        <div *ngFor="let utente of listaUtenti">
+          <ion-row *ngIf="ordine.stato == true && ordine.idCliente == utente.id">
+
+            <ion-item>
+              <ion-label> {{ordine.idProdotto}}
+                <p>
+                    {{utente.nome}} {{utente.cognome}}
+                </p>
+              </ion-label>
+            </ion-item>
+
+          </ion-row>
+        </div>
+      </div>
     </ion-list>
   </div>
 

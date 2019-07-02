@@ -113,6 +113,12 @@ const routes: Routes = [
     data: {tipo: '3'}
   },
   
+  {
+    path: 'modalOrdine',
+    loadChildren: './personale/pages/modal-ordine/modal-ordine.module#ModalOrdinePageModule',
+    canActivate: [AuthGuard],
+    data: {tipo: '2'}
+  },
 
   
   // { path: 'modal-tipo', 
@@ -140,7 +146,7 @@ const routes: Routes = [
 
   { path: 'modifica-profilo', 
     loadChildren: './modifica-profilo/modifica-profilo.module#ModificaProfiloPageModule',
-    // canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
 
 

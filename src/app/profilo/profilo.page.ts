@@ -43,7 +43,7 @@ export class ProfiloPage implements OnInit {
 
   modificaProfilo() {
     this.id = this.authService.getUserId();
-    this.router.navigateByUrl('cliente/profilo/modifica-profilo');
+    this.router.navigateByUrl(`modifica-profilo`);
   }
 
   storicoOrdini(){
@@ -91,15 +91,15 @@ export class ProfiloPage implements OnInit {
       switch (this.utente.tipo) {
 
         case '1':
-            this.type = 'Cliente:';
+            this.type = 'Cliente';
           break;
   
         case '2':
-            this.type = 'Personale:';
+            this.type = 'Personale';
           break;
   
         case '3':
-            this.type = 'Amministratore:';
+            this.type = 'Amministratore';
           break;
   
         

@@ -13,6 +13,7 @@ import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/fires
 import { Utente } from 'src/app/interfaces/utente';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { ModalOrdinePage } from '../pages/modal-ordine/modal-ordine.page';
 
 @Component({
   selector: 'app-ordini',
@@ -27,11 +28,17 @@ export class OrdiniPage {
   listaOrdini: Ordine[] = [];
   listaOrdiniFiltrata: Ordine[] = [];
 
+  listaUtenti: Utente[] = [];
+  listaProdotti: Prodotto[] = [];
+
   idProdotto: string;
   nomeProdotto: string;
 
   i: any;
 
+  utente: Utente;
+
+ 
   ordine: Ordine = {
     dataOrdine: '',
     prezzo: 0,
@@ -58,6 +65,11 @@ export class OrdiniPage {
 
     this.getDatiUtente();
 
+    //this.getNomi();
+
+    this.getProdotti();
+
+     this.getUtenti();
   }
 
 
@@ -70,6 +82,19 @@ export class OrdiniPage {
     });
   }
 
+  getUtenti() {
+    this.utenteService.getListaUtente().subscribe(res => {
+      this.listaUtenti = res;
+    });
+  }
+
+  getProdotti() {
+    this.prodService.getProducts().subscribe(res => {
+      this.listaProdotti= res;
+    });
+  }
+
+  
   getDatiUtente(){
     this.authService.userDataPromise();
   }
@@ -107,13 +132,14 @@ export class OrdiniPage {
     await alert.present();
   }
 
-  async openModal(id) {
+  async openModal(id, listaProdotti) {
     console.log(id);
 
     const modal = await this.modalController.create({
-      component: ModalPage,
+      component: ModalOrdinePage,
       componentProps: {
-        custom_id: id
+        custom_id: id,
+        custom_listaProdotti: listaProdotti
       }
     });
 
