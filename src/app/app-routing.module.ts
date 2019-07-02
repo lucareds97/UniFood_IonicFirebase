@@ -138,7 +138,7 @@ const routes: Routes = [
 
   { path: 'modifica-profilo', 
     loadChildren: './modifica-profilo/modifica-profilo.module#ModificaProfiloPageModule',
-    // canActivate: [AuthGuard]
+    //canActivate: [AuthGuard]
   },
 
 
