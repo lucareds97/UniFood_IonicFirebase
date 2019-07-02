@@ -19,6 +19,7 @@ import {ModalPageModule} from './personale/pages/modal/modal.module'
 import { ModalProdottoClientePageModule } from './cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.module';
 import { ModalPersonalePageModule } from './amministratore/pages/modal-personale/modal-personale.module';
 import { ModalClientePageModule } from './amministratore/pages/modal-cliente/modal-cliente.module';
+import { ModalOrdinePageModule } from './personale/pages/modal-ordine/modal-ordine.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +29,7 @@ import { ModalClientePageModule } from './amministratore/pages/modal-cliente/mod
     AngularFireModule.initializeApp(environment.firebaseCredentials),
     FormsModule,
     ReactiveFormsModule,
-    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule, ModalPersonalePageModule, ModalClientePageModule
+    AngularFirestoreModule, ModalPageModule, ModalProdottoClientePageModule, ModalPersonalePageModule, ModalClientePageModule, ModalOrdinePageModule
   ],
   providers: [
     StatusBar,

@@ -1,34 +1,35 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-title>{{prodotto.nome}}</ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="closeModal()">
-          <ion-icon slot="icon-only" name="close"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content padding>
-  
-  
-    <div class="price">
-        Prezzo: 
-    </div>
-    
-    <p class="description">
-        Ingredienti: 
-    </p>
-  
-    <div class="center">
-    <ion-button fill="clear"  >
-        <ion-icon slot="icon-only" name="create"></ion-icon>
+  <ion-toolbar>
+    <ion-title>{{ordine.id}}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
-  
-      <ion-button fill="clear" color="danger" >
-          <ion-icon  slot="icon-only" name="trash"></ion-icon>
-      </ion-button>
-    </div>
-  
-    
-  </ion-content>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <p text-center>
+    <b>Prezzo</b>: {{ordine.prezzo | currency : 'EUR' : 'symbol'}}
+  </p>
+  <b>Prodotti</b>:
+  <ion-item class="description" *ngFor="let prodotto of ordine.prodotti">
+    {{prodotto.nome}}
+  </ion-item>
+
+
+  <!-- <div class="center">
+    <ion-button fill="clear">
+      <ion-icon slot="icon-only" name="create"></ion-icon>
+    </ion-button>
+
+    <ion-button fill="clear" color="danger">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-button>
+  </div> -->
+
+
+</ion-content>

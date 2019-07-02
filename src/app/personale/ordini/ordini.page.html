@@ -44,7 +44,8 @@
             <ion-row *ngIf="ordine.stato == false && ordine.idCliente == utente.id">
 
               <ion-col size="10">
-                <ion-item>
+                <ion-item (click)="openModal(ordine.id, listaProdotti)">
+                    
                   <ion-label>
                       Ordine {{i+1}}
                     <p>
