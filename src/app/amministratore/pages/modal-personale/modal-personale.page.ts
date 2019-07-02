@@ -16,7 +16,8 @@ export class ModalPersonalePage implements OnInit {
     nome: '',
     cognome: '',
     email: '',
-    tipo: ''
+    tipo: '',
+    idUtente: '',
   };
 
   id: any;

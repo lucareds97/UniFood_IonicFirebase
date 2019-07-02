@@ -12,7 +12,7 @@ export class UtenteService {
   usersCollection: AngularFirestoreCollection<Utente>;
   listUsers: Observable<Utente[]>;
   listUsers2: Observable<Utente[]>;
-  
+
   constructor(private db: AngularFirestore) {
     this.usersCollection = db.collection<Utente>('userProfile');
 

@@ -1,10 +1,11 @@
+import { Prodotto } from './prodotti';
+
 export interface Ordine {
     dataOrdine: string;
-    orarioOrdine: string;
-    prezzoTotale: string;
+    prezzo: number;
     stato: boolean;
     idCliente: string;
-    idProdotto: string;
+    prodotti: Prodotto[],
     idSede: string;
     isChecked: boolean,
     tipologia: string,

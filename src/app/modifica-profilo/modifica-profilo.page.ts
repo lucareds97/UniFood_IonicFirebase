@@ -21,6 +21,7 @@ export class ModificaProfiloPage implements OnInit {
     cognome: '',
     email: '',
     tipo: '',
+    idUtente: ''
   };
 
   id: any;
@@ -36,7 +37,7 @@ export class ModificaProfiloPage implements OnInit {
   
   ngOnInit() {
     
-    this.authService.getUserData();
+    this.authService.userDataPromise();
 
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
     this.getProfilo();

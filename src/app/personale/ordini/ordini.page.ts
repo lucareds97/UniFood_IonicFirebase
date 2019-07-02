@@ -31,17 +31,17 @@ export class OrdiniPage {
 
   i: any;
 
- ordine: Ordine = {
+  ordine: Ordine = {
     dataOrdine: '',
-    orarioOrdine: '',
-    prezzoTotale: '',
+    prezzo: 0,
     stato: false,
     idCliente: '',
-    idProdotto: '',
+    prodotti: [],
     idSede: '',
     isChecked: false,
     tipologia: '',
 }
+
 
 
   whichPage = 'non-completati'
@@ -57,8 +57,6 @@ export class OrdiniPage {
 
     this.getDatiUtente();
 
-    this.getNomi();
-
   }
 
 
@@ -71,34 +69,8 @@ export class OrdiniPage {
     });
   }
 
-  getNomi() {
-
-   
-
-
-    this.ordiniService.getOrdini().subscribe(res => {
-      res.filter((ordine) => {
-        console.log(ordine);
-        this.utenteService.getProfile(ordine.idCliente.trim()).subscribe((utente) => {
-          console.log(this.authService.getUserId());
-          
-          this.ordine.idCliente = utente.nome;
-          return this.ordine;
-
-          console.log(this.ordine.idCliente);
-    //       if (ordine.idCliente == 'utente.id') {
-    //         console.log(utente.nome);
-    //         return ordine;
-          // }
-        });
-      });
-
-    });
-  }
-
-
-  getDatiUtente() {
-    this.authService.getUserData();
+  getDatiUtente(){
+    this.authService.userDataPromise();
   }
 
 

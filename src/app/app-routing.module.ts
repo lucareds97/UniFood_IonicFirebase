@@ -95,6 +95,7 @@ const routes: Routes = [
   //   path: 'modalPersonale',
   //   loadChildren: './amministratore/pages/modal/modal-personale.module#ModalPersonalePageModule',
   //   canActivate: [AuthGuard],
+  //   data: {tipo: '3'}
   // },
 
   {

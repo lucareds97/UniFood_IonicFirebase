@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { ModalProdottoClientePage } from 'src/app/cliente/pages/modal-prodotto-cliente/modal-prodotto-cliente.page';
 import { AuthService } from 'src/app/services/user/auth.service';
 import { CartService } from 'src/app/services/service_cliente/cart.service';
+import { Carrello } from 'src/app/interfaces/carrello';
 
 @Component({
   selector: 'app-visualizza-prodotti',
@@ -32,12 +33,16 @@ export class VisualizzaProdottiPage implements OnInit {
 
   };
 
+  carrello: Carrello = {
+    prodotti: [],
+    prezzo: 0,
+    idCliente: ''
+  };
+
   id: any;
   value = 0;
   public text: string = "";
 
-  carrello = [];
-  items = [];
 
   constructor(private cartService: CartService, private authService: AuthService, private prodService: ProductsService, private router: Router, public alertController: AlertController, private modalController: ModalController) { }
 
@@ -71,7 +76,7 @@ export class VisualizzaProdottiPage implements OnInit {
     await modal.present();
   }
 
-  aggiungiAlCarrello(prodotto) {
+  aggiungiAlCarrello(prodotto: Prodotto) {
     this.cartService.addProduct(prodotto);
   }
 

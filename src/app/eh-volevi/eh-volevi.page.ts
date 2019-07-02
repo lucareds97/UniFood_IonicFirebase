@@ -16,6 +16,7 @@ export class EhVoleviPage implements OnInit {
     cognome: '',
     email: '',
     tipo: '',
+    idUtente: '',
   };
 
   constructor(private location: Location, private authService: AuthService, private router: Router) { }
@@ -46,7 +47,7 @@ export class EhVoleviPage implements OnInit {
           break;
 
         default:
-          
+
           break;
       }
       this.router.navigateByUrl(`/${categoria}`);
