@@ -8,8 +8,10 @@ import { CartService } from 'src/app/services/service_cliente/cart.service';
 })
 export class TabsPageCliente {
 
+  carrello: any;
 
   constructor(private cartService: CartService) {
+    this.carrello = this.cartService.carrello;
   }
 
 

@@ -23,8 +23,6 @@ export class CartService {
   listaCarrelli: Carrello[] = [];
   listaProdotti: Prodotto[] = []
 
-
-  cart = [];
   idCarrello: string;
   idCart: string;
 
@@ -34,6 +32,7 @@ export class CartService {
   carrello: Carrello;
 
   nuovoCarrello: Carrello;
+  
 
   utente: Utente = {
     nome: '',
