@@ -33,7 +33,7 @@
 
     <ion-row>
 
-        <ion-col>
+        <ion-col *ngIf="utente.tipo == 1">
             <ion-button expand="full" fill="clear" color="primary" (click)="storicoOrdini()">
               <div>
                 <p style="font-size:12px; text-align: left">Storico<br>Ordini</p>
