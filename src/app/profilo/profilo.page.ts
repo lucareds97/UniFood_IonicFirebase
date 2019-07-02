@@ -46,6 +46,11 @@ export class ProfiloPage implements OnInit {
     this.router.navigateByUrl('cliente/profilo/modifica-profilo');
   }
 
+  storicoOrdini(){
+    this.id = this.authService.getUserId();
+    this.router.navigateByUrl('storico-ordini');
+  }
+
   changeEmail(){
     this.authService.changeEmail('p.prioriello@gmail.com');   
   }

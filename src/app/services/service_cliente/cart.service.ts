@@ -187,7 +187,7 @@ export class CartService {
   confermaCarrello(){
 
     this.ordine = {
-      dataOrdine: new Date().toDateString(),
+      dataOrdine: new Date().getTime().toString(),
       idCliente: this.carrello.idCliente,
       prodotti: this.carrello.prodotti,
       idSede: '10001',

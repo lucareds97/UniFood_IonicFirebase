@@ -19,6 +19,7 @@ import { Observable } from 'rxjs';
   templateUrl: 'ordini.page.html',
   styleUrls: ['ordini.page.scss']
 })
+
 export class OrdiniPage {
   usersCollection: AngularFirestoreCollection<Utente>;
   users: Observable<Utente[]>;

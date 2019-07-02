@@ -28,6 +28,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {tipo: '2'}
   },
+
+
+  { path: 'storico-ordini',
+   loadChildren: './cliente/storico-ordini/storico-ordini.module#StoricoOrdiniPageModule',
+   canActivate: [AuthGuard],
+   data: {tipo: '1'}
+  },
+  
   {
     path: 'modifica-prodotto',
     loadChildren: './personale/modifica-prodotto/modifica-prodotto.module#ModificaProdottoPageModule',
