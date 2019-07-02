@@ -1,0 +1,34 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{prodotto.nome}}</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="closeModal()">
+          <ion-icon slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+  
+  
+    <div class="price">
+        Prezzo: 
+    </div>
+    
+    <p class="description">
+        Ingredienti: 
+    </p>
+  
+    <div class="center">
+    <ion-button fill="clear"  >
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+  
+      <ion-button fill="clear" color="danger" >
+          <ion-icon  slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </div>
+  
+    
+  </ion-content>

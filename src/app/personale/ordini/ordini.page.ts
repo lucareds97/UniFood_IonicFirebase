@@ -26,10 +26,14 @@ export class OrdiniPage {
   listaOrdini: Ordine[] = [];
   listaOrdiniFiltrata: Ordine[] = [];
 
+  listaUtenti: Utente[] = [];
+
   idProdotto: string;
   nomeProdotto: string;
 
   i: any;
+
+  utente: Utente;
 
  ordine: Ordine = {
     dataOrdine: '',
@@ -57,8 +61,9 @@ export class OrdiniPage {
 
     this.getDatiUtente();
 
-    this.getNomi();
+    //this.getNomi();
 
+     this.getUtenti();
   }
 
 
@@ -68,6 +73,12 @@ export class OrdiniPage {
     this.ordiniService.getOrdini().subscribe(res => {
       this.listaOrdini = res;
       this.listaOrdiniFiltrata = res;
+    });
+  }
+
+  getUtenti() {
+    this.utenteService.getListaUtente().subscribe(res => {
+      this.listaUtenti = res;
     });
   }
 
